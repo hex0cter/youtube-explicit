@@ -6,7 +6,14 @@ import mapDispatchToProps from './map-dispatch-to-props'
 
 class Playback extends React.Component {
   videoEnded = () => {
-    this.props.onUpdateListVisibilty(true)
+    const {playlistIndex, videoIndex} = this.props.selectedVideo
+    const playToNextAutomatically = this.props.videoList[playlistIndex].playToNextAutomatically
+
+    if (playToNextAutomatically && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
+      this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
+    } else {
+      this.props.onUpdateListVisibilty(true)
+    }
   }
 
   videoPaused = () => {
@@ -20,7 +27,6 @@ class Playback extends React.Component {
   render() {
     const width = window.screen.availWidth
     const height = width * 9 / 16
-    console.log('size', width, height)
     const opts = {
       height,
       width,
@@ -29,13 +35,12 @@ class Playback extends React.Component {
       }
     }
 
-    if (!this.props.selectedVideo) {
+    const {playlistIndex, videoIndex} = this.props.selectedVideo
+    if(!playlistIndex && !videoIndex) {
       return null
     }
-    const {playlistIndex, videoIndex} = this.props.selectedVideo
-    const video = this.props.videoList[playlistIndex].items[videoIndex]
-    console.log('>>>> video', video)
 
+    const video = this.props.videoList[playlistIndex].items[videoIndex]
     return (
       <div>
         <YouTube

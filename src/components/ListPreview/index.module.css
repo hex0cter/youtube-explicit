@@ -15,6 +15,13 @@
   cursor: pointer;
 }
 
+.ListActiveCell {
+  border: #fff solid 3px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
 .Hidden {
   display: none;
 }

@@ -5,25 +5,20 @@ import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
 
 class ListPreview extends React.Component {
-  play = (videoId) => {
-    console.log('playing', videoId)
-    this.props.onUpdateSelectedVideo(videoId)
+  play = (videoIndex) => {
+    this.props.onUpdateSelectedVideo(videoIndex)
   }
 
   render() {
-    console.log('ListPreview props', this.props.videoList)
+    const {playlistIndex, videoIndex} = this.props.selectedVideo
     return (
       <div className={this.props.listPreviewVisibility ? styles.ListPreview : styles.Hidden}>
-        {this.props.videoList.map((_v1, playlistIndex) => {
-          console.log('playlistIndex', playlistIndex)
-          console.log('this.props.videoList[playlistIndex]', this.props.videoList[playlistIndex])
-          return this.props.videoList[playlistIndex].items.map((video, videoIndex) => {
-            // debugger
-            console.log('>>>>> video.snippet', video.snippet)
+        {this.props.videoList.map((_v1, currentPlaylistIndex) => {
+          return this.props.videoList[currentPlaylistIndex].items.map((video, currentVideoIndex) => {
             return (
-              <div className={styles.ListCell}
-                key={`${playlistIndex}-${videoIndex}`}
-                onClick={() => this.play({playlistIndex, videoIndex})}
+              <div className={currentPlaylistIndex === playlistIndex && currentVideoIndex === videoIndex ? styles.ListActiveCell : styles.ListCell}
+                key={`${currentPlaylistIndex}-${currentVideoIndex}`}
+                onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                 style={{
                   backgroundImage: `url(${video.snippet.thumbnails.medium.url})`,
                   minWidth: '320px',

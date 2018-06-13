@@ -2,7 +2,7 @@ import * as actions from './actions'
 
 const initialState = {
   videoList: [],
-  selectedVideo: null,
+  selectedVideo: {},
   listPreviewVisibility: true
 }
 
@@ -11,7 +11,6 @@ function reducer(state = initialState, action) {
     case actions.ACTION_APPEND_VIDEO_TO_LIST: {
       const videoList = [...state.videoList]
       videoList.push(action.payload)
-      console.log('>>>>> add to videoList', videoList)
       return {
         ...state,
         videoList

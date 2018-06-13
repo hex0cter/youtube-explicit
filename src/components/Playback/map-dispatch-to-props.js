@@ -1,7 +1,8 @@
-import { updateListVisibilty } from '../../actions'
+import { updateListVisibilty, updateSelectedVideo } from '../../actions'
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateListVisibilty: (visibility) => dispatch(updateListVisibilty(visibility))
+  onUpdateListVisibilty: (visibility) => dispatch(updateListVisibilty(visibility)),
+  onUpdateSelectedVideo: (videoIndex) => dispatch(updateSelectedVideo(videoIndex))
 })
 
 export default mapDispatchToProps
