@@ -3,6 +3,7 @@ import YouTube from 'react-youtube'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
+import styles from './index.module.css'
 
 class Playback extends React.Component {
   videoEnded = () => {
@@ -13,6 +14,7 @@ class Playback extends React.Component {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
       this.props.onUpdateListVisibilty(true)
+      this.props.onUpdateSelectedVideo({})
     }
   }
 
@@ -25,7 +27,7 @@ class Playback extends React.Component {
   }
 
   render() {
-    const width = window.screen.availWidth
+    const width = window.innerWidth
     const height = width * 9 / 16
     const opts = {
       height,
@@ -42,8 +44,10 @@ class Playback extends React.Component {
 
     const video = this.props.videoList[playlistIndex].items[videoIndex]
     return (
-      <div>
+      <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
         <YouTube
+          className={styles.YouTube}
+          containerClassName={styles.Player}
           videoId={video.snippet.resourceId.videoId}
           opts={opts}
           onPlay={this.videoStarted}
