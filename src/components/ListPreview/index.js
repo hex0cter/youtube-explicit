@@ -20,8 +20,10 @@ class ListPreview extends React.Component {
                 key={`${currentPlaylistIndex}-${currentVideoIndex}`}
                 onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                 style={{
-                  backgroundImage: `url(${video.snippet.thumbnails.medium.url})`,
-                  minWidth: '320px',
+                  backgroundImage: `url(${video.snippet.thumbnails.high.url})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  minWidth: '400px',
                 }}
               >
                 {video.snippet.title}

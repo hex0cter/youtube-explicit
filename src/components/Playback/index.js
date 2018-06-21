@@ -38,7 +38,8 @@ class Playback extends React.Component {
     }
 
     const {playlistIndex, videoIndex} = this.props.selectedVideo
-    if(!playlistIndex && !videoIndex) {
+    console.log('selectedVideo', playlistIndex, videoIndex)
+    if(playlistIndex === undefined && videoIndex === undefined) {
       return null
     }
 
