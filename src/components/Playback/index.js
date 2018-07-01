@@ -48,7 +48,6 @@ class Playback extends React.Component {
       <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
         <YouTube
           className={styles.YouTube}
-          containerClassName={styles.Player}
           videoId={video.snippet.resourceId.videoId}
           opts={opts}
           onPlay={this.videoStarted}
