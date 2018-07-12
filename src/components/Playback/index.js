@@ -40,7 +40,11 @@ class Playback extends React.Component {
     const {playlistIndex, videoIndex} = this.props.selectedVideo
     console.log('selectedVideo', playlistIndex, videoIndex)
     if(playlistIndex === undefined && videoIndex === undefined) {
-      return null
+      return (
+        <div className={styles.Logo}>
+          YouTube Explicit
+        </div>
+      )
     }
 
     const video = this.props.videoList[playlistIndex].items[videoIndex]
