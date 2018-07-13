@@ -9,10 +9,17 @@
   display: flex;
 }
 
+@media screen and (max-width: 800px) {
+  .ListPreview {
+    height: 160px;
+  }
+}
+
 .ListCell {
   color: #fff;
   text-align: center;
   cursor: pointer;
+  border: rgb(167, 160, 160) solid 2px;
 }
 
 .ListActiveCell {

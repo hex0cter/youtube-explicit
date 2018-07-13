@@ -23,7 +23,7 @@ class ListPreview extends React.Component {
                   backgroundImage: `url(${video.snippet.thumbnails.high.url})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
-                  minWidth: '400px',
+                  minWidth: '300px',
                 }}
               >
                 {video.snippet.title}

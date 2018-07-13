@@ -6,6 +6,11 @@ import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
 
 class Playback extends React.Component {
+  videoReady = (e) => {
+    console.log('ready')
+    e.target.playVideo()
+  }
+
   videoEnded = () => {
     const {playlistIndex, videoIndex} = this.props.selectedVideo
     const playToNextAutomatically = this.props.videoList[playlistIndex].playToNextAutomatically
@@ -19,6 +24,7 @@ class Playback extends React.Component {
   }
 
   videoPaused = () => {
+    console.log('paused')
     this.props.onUpdateListVisibilty(true)
   }
 
@@ -27,7 +33,7 @@ class Playback extends React.Component {
   }
 
   render() {
-    const width = window.innerWidth
+    const width = window.innerWidth + 4
     const height = width * 9 / 16
     const opts = {
       height,
@@ -54,6 +60,7 @@ class Playback extends React.Component {
           className={styles.YouTube}
           videoId={video.snippet.resourceId.videoId}
           opts={opts}
+          onReady={this.videoReady}
           onPlay={this.videoStarted}
           onPause={this.videoPaused}
           onEnd={this.videoEnded}

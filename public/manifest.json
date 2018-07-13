@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Youtube",
+  "name": "Safely play videos on youtube.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "landscape",
+  "display": "fullscreen",
+  "theme_color": "#f34121",
   "background_color": "#ffffff"
 }
