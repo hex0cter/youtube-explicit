@@ -8,7 +8,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ACTION_APPEND_VIDEO_TO_LIST: {
+    case actions.ACTION_ADD_VIDEOS_TO_LIST: {
       const videoList = [...state.videoList]
       videoList.push(action.payload)
       return {

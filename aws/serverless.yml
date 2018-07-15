@@ -1,0 +1,92 @@
+service: youtube-explicit
+
+plugins:
+  - serverless-offline
+  # - serverless-domain-manager
+  # - serverless-dynamodb-local
+
+custom:
+  domain: solna.xyz
+  # customDomain:
+  #   domainName: api.${self:custom.domain}
+  #   basePath: ${file(./serverless-config.yml):api.${opt:stage, self:provider.stage}}
+  #   stage: ${opt:stage, self:provider.stage}
+  #   certificateName: ${self:custom.domain}
+  #   createRoute53Record: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: eu-north-1
+  memorySize: 128
+  timeout: 3
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:service}-${opt:stage, self:provider.stage}-*
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: arn:aws:s3:::${self:service}-${opt:stage, self:provider.stage}-data*
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: arn:aws:s3:::${self:service}-${opt:stage, self:provider.stage}-assets*
+    - Effect: Allow
+      Action:
+        - sns:*
+      Resource: arn:aws:sns:${opt:region, self:provider.region}:*:${self:service}-${opt:stage, self:provider.stage}-newOrderPublisher
+  environment:
+    SERVICE_NAME: ${self:service}
+    STAGE: ${opt:stage, self:provider.stage}
+    DOMAIN_NAME: ${self:custom.domain}
+
+package:
+  exclude:
+    - privision/**
+
+functions:
+  authorization:
+    handler: api/authorization.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-Authorization
+  createNewUser:
+    handler: api/createNewUser.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-CreateNewUser
+    events:
+      - http:
+          path: /users
+          method: post
+          cors: true
+  Login:
+    handler: api/login.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-Login
+    events:
+      - http:
+          path: /login
+          method: post
+          cors: true
+  updateVideoList:
+    handler: api/updateVideoList.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-UpdateVideoList
+    events:
+      - http:
+          path: /products/{category}/{reference}
+          method: post
+          cors: true
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-${opt:stage, self:provider.stage}-Users
+        AttributeDefinitions:
+          - AttributeName: email
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

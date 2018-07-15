@@ -1,0 +1,13 @@
+{
+  "name": "youtube-explicit",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Daniel Han",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^1.60.4",
+    "serverless-domain-manager": "^3.3.0",
+    "serverless-dynamodb-local": "^0.2.38",
+    "serverless-offline": "^5.12.1"
+  }
+}

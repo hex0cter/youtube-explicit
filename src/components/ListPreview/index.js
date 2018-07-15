@@ -10,7 +10,7 @@ class ListPreview extends React.Component {
   }
 
   render() {
-    const {playlistIndex, videoIndex} = this.props.selectedVideo
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
     return (
       <div className={this.props.listPreviewVisibility ? styles.ListPreview : styles.Hidden}>
         {this.props.videoList.map((_v1, currentPlaylistIndex) => {

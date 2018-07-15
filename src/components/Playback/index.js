@@ -7,12 +7,11 @@ import styles from './index.module.css'
 
 class Playback extends React.Component {
   videoReady = (e) => {
-    console.log('ready')
     e.target.playVideo()
   }
 
   videoEnded = () => {
-    const {playlistIndex, videoIndex} = this.props.selectedVideo
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
     const playToNextAutomatically = this.props.videoList[playlistIndex].playToNextAutomatically
 
     if (playToNextAutomatically && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
@@ -24,7 +23,6 @@ class Playback extends React.Component {
   }
 
   videoPaused = () => {
-    console.log('paused')
     this.props.onUpdateListVisibilty(true)
   }
 
@@ -43,8 +41,7 @@ class Playback extends React.Component {
       }
     }
 
-    const {playlistIndex, videoIndex} = this.props.selectedVideo
-    console.log('selectedVideo', playlistIndex, videoIndex)
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
     if(playlistIndex === undefined && videoIndex === undefined) {
       return (
         <div className={styles.Logo}>

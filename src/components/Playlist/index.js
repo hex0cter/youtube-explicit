@@ -6,9 +6,14 @@ import mapDispatchToProps from './map-dispatch-to-props'
 
 class Playlist extends React.Component {
   componentDidMount = async() => {
-    const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${this.props.id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+    const id = this.props.id
+    const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
     const items = response.data.items
-    this.props.onAppendVideoToList({items, playToNextAutomatically: this.props.playToNextAutomatically || false})
+    this.props.onAddVideosToList({
+      id,
+      items,
+      playToNextAutomatically: this.props.playToNextAutomatically || false
+    })
   }
 
   render() {
