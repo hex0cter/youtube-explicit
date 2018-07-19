@@ -1,5 +1,5 @@
-const mapStateToProps = (state) => ({
-  videoList: state.videoList,
+const mapStateToProps = ({ main }) => ({
+  videoList: main.videoList,
 })
 
 export default mapStateToProps

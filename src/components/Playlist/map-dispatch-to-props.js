@@ -1,4 +1,4 @@
-import { addVideosToList } from '../../actions'
+import { addVideosToList } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
   onAddVideosToList: (videoList) => dispatch(addVideosToList(videoList)),

@@ -1,4 +1,4 @@
-import { updateSelectedVideo } from '../../actions'
+import { updateSelectedVideo } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateSelectedVideo: (videoIndex) => dispatch(updateSelectedVideo(videoIndex))
