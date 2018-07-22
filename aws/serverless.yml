@@ -26,53 +26,26 @@ provider:
       Action:
         - dynamodb:*
       Resource: arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:service}-${opt:stage, self:provider.stage}-*
-    - Effect: Allow
-      Action:
-        - s3:*
-      Resource: arn:aws:s3:::${self:service}-${opt:stage, self:provider.stage}-data*
-    - Effect: Allow
-      Action:
-        - s3:*
-      Resource: arn:aws:s3:::${self:service}-${opt:stage, self:provider.stage}-assets*
-    - Effect: Allow
-      Action:
-        - sns:*
-      Resource: arn:aws:sns:${opt:region, self:provider.region}:*:${self:service}-${opt:stage, self:provider.stage}-newOrderPublisher
   environment:
     SERVICE_NAME: ${self:service}
     STAGE: ${opt:stage, self:provider.stage}
     DOMAIN_NAME: ${self:custom.domain}
 
-package:
-  exclude:
-    - privision/**
-
 functions:
-  authorization:
-    handler: api/authorization.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-Authorization
-  createNewUser:
-    handler: api/createNewUser.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-CreateNewUser
+  fetchPlaylists:
+    handler: api/fetchPlaylists.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-FetchPlaylists
     events:
       - http:
-          path: /users
-          method: post
+          path: /playlists
+          method: get
           cors: true
-  Login:
-    handler: api/login.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-Login
+  updatePlaylists:
+    handler: api/updatePlaylists.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-UpdatePlaylists
     events:
       - http:
-          path: /login
-          method: post
-          cors: true
-  updateVideoList:
-    handler: api/updateVideoList.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-UpdateVideoList
-    events:
-      - http:
-          path: /products/{category}/{reference}
+          path: /playlists
           method: post
           cors: true
 resources:
@@ -80,12 +53,12 @@ resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:service}-${opt:stage, self:provider.stage}-Users
+        TableName: ${self:service}-${opt:stage, self:provider.stage}-Playlists
         AttributeDefinitions:
-          - AttributeName: email
+          - AttributeName: user
             AttributeType: S
         KeySchema:
-          - AttributeName: email
+          - AttributeName: user
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

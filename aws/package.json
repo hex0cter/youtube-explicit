@@ -9,5 +9,8 @@
     "serverless-domain-manager": "^3.3.0",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.12.1"
+  },
+  "scripts": {
+    "deploy": "serverless deploy --stage dev"
   }
 }
