@@ -30,6 +30,16 @@ class Playback extends React.Component {
     this.props.onUpdateListVisibilty(false)
   }
 
+  editingUserIdentifier = (e) => {
+    const userIdentifier = e.target.value
+    this.props.onUpdateUserIdentifier(userIdentifier)
+  }
+
+  updateUserIdentifier = async() => {
+    localStorage.setItem('userIdentifier', this.props.userIdentifier)
+    window.location.reload()
+  }
+
   render() {
     const width = window.innerWidth + 4
     const height = width * 9 / 16
@@ -45,7 +55,9 @@ class Playback extends React.Component {
     if(playlistIndex === undefined && videoIndex === undefined) {
       return (
         <div className={styles.Logo}>
-          YouTube Explicit
+          YouTube Explicit<br/>
+          <input type='input' value={this.props.userIdentifier} onChange={this.editingUserIdentifier} />&nbsp;
+          <button onClick={this.updateUserIdentifier}>Change</button>
         </div>
       )
     }

@@ -33,12 +33,12 @@ class Admin extends React.Component {
   }
 
   fetchPlaylists = async() => {
-    const user = this.props.userIdentifier
-    localStorage.setItem('userIdentifier', user)
+    const userIdentifier = this.props.userIdentifier
+    localStorage.setItem('userIdentifier', userIdentifier)
 
-    const response = await axios.get(`https://47afj0sk74.execute-api.eu-north-1.amazonaws.com/dev/playlists?user=${this.props.userIdentifier}`)
+    const response = await axios.get(`https://47afj0sk74.execute-api.eu-north-1.amazonaws.com/dev/playlists?user=${userIdentifier}`)
     if (response.data === '') {
-      console.log('This user does not exists:', this.props.userIdentifier)
+      console.log('This user does not exist:', userIdentifier)
       return
     }
 

@@ -1,9 +1,12 @@
 import * as actions from './actions'
 
+const userIdentifier = localStorage.getItem('userIdentifier') || null
+
 const initialState = {
   videoList: [],
   selectedVideo: {},
-  listPreviewVisibility: true
+  listPreviewVisibility: true,
+  userIdentifier
 }
 
 function reducer(state = initialState, action) {
@@ -28,6 +31,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         selectedVideo
+      }
+    }
+    case actions.ACTION_UPDATE_USER_IDENTIFIER: {
+      const userIdentifier = action.payload
+      return {
+        ...state,
+        userIdentifier
       }
     }
     default:
