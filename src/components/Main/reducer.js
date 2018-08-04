@@ -3,6 +3,7 @@ import * as actions from './actions'
 const userIdentifier = localStorage.getItem('userIdentifier') || null
 
 const initialState = {
+  playlists: [],
   videoList: [],
   selectedVideo: {},
   listPreviewVisibility: true,
@@ -38,6 +39,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         userIdentifier
+      }
+    }
+    case actions.ACTION_UPDATE_PLAYLISTS: {
+      const playlists = action.payload
+      return {
+        ...state,
+        playlists
       }
     }
     default:

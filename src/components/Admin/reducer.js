@@ -10,7 +10,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ACTION_UPDATE_PLAYLIST: {
+    case actions.ACTION_UPDATE_PLAYLISTS: {
       const playlists = action.payload
       return {
         ...state,
