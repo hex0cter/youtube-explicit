@@ -24,7 +24,7 @@ class Main extends React.Component {
     return (
       <div className={styles.Main}>
         <Playback />
-        { this.props.playlists.map(playlist => <Playlist id={playlist} key={playlist}/>) }
+        { this.props.playlists.map(playlist => <Playlist id={playlist} key={playlist} playToNextAutomatically />) }
         <ListPreview />
       </div>
     )

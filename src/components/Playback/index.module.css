@@ -9,7 +9,17 @@
 
 .Logo {
   color: #fff;
-  line-height: 10em;
+  line-height: 3em;
   font-size: xx-large;
   font-family: cursive;
+}
+
+@media screen and (min-height: 500px) {
+  .Logo {
+    line-height: 6em;
+  }
+}
+
+.Logo button {
+  background-color: aliceblue;
 }
