@@ -54,10 +54,12 @@ class Playback extends React.Component {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     if(playlistIndex === undefined && videoIndex === undefined) {
       return (
-        <div className={styles.Logo}>
-          YouTube Explicit<br/>
-          <input type='input' value={this.props.userIdentifier} onChange={this.editingUserIdentifier} />&nbsp;
-          <button onClick={this.updateUserIdentifier}>Change</button>
+        <div className={styles.AppDescriptor}>
+          <div className={styles.AppTitle}>YouTube Explicit<br/></div>
+          <div>
+            <input type='input' value={this.props.userIdentifier} onChange={this.editingUserIdentifier} placeholder='User identifier' />
+            <button onClick={this.updateUserIdentifier}>Update</button>
+          </div>
         </div>
       )
     }

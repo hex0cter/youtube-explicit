@@ -1,25 +1,49 @@
 .Playback {
   background-color: #000;
-  position: relative;
+  /* position: relative; */
 }
 
 .YouTube {
   vertical-align: middle;
 }
 
-.Logo {
+.AppDescriptor {
   color: #fff;
-  line-height: 3em;
-  font-size: xx-large;
   font-family: cursive;
 }
 
-@media screen and (min-height: 500px) {
-  .Logo {
-    line-height: 6em;
-  }
+.AppTitle {
+  font-size: 30px;
+  padding: 4em 0 1em 0;
 }
 
-.Logo button {
+.AppDescriptor button {
   background-color: aliceblue;
+  margin-left: 1em;
+}
+
+@media screen and (min-width: 500px) {
+  .AppTitle {
+    font-size: 60px;
+  }
+
+  .AppDescriptor button {
+    font-size: 20px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .AppDescriptor input {
+    font-size: 20px;
+    border: none;
+    padding: 15px 32px 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
 }

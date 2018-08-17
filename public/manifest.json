@@ -1,6 +1,6 @@
 {
   "short_name": "Youtube",
-  "name": "Safely play videos on youtube.",
+  "name": "Safely browse videos on youtube.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,7 +20,7 @@
   ],
   "start_url": "/",
   "scope": "/",
-  "orientation": "landscape",
+  "orientation": "any",
   "display": "fullscreen",
   "theme_color": "#f34121",
   "background_color": "#ffffff"
