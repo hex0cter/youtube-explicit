@@ -36,7 +36,8 @@ class Playback extends React.Component {
   }
 
   updateUserIdentifier = async() => {
-    localStorage.setItem('userIdentifier', this.props.userIdentifier)
+    const userIdentifier = this.props.userIdentifier.trim()
+    localStorage.setItem('userIdentifier', userIdentifier)
     window.location.reload()
   }
 

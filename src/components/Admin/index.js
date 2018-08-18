@@ -21,19 +21,19 @@ class Admin extends React.Component {
   }
 
   submitPlaylists = async() => {
-    const user = this.props.userIdentifier
-    localStorage.setItem('userIdentifier', user)
+    const userIdentifier = this.props.userIdentifier.trim()
+    localStorage.setItem('userIdentifier', userIdentifier)
 
     const playlists = this.props.playlists.filter(line => line.length > 16)
     const params = {
-      user,
+      user: userIdentifier,
       playlists
     }
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
   }
 
   fetchPlaylists = async() => {
-    const userIdentifier = this.props.userIdentifier
+    const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
     const response = await axios.get(`https://api.solna.xyz/v1/playlists?user=${userIdentifier}`)
