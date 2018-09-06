@@ -1,6 +1,6 @@
 {
   "short_name": "Youtube",
-  "name": "Safely browse videos on youtube.",
+  "name": "Watch videos safely.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://solna.xyz",
   "scope": "/",
   "orientation": "any",
   "display": "fullscreen",
