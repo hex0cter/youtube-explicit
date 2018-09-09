@@ -52,14 +52,32 @@ class Admin extends React.Component {
 
   render() {
     return <div className={styles.Admin}>
-      User Identifer:
-      <input type="input" name="userIdentifier" value={this.props.userIdentifier} onChange={this.changeUserIdentifier} />
-      <button onClick={this.generateNewUserIdentifier}>Generate new</button>
-      <button onClick={this.fetchPlaylists}>Fetch my list</button><br/>
-      Filling in the IDs of your favourite playlists:<br/>
-      <textarea rows="20" cols="50" onChange={this.updatePlaylists} value={this.props.playlists.join('\n')} />
-      <br/>
-      <button onClick={this.submitPlaylists}>Submit</button>
+      <div className={styles.UserIdentifier}>
+        <div className={styles.UserIdentifierTitle}>
+          User Identifer:
+        </div>
+        <div className={styles.UserIdentifierInput}>
+          <input type="text" className={styles.InputText} name="userIdentifier" value={this.props.userIdentifier} onChange={this.changeUserIdentifier} />
+        </div>
+        <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
+          Generate new
+        </div>
+        <div className={styles.smallButton} onClick={this.fetchPlaylists}>Fetch my list</div>
+      </div>
+      <div className={styles.Playlists}>
+        <div className={styles.PlaylistsTitle}>
+          Youtube playlists:<br/>
+        </div>
+        <div>
+          <textarea rows="10" cols="34" onChange={this.updatePlaylists} value={this.props.playlists.join('\n')} />
+        </div>
+      </div>
+      <div className={styles.Submit}>
+        <div className={styles.myButton} onClick={() => {window.location = '/'}}>Watch</div>
+        <div className={styles.myButton} onClick={this.submitPlaylists}>
+          Submit
+        </div>
+      </div>
     </div>
   }
 }

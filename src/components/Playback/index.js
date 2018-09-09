@@ -57,9 +57,12 @@ class Playback extends React.Component {
       return (
         <div className={styles.AppDescriptor}>
           <div className={styles.AppTitle}>YouTube Explicit<br/></div>
-          <div>
-            <input type='input' value={this.props.userIdentifier} onChange={this.editingUserIdentifier} placeholder='User identifier' />
-            <button onClick={this.updateUserIdentifier}>Update</button>
+          <div className={styles.UserIdentifier}>
+            <div className={styles.UserIdentifierInput}>
+              <input type='text' className={styles.InputText} value={this.props.userIdentifier} onChange={this.editingUserIdentifier} placeholder='User identifier' />
+            </div>
+            <div className={styles.myButton} onClick={this.updateUserIdentifier}>Update</div>
+            <div className={styles.myButton} onClick={() => {window.location = '/admin'}}>?</div>
           </div>
         </div>
       )

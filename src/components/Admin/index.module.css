@@ -1,3 +1,106 @@
 .Admin {
   color: aliceblue;
+  padding: 2em;
+}
+
+.UserIdentifier {
+  font-size: 20px;
+  padding: 1em 0 1em 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.Playlists {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.PlaylistsTitle {
+  font-size: 20px;
+}
+
+.Submit {
+  display: flex;
+  padding-top: 1em;
+  justify-content: space-between;
+}
+
+textarea {
+  outline: none;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.InputText {
+  font-size:20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  background: #11b0e0;
+  padding: 4px;
+}
+
+@media screen and (max-width: 540px) {
+  .InputText {
+    font-size:20px;
+    margin: 0.5em 0 0.5em 0;
+    border-radius: 5px;
+  }
+}
+
+.Buttons {
+  display: flex;
+}
+
+.myButton {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	background-color:#599bb3;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	font-weight:bold;
+	padding:13px 32px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+}
+
+.myButton:hover {
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	background-color:#408c99;
+}
+
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.smallButton {
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+}
+.smallButton:hover {
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.smallButton:active {
+	position:relative;
+	top:1px;
 }
