@@ -6,25 +6,18 @@ const initialState = {
   playlists: [],
   videoList: [],
   selectedVideo: {},
-  listPreviewVisibility: true,
+  // isVideoDisplayed: false,
+  isPlaybackInProgress: false,
   userIdentifier
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ACTION_ADD_VIDEOS_TO_LIST: {
-      const videoList = [...state.videoList]
-      videoList.push(action.payload)
+    case actions.ACTION_UPDATE_VIDEO_LIST: {
+      const videoList = [...action.payload]
       return {
         ...state,
         videoList
-      }
-    }
-    case actions.ACTION_UPDATE_VIDEO_LIST_VISIBILTY: {
-      const listPreviewVisibility = action.payload
-      return {
-        ...state,
-        listPreviewVisibility
       }
     }
     case actions.ACTION_UPDATE_SELECTED_VIDEO: {
@@ -48,6 +41,21 @@ function reducer(state = initialState, action) {
         playlists
       }
     }
+    case actions.ACTION_UPDATE_IS_PLAYBACK_IN_PROGRESS: {
+      const isPlaybackInProgress = action.payload
+      console.log('>>> isPlaybackInProgress', isPlaybackInProgress)
+      return {
+        ...state,
+        isPlaybackInProgress
+      }
+    }
+    // case actions.ACTION_UPDATE_IS_VIDEO_DISPLAYED: {
+    //   const isVideoDisplayed = action.payload
+    //   return {
+    //     ...state,
+    //     isVideoDisplayed
+    //   }
+    // }
     default:
       return state
   }

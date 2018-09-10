@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
+import BackBar from '../BackBar'
 
 class Playback extends React.Component {
   videoReady = (e) => {
@@ -17,17 +18,17 @@ class Playback extends React.Component {
     if (playToNextAutomatically && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
-      this.props.onUpdateListVisibilty(true)
       this.props.onUpdateSelectedVideo({})
     }
+    this.props.onUpdateIsPlaybackInProgress(false)
   }
 
   videoPaused = () => {
-    this.props.onUpdateListVisibilty(true)
+    this.props.onUpdateIsPlaybackInProgress(false)
   }
 
   videoStarted = () => {
-    this.props.onUpdateListVisibilty(false)
+    this.props.onUpdateIsPlaybackInProgress(true)
   }
 
   editingUserIdentifier = (e) => {
@@ -53,24 +54,11 @@ class Playback extends React.Component {
     }
 
     const { playlistIndex, videoIndex } = this.props.selectedVideo
-    if(playlistIndex === undefined && videoIndex === undefined) {
-      return (
-        <div className={styles.AppDescriptor}>
-          <div className={styles.AppTitle}>YouTube Explicit<br/></div>
-          <div className={styles.UserIdentifier}>
-            <div className={styles.UserIdentifierInput}>
-              <input type='text' className={styles.InputText} value={this.props.userIdentifier} onChange={this.editingUserIdentifier} placeholder='User identifier' />
-            </div>
-            <div className={styles.myButton} onClick={this.updateUserIdentifier}>Update</div>
-            <div className={styles.myButton} onClick={() => {window.location = '/admin'}}>?</div>
-          </div>
-        </div>
-      )
-    }
-
     const video = this.props.videoList[playlistIndex].items[videoIndex]
+
     return (
       <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
+        <BackBar />
         <YouTube
           className={styles.YouTube}
           videoId={video.snippet.resourceId.videoId}

@@ -1,0 +1,45 @@
+.BackBar {
+  position: fixed;
+  width: 100%;
+  height: 46px;
+  background-color: #000;
+  top: 0px;
+  display: flex;
+  line-height: initial;
+}
+
+.Button {
+  width: 90px;
+  height: 40px;
+  background-color: #2b2f2e;
+  position: relative;
+  margin-left: 33px;
+  border-radius: 5px;
+  margin-top: 17px;
+}
+
+.Button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -17px;
+  border-style: solid;
+  border-width: 20px 20px 20px 0;
+  border-color: transparent #2b2f2e transparent transparent;
+}
+
+.Button > span {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  font: bold 18px/40px Sans-Serif;
+}
+
+.Button:hover {
+  background-color: rgb(58, 64, 66);
+}
+
+.Button:hover:before {
+  border-right-color: rgb(58, 64, 66);
+}

@@ -1,6 +1,6 @@
 const mapStateToProps = ({ main }) => ({
   videoList: main.videoList,
-  listPreviewVisibility: main.listPreviewVisibility,
+  userIdentifier: main.userIdentifier,
   selectedVideo: main.selectedVideo
 })
 

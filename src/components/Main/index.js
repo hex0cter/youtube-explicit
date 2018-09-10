@@ -1,5 +1,4 @@
 import React from 'react'
-import Playlist from '../Playlist'
 import Playback from '../Playback'
 import ListPreview from '../ListPreview'
 import styles from './index.module.css'
@@ -16,16 +15,26 @@ class Main extends React.Component {
       console.log('This user does not exist:', userIdentifier)
       return
     }
-    const playlists = response.data.playlists
-    this.props.onUpdatePlaylists(playlists)
+
+    const playlistIds = response.data.playlists
+    const videoList = await Promise.all(playlistIds.map(async(id) => {
+      const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+      const items = response.data.items
+      return {
+        id,
+        items,
+        playToNextAutomatically: true
+      }
+    }))
+
+    this.props.onUpdateVideoList(videoList)
   }
 
   render() {
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
     return (
       <div className={styles.Main}>
-        <Playback />
-        { this.props.playlists.map(playlist => <Playlist id={playlist} key={playlist} playToNextAutomatically />) }
-        <ListPreview />
+        { playlistIndex !== undefined && videoIndex !== undefined ? <Playback /> : <ListPreview />}
       </div>
     )
   }

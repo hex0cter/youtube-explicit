@@ -1,9 +1,9 @@
-import { updateListVisibilty, updateSelectedVideo, updateUserIdentifier } from '../Main/actions'
+import { updateSelectedVideo, updateUserIdentifier, updateIsPlaybackInProgress } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateListVisibilty: (visibility) => dispatch(updateListVisibilty(visibility)),
   onUpdateSelectedVideo: (videoIndex) => dispatch(updateSelectedVideo(videoIndex)),
-  onUpdateUserIdentifier: (userIdentifier) => dispatch(updateUserIdentifier(userIdentifier))
+  onUpdateUserIdentifier: (userIdentifier) => dispatch(updateUserIdentifier(userIdentifier)),
+  onUpdateIsPlaybackInProgress: (isPlaybackInProgress) => dispatch(updateIsPlaybackInProgress(isPlaybackInProgress))
 })
 
 export default mapDispatchToProps
