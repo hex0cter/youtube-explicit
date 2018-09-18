@@ -43,19 +43,11 @@ function reducer(state = initialState, action) {
     }
     case actions.ACTION_UPDATE_IS_PLAYBACK_IN_PROGRESS: {
       const isPlaybackInProgress = action.payload
-      console.log('>>> isPlaybackInProgress', isPlaybackInProgress)
       return {
         ...state,
         isPlaybackInProgress
       }
     }
-    // case actions.ACTION_UPDATE_IS_VIDEO_DISPLAYED: {
-    //   const isVideoDisplayed = action.payload
-    //   return {
-    //     ...state,
-    //     isVideoDisplayed
-    //   }
-    // }
     default:
       return state
   }

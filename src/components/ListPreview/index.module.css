@@ -57,7 +57,7 @@
 
 .UserIdentifier {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding-bottom: 2em;
 }
 
@@ -132,7 +132,7 @@
     .UserIdentifier {
       display: flex;
       flex-direction: column;
-      justify-content: start;
+      justify-content: flex-start;
       padding-bottom: 2em;
     }
   }

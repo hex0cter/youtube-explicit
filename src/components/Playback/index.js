@@ -31,17 +31,6 @@ class Playback extends React.Component {
     this.props.onUpdateIsPlaybackInProgress(true)
   }
 
-  editingUserIdentifier = (e) => {
-    const userIdentifier = e.target.value
-    this.props.onUpdateUserIdentifier(userIdentifier)
-  }
-
-  updateUserIdentifier = async() => {
-    const userIdentifier = this.props.userIdentifier.trim()
-    localStorage.setItem('userIdentifier', userIdentifier)
-    window.location.reload()
-  }
-
   render() {
     const width = window.innerWidth + 4
     const height = width * 9 / 16

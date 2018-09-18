@@ -10,6 +10,10 @@ import mapDispatchToProps from './map-dispatch-to-props'
 class Main extends React.Component {
   componentDidMount = async() => {
     const userIdentifier = this.props.userIdentifier
+    if (!userIdentifier) {
+      return
+    }
+
     const response = await axios.get(`https://api.solna.xyz/v1/playlists?user=${userIdentifier}`)
     if (response.data === '') {
       console.log('This user does not exist:', userIdentifier)

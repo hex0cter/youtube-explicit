@@ -9,16 +9,32 @@ class ListPreview extends React.Component {
     this.props.onUpdateSelectedVideo(videoIndex)
   }
 
-  render() {
-    const { playlistIndex, videoIndex } = this.props.selectedVideo
+  editingUserIdentifier = (e) => {
+    console.log('editing')
+    const userIdentifier = e.target.value
+    this.props.onUpdateUserIdentifier(userIdentifier)
+  }
 
+  updateUserIdentifier = async() => {
+    const userIdentifier = this.props.userIdentifier.trim()
+    localStorage.setItem('userIdentifier', userIdentifier)
+    window.location.reload()
+  }
+
+  render() {
     return (
       <div>
         <div className={styles.AppDescriptor}>
           <div className={styles.AppTitle}>YouTube Explicit<br/></div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>
-              <input type='text' className={styles.InputText} value={this.props.userIdentifier} onChange={this.editingUserIdentifier} placeholder='User identifier' />
+              <input
+                type='text'
+                className={styles.InputText}
+                onChange={this.editingUserIdentifier}
+                value={this.props.userIdentifier || ''}
+                placeholder='User identifier'
+              />
             </div>
             <div className={styles.myButton} onClick={this.updateUserIdentifier}>Update</div>
             <div className={styles.myButton} onClick={() => {window.location = '/admin'}}>?</div>
