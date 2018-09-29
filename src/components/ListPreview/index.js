@@ -25,7 +25,7 @@ class ListPreview extends React.Component {
     return (
       <div>
         <div className={styles.AppDescriptor}>
-          <div className={styles.AppTitle}>YouTube</div>
+          <div className={styles.AppTitle}><img src='/logo192.png' alt='youtube' height='30px'/> YouTube</div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>
               <input
@@ -46,19 +46,17 @@ class ListPreview extends React.Component {
               className={styles.Playlist}
               key={currentPlaylistIndex}
             >
-              {playlist.items.map((video,currentVideoIndex) => {
+              {playlist.items.map((video, currentVideoIndex) => {
                 return (
                   <div
                     className={styles.ListCell}
                     key={currentVideoIndex}
                     onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
-                    style={{
-                      backgroundImage: `url(${video.snippet.thumbnails.high.url})`,
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center',
-                    }}
                   >
-                    {video.snippet.title}
+                    <div>
+                      <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title}/>
+                    </div>
+                    <div className={styles.VideoTitle}>{video.snippet.title}</div>
                   </div>
                 )
               })}
