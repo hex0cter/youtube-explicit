@@ -88,6 +88,11 @@
 	top:1px;
 }
 
+.YoutubeLogo {
+  height: 30px;
+  vertical-align: bottom;
+}
+
 @media screen and (min-width: 700px) {
   .AppTitle {
     font-size: 40px;
@@ -152,6 +157,11 @@
   }
 
   .AppTitle {
-    padding: 0 10px 0 0;
+    padding: 4px 10px 0 0;
+    font-size: larger;
+  }
+
+  .YoutubeLogo {
+    height: 20px;
   }
 }

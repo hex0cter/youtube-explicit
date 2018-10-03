@@ -25,7 +25,7 @@ class ListPreview extends React.Component {
     return (
       <div>
         <div className={styles.AppDescriptor}>
-          <div className={styles.AppTitle}><img src='/logo192.png' alt='youtube' height='30px'/> YouTube</div>
+          <div className={styles.AppTitle}><img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /> YouTube</div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>
               <input
@@ -34,6 +34,7 @@ class ListPreview extends React.Component {
                 onChange={this.editingUserIdentifier}
                 value={this.props.userIdentifier || ''}
                 placeholder='User identifier'
+                size={10}
               />
             </div>
             <div className={styles.Button} onClick={this.updateUserIdentifier}>Update</div>
