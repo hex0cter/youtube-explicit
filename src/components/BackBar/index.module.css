@@ -44,3 +44,17 @@
 .Button:hover:before {
   border-right-color: rgb(58, 64, 66);
 }
+
+@media screen and (max-width: 699px) {
+  .Button {
+    width: 40px;
+    height: 20px;
+  }
+  .Button > span {
+    font: bold 12px/22px Sans-Serif;
+  }
+  .Button:before {
+    border-width: 10px 10px 10px 0;
+    left: -8px;
+  }
+}

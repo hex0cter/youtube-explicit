@@ -6,7 +6,7 @@ const initialState = {
   playlists: [],
   videoList: [],
   selectedVideo: {},
-  // isVideoDisplayed: false,
+  playbackProgress: 0,
   isPlaybackInProgress: false,
   userIdentifier
 }
@@ -46,6 +46,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isPlaybackInProgress
+      }
+    }
+    case actions.ACTION_UPDATE_PLAYBACK_PROGRESS: {
+      const playbackProgress = action.payload
+      return {
+        ...state,
+        playbackProgress
       }
     }
     default:

@@ -7,6 +7,7 @@ import mapDispatchToProps from './map-dispatch-to-props'
 class BackBar extends React.Component {
   goBackToList = () => {
     this.props.onUpdateSelectedVideo({})
+    this.props.onUpdatePlaybackProgress(0)
   }
 
   render() {

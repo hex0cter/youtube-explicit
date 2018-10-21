@@ -1,5 +1,6 @@
 import React from 'react'
-import YouTube from 'react-youtube'
+// import YouTube from 'react-youtube'
+import YouTubePlayer from 'react-player/lib/players/YouTube'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
@@ -7,8 +8,19 @@ import styles from './index.module.css'
 import BackBar from '../BackBar'
 
 class Playback extends React.Component {
-  videoReady = (e) => {
-    e.target.playVideo()
+  handleResize = (e) => {
+    const width = e.target.innerWidth
+    const height = e.target.innerHeight
+    console.log('new window width', width, 'height', height)
+    this.forceUpdate()
+  }
+
+  componentDidMount = () => {
+    window.addEventListener('resize',  this.handleResize.bind(this));
+  }
+
+  videoReady = () => {
+    console.log('vieo ready')
   }
 
   videoEnded = () => {
@@ -28,27 +40,36 @@ class Playback extends React.Component {
   }
 
   videoStarted = () => {
+    console.log('onPlay')
     this.props.onUpdateIsPlaybackInProgress(true)
   }
 
-  render() {
-    const width = window.innerWidth + 4
-    const height = width * 9 / 16
-    const opts = {
-      height,
-      width,
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 1
-      }
-    }
+  videoProgress =({playedSeconds}) => {
+    console.log('videoProgress', playedSeconds)
+    this.props.onUpdatePlaybackProgress(playedSeconds)
+  }
 
+  render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     const video = this.props.videoList[playlistIndex].items[videoIndex]
 
     return (
       <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
         <BackBar />
-        <YouTube
+        <YouTubePlayer
+          url={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
+          playing
+          controls
+          youtubeConfig={{ playerVars: { start: this.props.playbackProgress } }}
+          width='100%'
+          height='100%'
+          onReady={this.videoReady}
+          onPlay={this.videoStarted}
+          onPause={this.videoPaused}
+          onEnded={this.videoEnded}
+          onProgress={this.videoProgress}
+        />
+        {/* <YouTube
           className={styles.YouTube}
           videoId={video.snippet.resourceId.videoId}
           opts={opts}
@@ -56,7 +77,9 @@ class Playback extends React.Component {
           onPlay={this.videoStarted}
           onPause={this.videoPaused}
           onEnd={this.videoEnded}
-        />
+          onStateChange={() => {console.log('on state change')}}
+          onPlaybackRateChange={() => {console.log('on onPlaybackRateChange change')}}
+        /> */}
       </div>
     )
   }

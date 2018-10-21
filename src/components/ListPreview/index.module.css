@@ -23,6 +23,10 @@
   font-weight: 600;
 }
 
+.ViedoImage {
+  padding: 0 1em 0 0;
+}
+
 .VideoTitle {
   background-color: white;
   color: black;

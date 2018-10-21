@@ -54,7 +54,7 @@ class ListPreview extends React.Component {
                     key={currentVideoIndex}
                     onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                   >
-                    <div>
+                    <div className={styles.ViedoImage}>
                       <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title}/>
                     </div>
                     <div className={styles.VideoTitle}>{video.snippet.title}</div>
