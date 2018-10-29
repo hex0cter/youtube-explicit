@@ -34,11 +34,11 @@
   padding-bottom: 1em;
 }
 
-.AppDescriptor {
+.TopBar {
   color: #000;
   font-family: cursive;
   text-align: left;
-  padding: 0 1em;
+  padding: 0.5em;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -46,11 +46,11 @@
 
 .AppTitle {
   font-size: 30px;
-  padding: 1em 0 1em 0;
+  /* padding: 1em 0 1em 0; */
   font-family: sans-serif;
 }
 
-.AppDescriptor button {
+.TopBar button {
   background-color: aliceblue;
   margin-left: 1em;
 }
@@ -68,7 +68,7 @@
 }
 
 .Button {
-	box-shadow: 0px 10px 14px -7px #276873;
+	box-shadow: 0px 10px 8px -8px #276873;
 	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
 	background-color:#599bb3;
 	border-radius:8px;
@@ -95,6 +95,7 @@
 .YoutubeLogo {
   height: 30px;
   vertical-align: bottom;
+  padding-bottom: 9px;
 }
 
 @media screen and (min-width: 700px) {
@@ -106,7 +107,7 @@
     padding: 0 2em 0 1em;
   }
 
-  .AppDescriptor button {
+  .TopBar button {
     font-size: 20px;
     background-color: #4CAF50;
     border: none;
@@ -116,7 +117,7 @@
     display: inline-block;
   }
 
-  .AppDescriptor input {
+  .TopBar input {
     font-size: 20px;
     border: none;
     padding: 15px 32px 15px 32px;
@@ -167,5 +168,6 @@
 
   .YoutubeLogo {
     height: 20px;
+    padding-bottom: 2px;
   }
 }

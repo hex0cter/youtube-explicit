@@ -24,8 +24,10 @@ class ListPreview extends React.Component {
   render() {
     return (
       <div>
-        <div className={styles.AppDescriptor}>
-          <div className={styles.AppTitle}><img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /> YouTube</div>
+        <div className={styles.TopBar}>
+          <div className={styles.AppTitle}>
+            <img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /> YouTube
+          </div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>
               <input

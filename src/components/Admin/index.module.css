@@ -1,5 +1,4 @@
 .Admin {
-  color: aliceblue;
   padding: 2em;
 }
 
@@ -27,16 +26,23 @@
   justify-content: space-between;
 }
 
-textarea {
+.TextArea {
   outline: none;
   font-size: 13px;
   font-weight: bold;
   font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: rgba(43, 116, 126, 0.486);
+  border-color: cadetblue;
+}
+
+::selection {
+  background-color: rgba(3, 3, 3, 0.568);
+  color: white;
 }
 
 .InputText {
   font-size:20px;
-  border: 1px solid white;
+  border: 1px solid rgba(71, 60, 60, 0.514);
   border-radius: 5px;
   color: white;
   background: #11b0e0;
@@ -55,7 +61,7 @@ textarea {
   display: flex;
 }
 
-.myButton {
+.BigButton {
 	box-shadow: 0px 10px 14px -7px #276873;
 	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
 	background-color:#599bb3;
@@ -71,12 +77,12 @@ textarea {
 	text-shadow:0px 1px 0px #3d768a;
 }
 
-.myButton:hover {
+.BigButton:hover {
 	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
 	background-color:#408c99;
 }
 
-.myButton:active {
+.BigButton:active {
 	position:relative;
 	top:1px;
 }

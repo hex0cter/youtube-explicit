@@ -29,12 +29,16 @@ class Admin extends React.Component {
       user: userIdentifier,
       playlists
     }
+    const element = document.getElementById('playlist_textarea')
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
+    element.select()
   }
 
   fetchPlaylists = async() => {
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
+    const element = document.getElementById('playlist_textarea')
+    element.value = ''
 
     const response = await axios.get(`https://api.solna.xyz/v1/playlists?user=${userIdentifier}`)
     if (response.data === '') {
@@ -44,6 +48,8 @@ class Admin extends React.Component {
 
     const playlists = response.data.playlists
     this.props.onUpdatePlayLists(playlists)
+
+    element.select()
   }
 
   componentDidMount = async() => {
@@ -69,12 +75,19 @@ class Admin extends React.Component {
           Youtube playlists:<br/>
         </div>
         <div>
-          <textarea rows="10" cols="34" onChange={this.updatePlaylists} value={this.props.playlists.join('\n')} />
+          <textarea
+            id='playlist_textarea'
+            rows="10"
+            cols="34"
+            onChange={this.updatePlaylists}
+            value={this.props.playlists.join('\n')}
+            className={styles.TextArea}
+          />
         </div>
       </div>
       <div className={styles.Submit}>
-        <div className={styles.myButton} onClick={() => {window.location = '/'}}>Watch</div>
-        <div className={styles.myButton} onClick={this.submitPlaylists}>
+        <div className={styles.BigButton} onClick={() => {window.location = '/'}}>Watch</div>
+        <div className={styles.BigButton} onClick={this.submitPlaylists}>
           Submit
         </div>
       </div>
