@@ -6,6 +6,7 @@
   font-size: 20px;
   padding: 1em 0 1em 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
@@ -46,14 +47,12 @@
   border-radius: 5px;
   color: white;
   background: #11b0e0;
-  padding: 4px;
+  padding: 2px 4px
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 699px) {
   .InputText {
-    font-size:20px;
     margin: 0.5em 0 0.5em 0;
-    border-radius: 5px;
   }
 }
 

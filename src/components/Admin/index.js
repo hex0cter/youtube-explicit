@@ -63,7 +63,14 @@ class Admin extends React.Component {
           User Identifer:
         </div>
         <div className={styles.UserIdentifierInput}>
-          <input type="text" className={styles.InputText} name="userIdentifier" value={this.props.userIdentifier} onChange={this.changeUserIdentifier} />
+          <input
+            type="text"
+            className={styles.InputText}
+            name="userIdentifier"
+            value={this.props.userIdentifier}
+            onChange={this.changeUserIdentifier}
+            size={10}
+          />
         </div>
         <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
           Generate new
