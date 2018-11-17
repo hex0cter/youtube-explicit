@@ -1,0 +1,14 @@
+.PlaylistConfiguration {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.PlaylistId {
+  font-family: monospace;
+}
+
+.NewIdInput {
+  font-family: monospace;
+  font-size: inherit;
+}

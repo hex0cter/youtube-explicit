@@ -5,6 +5,7 @@ import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import shortid from 'shortid'
 import axios from 'axios'
+import PlaylistConfiguration from './PlaylistConfiguration'
 
 class Admin extends React.Component {
   generateNewUserIdentifier = () => {
@@ -16,29 +17,26 @@ class Admin extends React.Component {
   }
 
   updatePlaylists = (e) => {
-    console.log(e.target.value)
     this.props.onUpdatePlayLists(e.target.value.split('\n'))
   }
 
-  submitPlaylists = async() => {
+  submitPlaylists = async(lst = this.props.playlists) => {
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
-    const playlists = this.props.playlists.filter(line => line.length > 16)
+    const playlists = lst.filter(({id}) => id.length > 16)
     const params = {
       user: userIdentifier,
       playlists
     }
-    const element = document.getElementById('playlist_textarea')
+
+    console.log('update to', params)
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
-    element.select()
   }
 
   fetchPlaylists = async() => {
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
-    const element = document.getElementById('playlist_textarea')
-    element.value = ''
 
     const response = await axios.get(`https://api.solna.xyz/v1/playlists?user=${userIdentifier}`)
     if (response.data === '') {
@@ -48,8 +46,37 @@ class Admin extends React.Component {
 
     const playlists = response.data.playlists
     this.props.onUpdatePlayLists(playlists)
+  }
 
-    element.select()
+  updateShouldPlaylistAutoPlay = async(id, shouldAutoPlay) => {
+    const playlist = this.props.playlists.find(playlist => playlist.id === id)
+    playlist.shouldAutoPlay = shouldAutoPlay
+    this.forceUpdate()
+    await this.submitPlaylists()
+  }
+
+  shouldPlaylistBeEnabled = async(id, isEnabled) => {
+    const playlist = this.props.playlists.find(playlist => playlist.id === id)
+    playlist.isEnabled = isEnabled
+    this.forceUpdate()
+    await this.submitPlaylists()
+  }
+
+  deletePlaylist = async(id) => {
+    const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
+    this.props.onUpdatePlayLists(playlists)
+    await this.submitPlaylists(playlists)
+  }
+
+  AddNewPlaylist = async(id) => {
+    if(this.props.playlists.find(playlist => playlist.id === id)) {
+      return
+    }
+
+    const playlists = [...this.props.playlists]
+    playlists.push({id, shouldAutoPlay: true, isEnabled: true})
+    this.props.onUpdatePlayLists(playlists)
+    await this.submitPlaylists(playlists)
   }
 
   componentDidMount = async() => {
@@ -82,21 +109,27 @@ class Admin extends React.Component {
           Youtube playlists:<br/>
         </div>
         <div>
-          <textarea
-            id='playlist_textarea'
-            rows="10"
-            cols="34"
-            onChange={this.updatePlaylists}
-            value={this.props.playlists.join('\n')}
-            className={styles.TextArea}
-          />
         </div>
+      </div>
+      <div>
+        {
+          this.props.playlists.map(({id, shouldAutoPlay, isEnabled}) => <PlaylistConfiguration
+            key={id}
+            id={id}
+            shouldAutoPlay={shouldAutoPlay}
+            isEnabled={isEnabled}
+            onUpdateAutoPlay={(shouldAutoPlay) => this.updateShouldPlaylistAutoPlay(id, shouldAutoPlay)}
+            onUpdateEnabled={(isEnabled) => this.shouldPlaylistBeEnabled(id, isEnabled)}
+            onDelete={() => this.deletePlaylist(id)}
+          />)
+        }
+        <PlaylistConfiguration
+          id='new'
+          onAdd={(id) => this.AddNewPlaylist(id)}
+        />
       </div>
       <div className={styles.Submit}>
         <div className={styles.BigButton} onClick={() => {window.location = '/'}}>Watch</div>
-        <div className={styles.BigButton} onClick={this.submitPlaylists}>
-          Submit
-        </div>
       </div>
     </div>
   }

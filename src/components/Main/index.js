@@ -20,9 +20,14 @@ class Main extends React.Component {
       return
     }
 
-    const playlistIds = response.data.playlists
-    const videoList = await Promise.all(playlistIds.map(async(id) => {
-      const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+    const playlists = response.data.playlists
+    const videoList = await Promise.all(playlists.map(async({id}) => {
+      let response
+      try {
+        response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+      } catch {
+        return null
+      }
       const items = response.data.items
       return {
         id,
@@ -31,7 +36,7 @@ class Main extends React.Component {
       }
     }))
 
-    this.props.onUpdateVideoList(videoList)
+    this.props.onUpdateVideoList(videoList.filter(e => e !== null))
   }
 
   render() {
