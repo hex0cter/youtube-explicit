@@ -65,6 +65,7 @@
 .InputText {
   border-radius: 4px;
   padding: 12px;
+  border: 1px solid rgba(71, 60, 60, 0.514);
 }
 
 .Button {

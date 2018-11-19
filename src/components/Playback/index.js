@@ -25,9 +25,9 @@ class Playback extends React.Component {
 
   videoEnded = () => {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
-    const playToNextAutomatically = this.props.videoList[playlistIndex].playToNextAutomatically
+    const shouldAutoPlay = this.props.videoList[playlistIndex].shouldAutoPlay
 
-    if (playToNextAutomatically && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
+    if (shouldAutoPlay && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
       this.props.onUpdateSelectedVideo({})

@@ -104,14 +104,10 @@ class Admin extends React.Component {
         </div>
         <div className={styles.smallButton} onClick={this.fetchPlaylists}>Fetch my list</div>
       </div>
-      <div className={styles.Playlists}>
-        <div className={styles.PlaylistsTitle}>
-          Youtube playlists:<br/>
-        </div>
-        <div>
-        </div>
+      <div className={styles.PlaylistsTitle}>
+        Youtube playlists:
       </div>
-      <div>
+      <div className={styles.Playlists}>
         {
           this.props.playlists.map(({id, shouldAutoPlay, isEnabled}) => <PlaylistConfiguration
             key={id}
@@ -129,7 +125,7 @@ class Admin extends React.Component {
         />
       </div>
       <div className={styles.Submit}>
-        <div className={styles.BigButton} onClick={() => {window.location = '/'}}>Watch</div>
+        <div className={styles.BigButton} onClick={() => {window.location = '/'}}>Watch Now</div>
       </div>
     </div>
   }

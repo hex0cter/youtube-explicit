@@ -21,7 +21,10 @@ class Main extends React.Component {
     }
 
     const playlists = response.data.playlists
-    const videoList = await Promise.all(playlists.map(async({id}) => {
+    const videoList = await Promise.all(playlists.map(async({id, isEnabled, shouldAutoPlay}) => {
+      if (!isEnabled) {
+        return null
+      }
       let response
       try {
         response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
@@ -32,7 +35,7 @@ class Main extends React.Component {
       return {
         id,
         items,
-        playToNextAutomatically: true
+        shouldAutoPlay
       }
     }))
 

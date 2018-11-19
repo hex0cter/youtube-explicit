@@ -1,5 +1,5 @@
 .Admin {
-  padding: 2em;
+  padding: 1em;
 }
 
 .UserIdentifier {
@@ -13,12 +13,16 @@
 
 .Playlists {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 1em 0 1em 0;
+  border: rgba(0, 0, 0, 0.055) solid 1px;
 }
 
 .PlaylistsTitle {
   font-size: 20px;
+  text-align: left;
 }
 
 .Submit {
@@ -27,37 +31,17 @@
   justify-content: space-between;
 }
 
-.TextArea {
-  outline: none;
-  font-size: 13px;
-  font-weight: bold;
-  font-family: monospace, sans-serif;
-  background-color: rgba(43, 116, 126, 0.486);
-  border-color: cadetblue;
-}
-
-::selection {
-  background-color: rgba(3, 3, 3, 0.568);
-  color: white;
-}
-
 .InputText {
-  font-size:20px;
+  font-size: 13px;
   border: 1px solid rgba(71, 60, 60, 0.514);
   border-radius: 5px;
-  color: white;
-  background: #11b0e0;
-  padding: 2px 4px
+  padding: 6px 18px;
 }
 
 @media screen and (max-width: 699px) {
   .InputText {
     margin: 0.5em 0 0.5em 0;
   }
-}
-
-.Buttons {
-  display: flex;
 }
 
 .BigButton {
