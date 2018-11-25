@@ -9,9 +9,6 @@ import BackBar from '../BackBar'
 
 class Playback extends React.Component {
   handleResize = (e) => {
-    const width = e.target.innerWidth
-    const height = e.target.innerHeight
-    console.log('new window width', width, 'height', height)
     this.forceUpdate()
   }
 
@@ -19,14 +16,11 @@ class Playback extends React.Component {
     window.addEventListener('resize',  this.handleResize.bind(this));
   }
 
-  videoReady = () => {
-    console.log('vieo ready')
-  }
-
   videoEnded = () => {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     const shouldAutoPlay = this.props.videoList[playlistIndex].shouldAutoPlay
 
+    this.props.onUpdatePlaybackProgress(0)
     if (shouldAutoPlay && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
@@ -40,12 +34,10 @@ class Playback extends React.Component {
   }
 
   videoStarted = () => {
-    console.log('onPlay')
     this.props.onUpdateIsPlaybackInProgress(true)
   }
 
   videoProgress =({playedSeconds}) => {
-    console.log('videoProgress', playedSeconds)
     this.props.onUpdatePlaybackProgress(playedSeconds)
   }
 
@@ -63,7 +55,6 @@ class Playback extends React.Component {
           youtubeConfig={{ playerVars: { start: this.props.playbackProgress } }}
           width='100%'
           height='100%'
-          onReady={this.videoReady}
           onPlay={this.videoStarted}
           onPause={this.videoPaused}
           onEnded={this.videoEnded}

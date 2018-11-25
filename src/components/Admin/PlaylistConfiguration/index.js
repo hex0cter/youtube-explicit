@@ -51,7 +51,6 @@ class PlaylistConfiguration extends React.Component {
     const firstItem = data.items.shift()
     const title = firstItem.snippet.title
     const channelTitle = firstItem.snippet.channelTitle
-    console.log(id, 'firstItem.snippet.thumbnails', firstItem.snippet.thumbnails)
     const thumbnails = firstItem.snippet.thumbnails.high || firstItem.snippet.thumbnails.medium || firstItem.snippet.thumbnails.default
     this.setState({
       title,
