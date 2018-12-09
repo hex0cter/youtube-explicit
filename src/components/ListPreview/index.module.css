@@ -108,16 +108,6 @@
     padding: 0 2em 0 1em;
   }
 
-  .TopBar button {
-    font-size: 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-  }
-
   .TopBar input {
     font-size: 20px;
     border: none;
@@ -129,7 +119,7 @@
   }
 
   .Button {
-    padding:13px 32px 13px 32px;
+    padding:15px 32px 13px 32px;
     font-size:20px;
   }
 }

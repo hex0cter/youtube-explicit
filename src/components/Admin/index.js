@@ -30,7 +30,6 @@ class Admin extends React.Component {
       playlists
     }
 
-    console.log('update to', params)
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
   }
 

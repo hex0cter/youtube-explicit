@@ -10,7 +10,6 @@ class ListPreview extends React.Component {
   }
 
   editingUserIdentifier = (e) => {
-    console.log('editing')
     const userIdentifier = e.target.value
     this.props.onUpdateUserIdentifier(userIdentifier)
   }

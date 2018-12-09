@@ -8,7 +8,6 @@ exports.handler = async (event) => {
   const user = body.user
   const playlists = body.playlists
   const item = { user, playlists }
-  console.log('items to save', item)
 
   await docClient.put({
     TableName: `${process.env.SERVICE_NAME}-${process.env.STAGE}-Playlists`,

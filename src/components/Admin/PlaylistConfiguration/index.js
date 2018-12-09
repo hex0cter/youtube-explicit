@@ -76,7 +76,6 @@ class PlaylistConfiguration extends React.Component {
       )
     }
 
-    // console.log('state', this.state)
     return (
       <div className={styles.PlaylistConfiguration}>
         <div className={styles.PlaylistControls}>

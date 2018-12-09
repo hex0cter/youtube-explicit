@@ -3,7 +3,6 @@ const mapStateToProps = ({ main }) => ({
   videoList: main.videoList,
   playlists: main.playlists,
   selectedVideo: main.selectedVideo,
-  // isVideoDisplayed: main.isVideoDisplayed
 })
 
 export default mapStateToProps

@@ -1,5 +1,4 @@
 import React from 'react'
-// import YouTube from 'react-youtube'
 import YouTubePlayer from 'react-player/lib/players/YouTube'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
@@ -60,17 +59,6 @@ class Playback extends React.Component {
           onEnded={this.videoEnded}
           onProgress={this.videoProgress}
         />
-        {/* <YouTube
-          className={styles.YouTube}
-          videoId={video.snippet.resourceId.videoId}
-          opts={opts}
-          onReady={this.videoReady}
-          onPlay={this.videoStarted}
-          onPause={this.videoPaused}
-          onEnd={this.videoEnded}
-          onStateChange={() => {console.log('on state change')}}
-          onPlaybackRateChange={() => {console.log('on onPlaybackRateChange change')}}
-        /> */}
       </div>
     )
   }
