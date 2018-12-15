@@ -66,6 +66,8 @@
   border-radius: 4px;
   padding: 12px;
   border: 1px solid rgba(71, 60, 60, 0.514);
+  background-color: #8da5e896;;
+  border: none;
 }
 
 .Button {
@@ -110,12 +112,10 @@
 
   .TopBar input {
     font-size: 20px;
-    border: none;
     padding: 15px 32px 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    background-color: darksalmon;
   }
 
   .Button {

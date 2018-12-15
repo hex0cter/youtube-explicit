@@ -67,6 +67,30 @@ class Admin extends React.Component {
     await this.submitPlaylists(playlists)
   }
 
+  moveUpPlayList = async(id) => {
+    const index = this.props.playlists.findIndex(playlist => playlist.id === id)
+    if (index <= 0) {
+      return
+    }
+    const playlist = this.props.playlists[index]
+    const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
+    playlists.splice(index - 1, 0, playlist)
+    this.props.onUpdatePlayLists(playlists)
+    await this.submitPlaylists(playlists)
+  }
+
+  moveDownPlaylist = async(id) => {
+    const index = this.props.playlists.findIndex(playlist => playlist.id === id)
+    if (index >= this.props.playlists.length) {
+      return
+    }
+    const playlist = this.props.playlists[index]
+    const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
+    playlists.splice(index + 1, 0, playlist)
+    this.props.onUpdatePlayLists(playlists)
+    await this.submitPlaylists(playlists)
+  }
+
   AddNewPlaylist = async(id) => {
     if(this.props.playlists.find(playlist => playlist.id === id)) {
       return
@@ -116,6 +140,8 @@ class Admin extends React.Component {
             onUpdateAutoPlay={(shouldAutoPlay) => this.updateShouldPlaylistAutoPlay(id, shouldAutoPlay)}
             onUpdateEnabled={(isEnabled) => this.shouldPlaylistBeEnabled(id, isEnabled)}
             onDelete={() => this.deletePlaylist(id)}
+            onMoveUp={() => this.moveUpPlayList(id)}
+            onMoveDown={() => this.moveDownPlaylist(id)}
           />)
         }
         <PlaylistConfiguration

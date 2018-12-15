@@ -36,6 +36,7 @@
   border: 1px solid rgba(71, 60, 60, 0.514);
   border-radius: 5px;
   padding: 6px 18px;
+  background-color: #8da5e896;
 }
 
 @media screen and (max-width: 699px) {

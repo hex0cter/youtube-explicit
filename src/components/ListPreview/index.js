@@ -38,7 +38,7 @@ class ListPreview extends React.Component {
                 size={10}
               />
             </div>
-            <div className={styles.Button} onClick={this.updateUserIdentifier}>Update</div>
+            <div className={styles.Button} onClick={this.updateUserIdentifier}>Refresh</div>
             <div className={styles.Button} onClick={() => {window.location = '/admin'}}>?</div>
           </div>
         </div>
