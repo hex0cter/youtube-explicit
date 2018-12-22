@@ -1,7 +1,6 @@
 import * as actions from './actions'
-import shortid from 'shortid'
 
-const userIdentifier = localStorage.getItem('userIdentifier') || shortid.generate()
+const userIdentifier = localStorage.getItem('userIdentifier') || null
 
 const initialState = {
   playlists: [],

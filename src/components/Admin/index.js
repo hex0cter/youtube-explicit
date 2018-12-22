@@ -7,6 +7,8 @@ import shortid from 'shortid'
 import axios from 'axios'
 import PlaylistConfiguration from './PlaylistConfiguration'
 
+shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
+
 class Admin extends React.Component {
   generateNewUserIdentifier = () => {
     this.props.onUpdateUserIdentifier(shortid.generate())
@@ -21,6 +23,10 @@ class Admin extends React.Component {
   }
 
   submitPlaylists = async(lst = this.props.playlists) => {
+    if (!this.props.userIdentifier) {
+      return
+    }
+
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
@@ -34,6 +40,10 @@ class Admin extends React.Component {
   }
 
   fetchPlaylists = async() => {
+    if (!this.props.userIdentifier) {
+      return
+    }
+
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
@@ -117,15 +127,17 @@ class Admin extends React.Component {
             type="text"
             className={styles.InputText}
             name="userIdentifier"
-            value={this.props.userIdentifier}
+            value={this.props.userIdentifier || ''}
             onChange={this.changeUserIdentifier}
             size={10}
           />
         </div>
+        <div className={styles.smallButton} onClick={this.fetchPlaylists}>
+          Fetch my list
+        </div>
         <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
           Generate new
         </div>
-        <div className={styles.smallButton} onClick={this.fetchPlaylists}>Fetch my list</div>
       </div>
       <div className={styles.PlaylistsTitle}>
         Youtube playlists:

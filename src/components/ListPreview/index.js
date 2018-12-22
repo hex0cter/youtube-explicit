@@ -15,6 +15,10 @@ class ListPreview extends React.Component {
   }
 
   updateUserIdentifier = async() => {
+    if (!this.props.userIdentifier) {
+      return
+    }
+
     const userIdentifier = this.props.userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
     window.location.reload()
@@ -35,7 +39,7 @@ class ListPreview extends React.Component {
                 onChange={this.editingUserIdentifier}
                 value={this.props.userIdentifier || ''}
                 placeholder='User identifier'
-                size={10}
+                size={14}
               />
             </div>
             <div className={styles.Button} onClick={this.updateUserIdentifier}>Refresh</div>
