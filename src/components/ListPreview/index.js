@@ -38,8 +38,8 @@ class ListPreview extends React.Component {
                 className={styles.InputText}
                 onChange={this.editingUserIdentifier}
                 value={this.props.userIdentifier || ''}
-                placeholder='User identifier'
-                size={14}
+                placeholder='Identifier'
+                size={10}
               />
             </div>
             <div className={styles.Button} onClick={this.updateUserIdentifier}>Refresh</div>

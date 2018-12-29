@@ -36,6 +36,7 @@
 
 .TopBar {
   color: #000;
+  background-color: #fff;
   font-family: cursive;
   text-align: left;
   padding: 0.5em;
@@ -119,7 +120,7 @@
   }
 
   .Button {
-    padding:15px 32px 13px 32px;
+    padding:15px 32px 15px 32px;
     font-size:20px;
   }
 }

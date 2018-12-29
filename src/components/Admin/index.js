@@ -126,6 +126,7 @@ class Admin extends React.Component {
           <input
             type="text"
             className={styles.InputText}
+            placeholder='Identifier'
             name="userIdentifier"
             value={this.props.userIdentifier || ''}
             onChange={this.changeUserIdentifier}
