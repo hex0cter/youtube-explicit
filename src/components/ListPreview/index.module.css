@@ -6,7 +6,7 @@
   flex-direction: row;
   overflow-y: scroll;
   display: flex;
-  padding: 1em 0 1em 0;
+  padding: 0 0 1em 0;
 }
 
 .ListCell {
@@ -16,15 +16,14 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  /* border-top: rgb(167, 160, 160) solid 2px;
-  border-bottom: rgb(167, 160, 160) solid 2px; */
   width: 500px;
   height: auto;
   font-weight: 600;
 }
 
-.ViedoImage {
+.VideoImage {
   padding: 0 1em 0 0;
+  width: 360px;
 }
 
 .VideoTitle {
@@ -39,7 +38,7 @@
   background-color: #fff;
   font-family: cursive;
   text-align: left;
-  padding: 1.5em 0.5em 0.5em 0.5em;
+  padding: 1.5em 0.5em 1.5em 0.5em;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -60,7 +59,6 @@
   display: flex;
   align-self: center;
   justify-content: flex-start;
-  /* padding-bottom: 2em; */
 }
 
 .InputText {
@@ -111,16 +109,16 @@
     padding: 0 2em 0 1em;
   }
 
-  .TopBar input {
+  .InputText {
     font-size: 20px;
-    padding: 15px 32px 15px 32px;
+    padding: 15px 20px 15px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
   }
 
   .Button {
-    padding:15px 32px 15px 32px;
+    padding:15px 20px 15px 20px;
     font-size:20px;
   }
 }
@@ -162,4 +160,11 @@
     height: 20px;
     padding-bottom: 2px;
   }
+
+  .VideoImage {
+    padding: 0 0 0 0;
+    width: 100%;
+    align-self: center;
+  }
+
 }

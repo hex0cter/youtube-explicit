@@ -1,0 +1,70 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  background-color: #c6ffd7;
+  text-align: justify;
+  padding: 1em;
+}
+
+.Title {
+  font-size: 3em;
+  text-decoration: double;
+  font-family: fantasy, sans-serif;
+  padding-bottom: 10px;
+}
+
+.Paragraph {
+  padding: 10px 0;
+  font-size: larger;
+  font-style: oblique;
+  font-family: monospace;
+}
+
+.Steps {
+  padding: 10px 0;
+  font-size: medium;
+  font-family: monospace;
+}
+
+.StepTitle {
+  padding: 10px 0;
+  font-size: xx-large;
+  font-family: cursive;
+}
+
+.QuickLinks {
+  font-size: smaller;
+  font-family: fantasy;
+  font-weight: 700;
+  padding: 1em 0;
+}
+
+.Background {
+  /* display: flex; */
+}
+
+.ImgCrying {
+}
+
+.SiteName {
+  font-weight: 900;
+  font-size: xx-large;
+  color: #ea2121;
+  font-style: normal;
+}
+
+.Youtube {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-style: normal;
+  color: #e41e43;
+}
+
+@media screen and (max-width: 699px) {
+  .Title {
+    font-size: 1em;
+  }
+  .SiteName {
+    font-size: x-large;
+  }
+}

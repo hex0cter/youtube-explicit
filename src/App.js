@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Main from './components/Main'
 import Admin from './components/Admin'
+import Home from './components/Home'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
@@ -15,6 +16,9 @@ function App() {
           <Switch>
             <Route path="/admin">
               <Admin />
+            </Route>
+            <Route path="/about">
+              <Home />
             </Route>
             <Route path="/">
               <Main />

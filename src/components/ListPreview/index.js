@@ -29,7 +29,7 @@ class ListPreview extends React.Component {
       <div>
         <div className={styles.TopBar}>
           <div className={styles.AppTitle}>
-            <img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /> YouTube
+            <a href='/'><img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /></a> YouTube
           </div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>
@@ -59,8 +59,8 @@ class ListPreview extends React.Component {
                     key={currentVideoIndex}
                     onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                   >
-                    <div className={styles.ViedoImage}>
-                      <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title}/>
+                    <div className={styles.VideoImage}>
+                      <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className={styles.VideoImage}/>
                     </div>
                     <div className={styles.VideoTitle}>{video.snippet.title}</div>
                   </div>
