@@ -53,6 +53,9 @@ class ListPreview extends React.Component {
               key={currentPlaylistIndex}
             >
               {playlist.items.map((video, currentVideoIndex) => {
+                  if (!video.snippet.thumbnails) {
+                  return null
+                }
                 return (
                   <div
                     className={styles.ListCell}

@@ -1,6 +1,8 @@
 const mapStateToProps = ({ main }) => {
   return {
-    isPlaybackInProgress: main.isPlaybackInProgress
+    isPlaybackInProgress: main.isPlaybackInProgress,
+    videoList: main.videoList,
+    selectedVideo: main.selectedVideo
   }
 }
 

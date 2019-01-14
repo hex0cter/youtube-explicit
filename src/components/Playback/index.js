@@ -15,7 +15,7 @@ class Playback extends React.Component {
     window.addEventListener('resize',  this.handleResize.bind(this));
   }
 
-  videoEnded = () => {
+  justToNextClip = () => {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     const shouldAutoPlay = this.props.videoList[playlistIndex].shouldAutoPlay
 
@@ -28,6 +28,10 @@ class Playback extends React.Component {
     this.props.onUpdateIsPlaybackInProgress(false)
   }
 
+  videoEnded = () => {
+    this.justToNextClip()
+  }
+
   videoPaused = () => {
     this.props.onUpdateIsPlaybackInProgress(false)
   }
@@ -38,6 +42,10 @@ class Playback extends React.Component {
 
   videoProgress =({playedSeconds}) => {
     this.props.onUpdatePlaybackProgress(playedSeconds)
+  }
+
+  videoError = () => {
+    this.justToNextClip()
   }
 
   render() {
@@ -58,6 +66,7 @@ class Playback extends React.Component {
           onPause={this.videoPaused}
           onEnded={this.videoEnded}
           onProgress={this.videoProgress}
+          onError={this.videoError}
         />
       </div>
     )

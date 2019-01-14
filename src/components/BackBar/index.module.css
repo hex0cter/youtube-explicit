@@ -6,6 +6,7 @@
   top: 0px;
   display: flex;
   line-height: initial;
+  justify-content: space-between;
 }
 
 .Button {
@@ -45,6 +46,11 @@
   border-right-color: rgb(58, 64, 66);
 }
 
+.Title {
+  font-size: xx-large;
+  color: #fff;
+  padding: 16px 17px;
+}
 @media screen and (max-width: 699px) {
   .Button {
     width: 40px;
@@ -56,5 +62,8 @@
   .Button:before {
     border-width: 10px 10px 10px 0;
     left: -8px;
+  }
+  .Title {
+    font-size: medium;
   }
 }
