@@ -1,6 +1,7 @@
 import React from 'react'
 import Playback from '../Playback'
 import ListPreview from '../ListPreview'
+import FullScreen from '../Fullscreen'
 import styles from './index.module.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -46,6 +47,7 @@ class Main extends React.Component {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     return (
       <div className={styles.Main}>
+        <FullScreen />
         { playlistIndex !== undefined && videoIndex !== undefined ? <Playback /> : <ListPreview />}
       </div>
     )
