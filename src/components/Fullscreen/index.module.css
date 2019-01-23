@@ -2,8 +2,9 @@
   position: absolute;
   width: 100%;
   z-index: 100;
-  top: 56%;
-  height: calc(44% - 70px);
+  bottom: 0;
+  height: calc(24%);
+  min-height: 222px;
   color: aqua;
   background: rgba(0,0,0,0);
   background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.91) 35%, rgba(0,0,0,1) 41%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 100%);
