@@ -50,6 +50,10 @@ class Playback extends React.Component {
 
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
+    if (playlistIndex === undefined || videoIndex === undefined) {
+      return null
+    }
+
     const video = this.props.videoList[playlistIndex].items[videoIndex]
 
     return (

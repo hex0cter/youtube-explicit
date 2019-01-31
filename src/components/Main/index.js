@@ -44,11 +44,11 @@ class Main extends React.Component {
   }
 
   render() {
-    const { playlistIndex, videoIndex } = this.props.selectedVideo
     return (
       <div className={styles.Main}>
         <FullScreen />
-        { playlistIndex !== undefined && videoIndex !== undefined ? <Playback /> : <ListPreview />}
+        <Playback />
+        <ListPreview />
       </div>
     )
   }
