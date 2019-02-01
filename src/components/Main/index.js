@@ -1,7 +1,7 @@
 import React from 'react'
 import Playback from '../Playback'
 import ListPreview from '../ListPreview'
-import FullScreen from '../Fullscreen'
+import AdMask from '../AdMask'
 import styles from './index.module.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -46,7 +46,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className={styles.Main}>
-        <FullScreen />
+        <AdMask />
         <Playback />
         <ListPreview />
       </div>
