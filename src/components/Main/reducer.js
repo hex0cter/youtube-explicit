@@ -8,7 +8,8 @@ const initialState = {
   selectedVideo: {},
   playbackProgress: 0,
   isPlaybackInProgress: false,
-  userIdentifier
+  userIdentifier,
+  player: null
 }
 
 function reducer(state = initialState, action) {
@@ -53,6 +54,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         playbackProgress
+      }
+    }
+    case actions.ACTION_UPDATE_PLAYER: {
+      const player = action.payload
+      return {
+        ...state,
+        player
       }
     }
     default:

@@ -16,10 +16,14 @@ class BackBar extends React.Component {
     }
 
     const { playlistIndex, videoIndex } = this.props.selectedVideo
+    if (playlistIndex === undefined || videoIndex === undefined) {
+      return null
+    }
+
     const video = this.props.videoList[playlistIndex].items[videoIndex]
     const title = video.snippet.title
     return (
-      <div className={styles.BackBar}>
+      <div className={this.props.isPlaybackInProgress ? styles.BackBar : styles.BackBarTall}>
        <div className={styles.Button} onClick={this.goBackToList}><span>BACK</span></div>
        <div className={styles.Title}>{title}</div>
       </div>

@@ -4,17 +4,8 @@ import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
-import BackBar from '../BackBar'
 
 class Playback extends React.Component {
-  handleResize = (e) => {
-    this.forceUpdate()
-  }
-
-  componentDidMount = () => {
-    window.addEventListener('resize',  this.handleResize.bind(this));
-  }
-
   justToNextClip = () => {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     const shouldAutoPlay = this.props.videoList[playlistIndex].shouldAutoPlay
@@ -26,6 +17,11 @@ class Playback extends React.Component {
       this.props.onUpdateSelectedVideo({})
     }
     this.props.onUpdateIsPlaybackInProgress(false)
+  }
+
+  videoReady = () => {
+    const player = this.player.player
+    this.props.onUpdatePlayer(player)
   }
 
   videoEnded = () => {
@@ -48,6 +44,15 @@ class Playback extends React.Component {
     this.justToNextClip()
   }
 
+  ref = (player) => {
+    console.log('player params', player)
+    if (!player) {
+      this.props.onUpdatePlayer(null)
+    } else {
+      this.player = player.player.player
+    }
+  }
+
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     if (playlistIndex === undefined || videoIndex === undefined) {
@@ -58,14 +63,15 @@ class Playback extends React.Component {
 
     return (
       <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
-        <BackBar />
         <YouTubePlayer
           url={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
           playing
           controls={false}
+          ref={this.ref}
           config={{ playerVars: { start: this.props.playbackProgress, modestbranding: 1 } }}
           width='100%'
           height='100%'
+          onReady={this.videoReady}
           onPlay={this.videoStarted}
           onPause={this.videoPaused}
           onEnded={this.videoEnded}
