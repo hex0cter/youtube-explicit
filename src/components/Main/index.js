@@ -3,7 +3,7 @@ import Playback from '../Playback'
 import ListPreview from '../ListPreview'
 import BackBar from '../BackBar'
 import AdMask from '../AdMask'
-import TopMask from '../TopMask'
+import FullScreen from '../FullScreen'
 import styles from './index.module.css'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -50,7 +50,7 @@ class Main extends React.Component {
       <div className={styles.Main}>
         <BackBar />
         <AdMask />
-        <TopMask />
+        <FullScreen />
         <Playback />
         <ListPreview />
       </div>

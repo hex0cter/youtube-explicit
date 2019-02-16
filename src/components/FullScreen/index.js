@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 
-class TopMask extends React.Component {
+class FullScreen extends React.Component {
   handleClick = () => {
     if (!this.props.player) {
       return
@@ -27,9 +27,9 @@ class TopMask extends React.Component {
     }
 
     return (
-      <div className={styles.TopMask}></div>
+      <div className={styles.FullScreen}></div>
     )
   }
 }
 
-export default connect(mapStateToProps)(TopMask)
+export default connect(mapStateToProps)(FullScreen)

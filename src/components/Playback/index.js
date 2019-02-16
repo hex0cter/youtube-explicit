@@ -21,6 +21,7 @@ class Playback extends React.Component {
 
   videoReady = () => {
     const player = this.player.player
+    player.playVideo()
     this.props.onUpdatePlayer(player)
   }
 
