@@ -1,4 +1,4 @@
-.AdMask {
+.AdMaskTall {
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -6,10 +6,33 @@
   height: 222px;
   color: aqua;
   background: rgba(0,0,0);
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+  overflow: hidden;
 }
 
+.AdMaskShort {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  bottom: 0;
+  height: 0;
+  color: aqua;
+  background: rgba(0,0,0);
+  -moz-transition: height .2s;
+  -ms-transition: height .2s;
+  -o-transition: height .2s;
+  -webkit-transition: height .2s;
+  transition: height .2s;
+  overflow: hidden;
+}
+
+
 @media screen and (max-height: 499px) {
-  .AdMask {
-    height: 122px;
+  .AdMaskTall {
+    height: 160px;
   }
 }

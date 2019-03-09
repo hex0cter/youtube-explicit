@@ -22,18 +22,18 @@ class Admin extends React.Component {
     this.props.onUpdatePlayLists(e.target.value.split('\n'))
   }
 
-  submitPlaylists = async(lst = this.props.playlists) => {
-    if (!this.props.userIdentifier) {
+  submitPlaylists = async({playlists = this.props.playlists, userIdentifier = this.props.userIdentifier} = {}) => {
+    if (!userIdentifier) {
       return
     }
 
-    const userIdentifier = this.props.userIdentifier.trim()
-    localStorage.setItem('userIdentifier', userIdentifier)
+    const trimedUserIdentifier = userIdentifier.trim()
+    localStorage.setItem('userIdentifier', trimedUserIdentifier)
 
-    const playlists = lst.filter(({id}) => id.length > 16)
+    const filteredPlaylists = playlists.filter(({id}) => id.length > 16)
     const params = {
-      user: userIdentifier,
-      playlists
+      user: trimedUserIdentifier,
+      playlists: filteredPlaylists
     }
 
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
@@ -57,10 +57,22 @@ class Admin extends React.Component {
     this.props.onUpdatePlayLists(playlists)
   }
 
+  clonePlaylists = async() => {
+    if (this.props.playlists.length === 0) {
+      return
+    }
+
+    const userIdentifier = shortid.generate()
+    await this.submitPlaylists({userIdentifier})
+    this.props.onUpdateUserIdentifier(userIdentifier)
+    console.log('cloned Playlists')
+  }
+
   updateShouldPlaylistAutoPlay = async(id, shouldAutoPlay) => {
     const playlist = this.props.playlists.find(playlist => playlist.id === id)
     playlist.shouldAutoPlay = shouldAutoPlay
     this.forceUpdate()
+    console.log('this.props', this.props)
     await this.submitPlaylists()
   }
 
@@ -74,7 +86,7 @@ class Admin extends React.Component {
   deletePlaylist = async(id) => {
     const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
     this.props.onUpdatePlayLists(playlists)
-    await this.submitPlaylists(playlists)
+    await this.submitPlaylists({ playlists })
   }
 
   moveUpPlayList = async(id) => {
@@ -86,7 +98,7 @@ class Admin extends React.Component {
     const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
     playlists.splice(index - 1, 0, playlist)
     this.props.onUpdatePlayLists(playlists)
-    await this.submitPlaylists(playlists)
+    await this.submitPlaylists({ playlists })
   }
 
   moveDownPlaylist = async(id) => {
@@ -98,7 +110,7 @@ class Admin extends React.Component {
     const playlists = this.props.playlists.filter(playlist => playlist.id !== id)
     playlists.splice(index + 1, 0, playlist)
     this.props.onUpdatePlayLists(playlists)
-    await this.submitPlaylists(playlists)
+    await this.submitPlaylists({ playlists })
   }
 
   AddNewPlaylist = async(id) => {
@@ -109,7 +121,7 @@ class Admin extends React.Component {
     const playlists = [...this.props.playlists]
     playlists.push({id, shouldAutoPlay: true, isEnabled: true})
     this.props.onUpdatePlayLists(playlists)
-    await this.submitPlaylists(playlists)
+    await this.submitPlaylists({ playlists })
   }
 
   componentDidMount = async() => {
@@ -133,8 +145,11 @@ class Admin extends React.Component {
             size={10}
           />
         </div>
-        <div className={styles.smallButton} onClick={this.fetchPlaylists}>
+        <div className={this.props.userIdentifier ? styles.smallButton : styles.disabledSmallButton} onClick={this.fetchPlaylists}>
           Fetch my list
+        </div>
+        <div className={this.props.playlists.length !== 0 ? styles.smallButton : styles.disabledSmallButton} onClick={this.clonePlaylists}>
+          Clone
         </div>
         <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
           Generate new

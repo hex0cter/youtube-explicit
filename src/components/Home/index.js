@@ -3,10 +3,10 @@ import styles from './index.module.css'
 
 const Home = () => (
   <div className={styles.Home}>
-    <div className={styles.Title}>What is Youtube Explicit?</div>
-    <div className={styles.Background}>
-      <div className={styles.ImgCrying} >
-        <img src='/images/cry.jpg' alt='crying' width='176px'/>
+    <div className={styles.Title}>What is this about?</div>
+    <div>
+      <div>
+        <img src='/images/cry.jpg' alt='crying'className={styles.ImgCrying} />
       </div>
       <div className={styles.Paragraph}>
       <span className={styles.Youtube}><img src='/images/youtube.png' alt='youtube' height='20px' /></span>is a good tool for kids, sometimes, for entertaining, learning.
@@ -25,7 +25,7 @@ const Home = () => (
         Step by step guide:
       </div>
       <div className={styles.Steps}>
-        1. Visit the <a href='/admin'>admin portal</a>, where you can generate a new user identifier for yourself. Then you can add get
+        1. Visit the <a href='/admin'><span className={styles.AdminPortalLink}>Admin Portal</span></a>, where you can generate a new user identifier for yourself. Then you can add get
         some playlists Ids from youtube, and add them into your list. Please save the user identifier.
       </div>
       <div className={styles.Steps}>
@@ -39,7 +39,7 @@ const Home = () => (
       </div>
     </div>
     <div className={styles.QuickLinks}>
-      Quick links: <a href='/admin'> Admin portal </a>, <a href='/play'> Play now </a>
+      Quick links: <a href='/admin'> Admin Portal </a>, <a href='/play'> Play Now </a>
     </div>
   </div>
 )

@@ -5,12 +5,11 @@ import mapStateToProps from './map-state-to-props'
 
 const AdMask = (props) => {
   const { playlistIndex, videoIndex } = props.selectedVideo
-  if (props.isPlaybackInProgress || playlistIndex === undefined || videoIndex === undefined) {
-    return null
-  }
+  const style = (props.isPlaybackInProgress || playlistIndex === undefined || videoIndex === undefined) ?
+    styles.AdMaskShort : styles.AdMaskTall
 
   return (
-    <div className={styles.AdMask}></div>
+    <div className={style}></div>
   )
 }
 

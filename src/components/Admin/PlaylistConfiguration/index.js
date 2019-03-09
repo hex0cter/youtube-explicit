@@ -87,9 +87,9 @@ class PlaylistConfiguration extends React.Component {
             <input type="checkbox" name="autoPlay" checked={this.props.shouldAutoPlay} onChange={this.changeAutoPlay} id={`auto-play-${id}`}/>Auto play
           </div>
           <div>
-            <button onClick={this.props.onDelete}>Delete</button>
             <button onClick={this.props.onMoveUp}>Up</button>
             <button onClick={this.props.onMoveDown}>Down</button>
+            <button onClick={this.props.onDelete}>Delete</button>
           </div>
         </div>
         <div className={styles.PlaylistPreview}>

@@ -43,7 +43,7 @@ class ListPreview extends React.Component {
               />
             </div>
             <div className={styles.Button} onClick={this.updateUserIdentifier}>Refresh</div>
-            <div className={styles.Button} onClick={() => {window.location = '/admin'}}>?</div>
+            <div className={styles.Button} onClick={() => {window.location = '/about'}}>?</div>
           </div>
         </div>
         {this.props.videoList.map((playlist, currentPlaylistIndex) => {

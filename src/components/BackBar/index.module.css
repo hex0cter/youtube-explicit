@@ -1,13 +1,20 @@
-.BackBar {
+.BackBarShort {
   position: fixed;
   width: 100%;
-  height: 60px;
+  height: 1px;
   background-color: #000;
   top: 0px;
   display: flex;
   line-height: initial;
   justify-content: space-between;
   z-index: 500;
+
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+  overflow: hidden;
 }
 
 .BackBarTall {
@@ -20,6 +27,12 @@
   line-height: initial;
   justify-content: space-between;
   z-index: 500;
+  -moz-transition: height .5s;
+  -ms-transition: height .5s;
+  -o-transition: height .5s;
+  -webkit-transition: height .5s;
+  transition: height .5s;
+  overflow: hidden;
 }
 
 .Button {
@@ -60,10 +73,11 @@
 }
 
 .Title {
-  font-size: xx-large;
+  font-size: large;
   color: #fff;
-  padding: 16px 17px;
+  padding: 24px 17px;
 }
+
 @media screen and (max-width: 699px) {
   .Button {
     width: 40px;
@@ -83,6 +97,6 @@
 
 @media screen and (max-height: 499px) {
   .BackBarTall {
-    height: 122px;
+    height: 72px;
   }
 }

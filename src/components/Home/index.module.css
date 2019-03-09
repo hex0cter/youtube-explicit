@@ -8,9 +8,10 @@
 
 .Title {
   font-size: 3em;
-  text-decoration: double;
+  text-decoration: underline;
   font-family: fantasy, sans-serif;
   padding-bottom: 10px;
+  color: #231ef1ba;
 }
 
 .Paragraph {
@@ -39,11 +40,12 @@
   padding: 1em 0;
 }
 
-.Background {
-  /* display: flex; */
+.ImgCrying {
+  width: 176px;
 }
 
-.ImgCrying {
+.AdminPortalLink {
+  font-weight: bolder;
 }
 
 .SiteName {
