@@ -1,6 +1,6 @@
 import * as actions from './actions'
 
-const userIdentifier = localStorage.getItem('userIdentifier') || null
+const userIdentifier = localStorage.getItem('userIdentifier') || '1Vpsm4Yy'
 
 const initialState = {
   playlists: [],
