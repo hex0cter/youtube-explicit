@@ -12,14 +12,11 @@ shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 class Admin extends React.Component {
   generateNewUserIdentifier = () => {
     this.props.onUpdateUserIdentifier(shortid.generate())
+    this.props.onUpdatePlayLists([])
   }
 
   changeUserIdentifier = (e) => {
     this.props.onUpdateUserIdentifier(e.target.value)
-  }
-
-  updatePlaylists = (e) => {
-    this.props.onUpdatePlayLists(e.target.value.split('\n'))
   }
 
   submitPlaylists = async({playlists = this.props.playlists, userIdentifier = this.props.userIdentifier} = {}) => {
@@ -131,11 +128,9 @@ class Admin extends React.Component {
   render() {
     return <div className={styles.Admin}>
       <div className={styles.UserIdentifier}>
-        <div className={styles.UserIdentifierTitle}>
-          User Identifer:
-        </div>
         <div className={styles.UserIdentifierInput}>
-          <input
+        <span className={styles.UserIdentifierTitle}>User Identifer:</span>
+        <input
             type="text"
             className={styles.InputText}
             placeholder='Identifier'
@@ -146,13 +141,13 @@ class Admin extends React.Component {
           />
         </div>
         <div className={this.props.userIdentifier ? styles.smallButton : styles.disabledSmallButton} onClick={this.fetchPlaylists}>
-          Fetch my list
+          Fetch lists
         </div>
         <div className={this.props.playlists.length !== 0 ? styles.smallButton : styles.disabledSmallButton} onClick={this.clonePlaylists}>
           Clone
         </div>
         <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
-          Generate new
+          Create new
         </div>
       </div>
       <div className={styles.PlaylistsTitle}>

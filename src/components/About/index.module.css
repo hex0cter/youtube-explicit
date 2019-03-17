@@ -1,7 +1,7 @@
-.Home {
+.About {
   display: flex;
   flex-direction: column;
-  background-color: #c6ffd7;
+  background-color: #c6e9ff;
   text-align: justify;
   padding: 1em;
 }
@@ -40,8 +40,9 @@
   padding: 1em 0;
 }
 
-.ImgCrying {
-  width: 176px;
+.ImgKidsWithTablet {
+  width: 476px;
+  max-width: 100%;
 }
 
 .AdminPortalLink {
@@ -64,7 +65,7 @@
 
 @media screen and (max-width: 699px) {
   .Title {
-    font-size: 1em;
+    font-size: 2em;
   }
   .SiteName {
     font-size: x-large;

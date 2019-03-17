@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './index.module.css'
 
-const Home = () => (
-  <div className={styles.Home}>
+const About = () => (
+  <div className={styles.About}>
     <div className={styles.Title}>What is this about?</div>
     <div>
       <div>
-        <img src='/images/cry.jpg' alt='crying'className={styles.ImgCrying} />
+        <img src='/images/kids-with-tablet.jpg' alt='kids with tablet'className={styles.ImgKidsWithTablet} />
       </div>
       <div className={styles.Paragraph}>
       <span className={styles.Youtube}><img src='/images/youtube.png' alt='youtube' height='20px' /></span>is a good tool for kids, sometimes, for entertaining, learning.
@@ -44,4 +44,4 @@ const Home = () => (
   </div>
 )
 
-export default Home
+export default About

@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/play",
+  "start_url": "https://solna.xyz",
   "scope": "/",
   "orientation": "any",
   "display": "fullscreen",
