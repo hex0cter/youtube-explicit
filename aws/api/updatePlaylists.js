@@ -7,7 +7,9 @@ exports.handler = async (event) => {
   const body = JSON.parse(event.body)
   const user = body.user
   const playlists = body.playlists
-  const item = { user, playlists }
+  const maxPlayTime = body.maxPlayTime
+  const minRestTime = body.minRestTime
+  const item = { user, playlists, maxPlayTime, minRestTime }
 
   await docClient.put({
     TableName: `${process.env.SERVICE_NAME}-${process.env.STAGE}-Playlists`,

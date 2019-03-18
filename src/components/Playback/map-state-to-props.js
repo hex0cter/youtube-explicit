@@ -3,7 +3,9 @@ const mapStateToProps = ({ main }) => {
     videoList: main.videoList,
     selectedVideo: main.selectedVideo,
     isPlaybackInProgress: main.isPlaybackInProgress,
-    playbackProgress: main.playbackProgress
+    playbackProgress: main.playbackProgress,
+    isUserInteractionAllowed: main.isUserInteractionAllowed,
+    startPlayTime: main.startPlayTime
   }
 }
 

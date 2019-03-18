@@ -19,7 +19,24 @@ class Admin extends React.Component {
     this.props.onUpdateUserIdentifier(e.target.value)
   }
 
-  submitPlaylists = async({playlists = this.props.playlists, userIdentifier = this.props.userIdentifier} = {}) => {
+  updateMaxPlayTime = async(e) => {
+    const maxPlayTime = parseInt(e.target.value)
+    this.props.onUpdateMaxPlayTime(maxPlayTime)
+    await this.submitPlaylists({maxPlayTime})
+  }
+
+  updateMinRestTime = async(e) => {
+    const minRestTime = parseInt(e.target.value)
+    this.props.onUpdateMinRestTime(minRestTime)
+    await this.submitPlaylists({minRestTime})
+  }
+
+  submitPlaylists = async({
+    playlists = this.props.playlists,
+    userIdentifier = this.props.userIdentifier,
+    maxPlayTime = this.props.maxPlayTime,
+    minRestTime = this.props.minRestTime
+  } = {}) => {
     if (!userIdentifier) {
       return
     }
@@ -30,7 +47,9 @@ class Admin extends React.Component {
     const filteredPlaylists = playlists.filter(({id}) => id.length > 16)
     const params = {
       user: trimedUserIdentifier,
-      playlists: filteredPlaylists
+      playlists: filteredPlaylists,
+      maxPlayTime,
+      minRestTime
     }
 
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
@@ -52,6 +71,16 @@ class Admin extends React.Component {
 
     const playlists = response.data.playlists
     this.props.onUpdatePlayLists(playlists)
+
+    const maxPlayTime = response.data.maxPlayTime
+    if (maxPlayTime) {
+      this.props.onUpdateMaxPlayTime(maxPlayTime)
+    }
+
+    const minRestTime = response.data.minRestTime
+    if (minRestTime) {
+      this.props.onUpdateMinRestTime(minRestTime)
+    }
   }
 
   clonePlaylists = async() => {
@@ -60,16 +89,14 @@ class Admin extends React.Component {
     }
 
     const userIdentifier = shortid.generate()
-    await this.submitPlaylists({userIdentifier})
+    await this.submitPlaylists({ userIdentifier })
     this.props.onUpdateUserIdentifier(userIdentifier)
-    console.log('cloned Playlists')
   }
 
   updateShouldPlaylistAutoPlay = async(id, shouldAutoPlay) => {
     const playlist = this.props.playlists.find(playlist => playlist.id === id)
     playlist.shouldAutoPlay = shouldAutoPlay
     this.forceUpdate()
-    console.log('this.props', this.props)
     await this.submitPlaylists()
   }
 
@@ -149,6 +176,10 @@ class Admin extends React.Component {
         <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
           Create new
         </div>
+      </div>
+      <div className={styles.TimeConfiguration}>
+        <div>Max play duration (min): <input type="number" value={this.props.maxPlayTime} size={5} min={10} max={180} step={5} onChange={this.updateMaxPlayTime}/></div>
+        <div>Minimal break duration (min): <input type="number" value={this.props.minRestTime} size={5} min={10} max={180} step={5} onChange={this.updateMinRestTime}/></div>
       </div>
       <div className={styles.PlaylistsTitle}>
         Youtube playlists:

@@ -21,8 +21,11 @@ class Playback extends React.Component {
 
   videoReady = () => {
     const player = this.player.player
-    player.playVideo()
     this.props.onUpdatePlayer(player)
+
+    if (this.props.isUserInteractionAllowed) {
+      player.playVideo()
+    }
   }
 
   videoEnded = () => {
@@ -34,8 +37,13 @@ class Playback extends React.Component {
   }
 
   videoStarted = () => {
+    console.log('play event')
     this.props.onUpdateIsPlaybackInProgress(true)
-  }
+
+    if(!this.props.startPlayTime) {
+      this.props.onUpdateStartPlayTime(null)
+    }
+}
 
   videoProgress =({playedSeconds}) => {
     this.props.onUpdatePlaybackProgress(playedSeconds)
@@ -46,7 +54,6 @@ class Playback extends React.Component {
   }
 
   ref = (player) => {
-    console.log('player params', player)
     if (!player) {
       this.props.onUpdatePlayer(null)
     } else {
@@ -66,7 +73,7 @@ class Playback extends React.Component {
       <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
         <YouTubePlayer
           url={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
-          playing
+          playing={false}
           controls={false}
           ref={this.ref}
           config={{ playerVars: { start: this.props.playbackProgress, modestbranding: 1 } }}

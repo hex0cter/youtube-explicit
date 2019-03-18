@@ -9,7 +9,12 @@ const initialState = {
   playbackProgress: 0,
   isPlaybackInProgress: false,
   userIdentifier,
-  player: null
+  startPlayTime: null,
+  startRestTime: null,
+  isUserInteractionAllowed: true,
+  player: null,
+  maxPlayTime: 0,
+  minRestTime: 0
 }
 
 function reducer(state = initialState, action) {
@@ -61,6 +66,41 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         player
+      }
+    }
+    case actions.ACTION_UPDATE_START_PLAY_TIME: {
+      const startPlayTime = action.payload
+      return {
+        ...state,
+        startPlayTime
+      }
+    }
+    case actions.ACTION_UPDATE_START_REST_TIME: {
+      const startRestTime = action.payload
+      return {
+        ...state,
+        startRestTime
+      }
+    }
+    case actions.ACTION_UPDATE_IS_USER_INTERACTION_ALLOWED: {
+      const isUserInteractionAllowed = action.payload
+      return {
+        ...state,
+        isUserInteractionAllowed
+      }
+    }
+    case actions.ACTION_UPDATE_MAX_PLAY_TIME: {
+      const maxPlayTime = action.payload
+      return {
+        ...state,
+        maxPlayTime
+      }
+    }
+    case actions.ACTION_UPDATE_MIN_REST_TIME: {
+      const minRestTime = action.payload
+      return {
+        ...state,
+        minRestTime
       }
     }
     default:
