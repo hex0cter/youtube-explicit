@@ -37,7 +37,6 @@ class Playback extends React.Component {
   }
 
   videoStarted = () => {
-    console.log('play event')
     this.props.onUpdateIsPlaybackInProgress(true)
 
     if(!this.props.startPlayTime) {

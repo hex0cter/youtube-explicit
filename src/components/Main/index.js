@@ -45,10 +45,10 @@ class Main extends React.Component {
     this.props.onUpdateVideoList(videoList.filter(e => e !== null))
 
     const maxPlayTime = response.data.maxPlayTime
-    this.props.onUpdateMaxPlayTime(maxPlayTime * 60000)
+    this.props.onUpdateMaxPlayTime( maxPlayTime * 60000) // convert minutes to milliseconds
 
     const minRestTime = response.data.minRestTime
-    this.props.onUpdateMinRestTime(minRestTime * 60000)
+    this.props.onUpdateMinRestTime(minRestTime * 60000) // convert minutes to milliseconds
   }
 
   render() {

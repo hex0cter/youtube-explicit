@@ -14,7 +14,8 @@ const initialState = {
   isUserInteractionAllowed: true,
   player: null,
   maxPlayTime: 0,
-  minRestTime: 0
+  minRestTime: 0,
+  fullScreenText: ''
 }
 
 function reducer(state = initialState, action) {
@@ -101,6 +102,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         minRestTime
+      }
+    }
+    case actions.ACTION_UPDATE_FULL_SCREEN_TEXT: {
+      const fullScreenText = action.payload
+      return {
+        ...state,
+        fullScreenText
       }
     }
     default:

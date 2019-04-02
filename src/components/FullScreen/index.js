@@ -3,6 +3,7 @@ import styles from './index.module.css'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
+import { msToTime } from './utils'
 
 class FullScreen extends React.Component {
   resumePlaying = () => {
@@ -28,13 +29,19 @@ class FullScreen extends React.Component {
   }
 
   showPlayingLogs = () => {
-    if (this.props.startPlayTime) {
-      console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
-    }
+    // if (this.props.startPlayTime) {
+    //   console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
+    // }
 
     if (this.props.startRestTime) {
-      console.log('user has been resting for', (Date.now() - this.props.startRestTime)/1000, 'seconds')
+      const restedTime = (Date.now() - this.props.startRestTime)
+      const remainingTime = this.props.minRestTime - restedTime
+      const timeRemaining = msToTime(remainingTime)
+
+      this.props.onUpdateFullScreenText(timeRemaining)
+
     }
+
   }
 
   handleClick = () => {
@@ -53,7 +60,7 @@ class FullScreen extends React.Component {
       this.props.onUpdateIsUserInteractionAllowed(true)
       this.props.onUpdateStartPlayTime(currentTime)
       this.props.onUpdateStartRestTime(null)
-      setInterval(this.showPlayingLogs, 200);
+      setInterval(this.showPlayingLogs, 1000);
       setTimeout(this.takeBreak, maxPlayTime)
     }
 
@@ -79,7 +86,7 @@ class FullScreen extends React.Component {
     }
 
     return (
-      <div className={this.props.isUserInteractionAllowed ? styles.FullScreen : styles.FullScreenOpaque}></div>
+    <div className={this.props.isUserInteractionAllowed ? styles.FullScreen : styles.FullScreenOpaque}>{this.props.fullScreenText}</div>
     )
   }
 }
