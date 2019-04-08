@@ -13,4 +13,4 @@ YouTube is a good tool for kids, sometimes, for entertaining, learning. But it a
 b) If you are using an iOS device, open up Safari, visit [https://solna.xyz](https://solna.xyz), and click on the sharing icon, then choose Add to Home Screen.
 3. From the Home Screen you will see the new icon added. Open it up, and fill in the user identifier created in the first step. Done!
 
-## Quick links: [Admin Portal](https://solna.xyz/admin) , [Play Now](https://solna.xyz/)
+## Quick links: [Play Now](https://solna.xyz/), [Admin Portal](https://solna.xyz/admin)

@@ -21,7 +21,7 @@
   "start_url": "https://solna.xyz",
   "scope": "/",
   "orientation": "any",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#f34121",
   "background_color": "#ffffff"
 }
