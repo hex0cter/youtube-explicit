@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 2em;
+  font-size: 3em;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
    -ms-animation: fadein 2s; /* Internet Explorer */
@@ -56,4 +56,10 @@
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+@media screen and (min-width: 700px) {
+  .FullScreenOpaque {
+    font-size: 6em;
+  }
 }

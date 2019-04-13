@@ -67,9 +67,10 @@ class Playback extends React.Component {
     }
 
     const video = this.props.videoList[playlistIndex].items[videoIndex]
+    const height = `${window.innerHeight + 3}px`
 
     return (
-      <div className={styles.Playback} style={{height: `${window.innerHeight}px`, lineHeight: `${window.innerHeight}px`}}>
+      <div className={styles.Playback} style={{height, lineHeight: height}}>
         <YouTubePlayer
           url={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
           playing={false}

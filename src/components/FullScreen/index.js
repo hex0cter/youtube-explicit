@@ -54,7 +54,6 @@ class FullScreen extends React.Component {
       return
     }
 
-    console.log('clicked')
     if (!this.props.startPlayTime) {
       console.log('Set initial start play time')
       this.props.onUpdateIsUserInteractionAllowed(true)
