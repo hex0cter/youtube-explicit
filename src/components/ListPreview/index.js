@@ -3,15 +3,25 @@ import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
+import * as modes from '../Main/modes'
 
 class ListPreview extends React.Component {
   play = (videoIndex) => {
     this.props.onUpdateSelectedVideo(videoIndex)
+    this.props.onUpdateUIMode(modes.PLAYBACK_MODE)
   }
 
   editingUserIdentifier = (e) => {
     const userIdentifier = e.target.value
     this.props.onUpdateUserIdentifier(userIdentifier)
+  }
+
+  keyDownInUserIdentifier = async (e) => {
+    if (e.key === 'Enter') {
+      const userIdentifier = e.target.value.trim()
+      localStorage.setItem('userIdentifier', userIdentifier)
+      window.location.reload()
+    }
   }
 
   updateUserIdentifier = async() => {
@@ -25,6 +35,8 @@ class ListPreview extends React.Component {
   }
 
   render() {
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
+
     return (
       <div>
         <div className={styles.TopBar}>
@@ -35,8 +47,10 @@ class ListPreview extends React.Component {
             <div className={styles.UserIdentifierInput}>
               <input
                 type='text'
+                id='user-identifier-input'
                 className={styles.InputText}
                 onChange={this.editingUserIdentifier}
+                onKeyDown={this.keyDownInUserIdentifier}
                 value={this.props.userIdentifier || ''}
                 placeholder='Identifier'
                 size={10}
@@ -53,12 +67,15 @@ class ListPreview extends React.Component {
               key={currentPlaylistIndex}
             >
               {playlist.items.map((video, currentVideoIndex) => {
-                  if (!video.snippet.thumbnails) {
+                if (!video.snippet.thumbnails) {
                   return null
                 }
+                const isCellSeleted = playlistIndex === currentPlaylistIndex && videoIndex === currentVideoIndex
                 return (
                   <div
-                    className={styles.ListCell}
+                    className={isCellSeleted ? styles.ActiveListCell : styles.ListCell}
+                    id={isCellSeleted ? 'selected-cell' : null}
+                    ref={ (ref) => {if(isCellSeleted) {this.myRef=ref}} }
                     key={currentVideoIndex}
                     onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                   >

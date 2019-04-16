@@ -1,0 +1,2 @@
+export const PLAYBACK_MODE = 'PLAYBACK_MODE'
+export const LIST_PREVIEW_MODE = 'LIST_PREVIEW_MODE'

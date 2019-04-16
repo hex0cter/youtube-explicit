@@ -7,7 +7,8 @@ const mapStateToProps = ({ main }) => ({
   isUserInteractionAllowed: main.isUserInteractionAllowed,
   maxPlayTime: main.maxPlayTime,
   minRestTime: main.minRestTime,
-  fullScreenText: main.fullScreenText
+  fullScreenText: main.fullScreenText,
+  uiMode: main.uiMode
 })
 
 export default mapStateToProps

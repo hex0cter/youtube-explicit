@@ -4,7 +4,10 @@ const mapStateToProps = ({ main }) => ({
   playlists: main.playlists,
   selectedVideo: main.selectedVideo,
   maxPlayTime: main.maxPlayTime,
-  minRestTime: main.minRestTime
+  minRestTime: main.minRestTime,
+  uiMode: main.uiMode,
+  isPlaybackInProgress: main.isPlaybackInProgress,
+  player: main.player
 })
 
 export default mapStateToProps

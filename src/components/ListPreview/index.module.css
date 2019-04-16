@@ -6,12 +6,33 @@
   flex-direction: row;
   overflow-y: scroll;
   display: flex;
-  padding: 0 0 1em 0;
+  padding: 20px 0 1em 0;
 }
 
 .ListCell {
+  margin: 0 1em 0 0;
   color: #000;
-  background-color: #fff;
+  background-color: rgb(76, 71, 71);
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 376px;
+  font-weight: 600;
+  animation: slide-out .5s forwards;
+  -webkit-animation: slide-out .5s forwards;
+}
+
+.ActiveListCell {
+  margin: 0 1em 0 0;
+  color: #000;
+  /* outline-style: solid;
+  outline-color: rgb(69, 127, 194);
+  outline-width: 4px; */
+  -webkit-box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596);
+  -moz-box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596);
+  box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596);
+  background-color: rgb(76, 71, 71);
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -33,13 +54,12 @@
 }
 
 .VideoImage {
-  padding: 0 1em 0 0;
+  padding: 0 0 0 0;
   width: 360px;
 }
 
 .VideoTitle {
-  background-color: white;
-  color: black;
+  color: #fff;
   font-weight: normal;
   padding-bottom: 1em;
 }

@@ -1,11 +1,12 @@
 import * as actions from './actions'
+import * as modes from './modes'
 
 const userIdentifier = localStorage.getItem('userIdentifier') || '1Vpsm4Yy'
 
 const initialState = {
   playlists: [],
   videoList: [],
-  selectedVideo: {},
+  selectedVideo: {playlistIndex: 0, videoIndex: 0},
   playbackProgress: 0,
   isPlaybackInProgress: false,
   userIdentifier,
@@ -15,7 +16,8 @@ const initialState = {
   player: null,
   maxPlayTime: 0,
   minRestTime: 0,
-  fullScreenText: ''
+  fullScreenText: '',
+  uiMode: modes.LIST_PREVIEW_MODE
 }
 
 function reducer(state = initialState, action) {
@@ -109,6 +111,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         fullScreenText
+      }
+    }
+    case actions.ACTION_UPDATE_UI_MODE: {
+      const uiMode = action.payload
+      return {
+        ...state,
+        uiMode
       }
     }
     default:

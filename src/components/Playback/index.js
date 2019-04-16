@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
+import * as modes from '../Main/modes'
 
 class Playback extends React.Component {
   justToNextClip = () => {
@@ -14,7 +15,7 @@ class Playback extends React.Component {
     if (shouldAutoPlay && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
-      this.props.onUpdateSelectedVideo({})
+      // this.props.onUpdateUIMode(modes.LIST_PREVIEW_MODE)
     }
     this.props.onUpdateIsPlaybackInProgress(false)
   }
@@ -61,11 +62,11 @@ class Playback extends React.Component {
   }
 
   render() {
-    const { playlistIndex, videoIndex } = this.props.selectedVideo
-    if (playlistIndex === undefined || videoIndex === undefined) {
+    if (this.props.uiMode === modes.LIST_PREVIEW_MODE) {
       return null
     }
 
+    const { playlistIndex, videoIndex } = this.props.selectedVideo
     const video = this.props.videoList[playlistIndex].items[videoIndex]
     const height = `${window.innerHeight + 3}px`
 

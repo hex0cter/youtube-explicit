@@ -5,7 +5,8 @@ const mapStateToProps = ({ main }) => {
     isPlaybackInProgress: main.isPlaybackInProgress,
     playbackProgress: main.playbackProgress,
     isUserInteractionAllowed: main.isUserInteractionAllowed,
-    startPlayTime: main.startPlayTime
+    startPlayTime: main.startPlayTime,
+    uiMode: main.uiMode
   }
 }
 

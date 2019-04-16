@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import { msToTime } from './utils'
+import * as modes from '../Main/modes'
 
 class FullScreen extends React.Component {
   resumePlaying = () => {
@@ -79,8 +80,7 @@ class FullScreen extends React.Component {
   }
 
   render() {
-    const { playlistIndex, videoIndex } = this.props.selectedVideo
-    if (playlistIndex === undefined || videoIndex === undefined) {
+    if (this.props.uiMode === modes.LIST_PREVIEW_MODE) {
       return null
     }
 
