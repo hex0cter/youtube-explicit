@@ -67,7 +67,9 @@ class Main extends React.Component {
           elementInput.scrollIntoView()
         } else {
           const element = document.getElementById('selected-cell')
-          element.scrollIntoView()
+          if (element) {
+            element.scrollIntoView()
+          }
         }
       }, 100, shouldInputHaveFocus)
 
