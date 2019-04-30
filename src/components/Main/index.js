@@ -68,7 +68,7 @@ class Main extends React.Component {
         } else {
           const element = document.getElementById('selected-cell')
           if (element) {
-            element.scrollIntoView()
+            element.scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
           }
         }
       }, 100, shouldInputHaveFocus)
