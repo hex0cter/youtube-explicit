@@ -17,7 +17,8 @@ const initialState = {
   maxPlayTime: 0,
   minRestTime: 0,
   fullScreenText: '',
-  uiMode: modes.LIST_PREVIEW_MODE
+  uiMode: modes.UI_LIST_PREVIEW_MODE,
+  userMode: modes.USER_RESTING_MODE
 }
 
 function reducer(state = initialState, action) {
@@ -118,6 +119,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         uiMode
+      }
+    }
+    case actions.ACTION_UPDATE_USER_MODE: {
+      const userMode = action.payload
+      return {
+        ...state,
+        userMode
       }
     }
     default:

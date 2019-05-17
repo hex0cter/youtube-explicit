@@ -8,12 +8,12 @@ import * as modes from '../Main/modes'
 class BackBar extends React.Component {
   goBackToList = () => {
     // this.props.onUpdateSelectedVideo({})
-    this.props.onUpdateUIMode(modes.LIST_PREVIEW_MODE)
+    this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
     this.props.onUpdatePlaybackProgress(0)
   }
 
   render() {
-    if (this.props.uiMode === modes.LIST_PREVIEW_MODE) {
+    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
       return null
     }
 

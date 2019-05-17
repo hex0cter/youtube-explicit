@@ -12,6 +12,7 @@ export const ACTION_UPDATE_MAX_PLAY_TIME = 'ACTION_UPDATE_MAX_PLAY_TIME'
 export const ACTION_UPDATE_MIN_REST_TIME = 'ACTION_UPDATE_MIN_REST_TIME'
 export const ACTION_UPDATE_FULL_SCREEN_TEXT = 'ACTION_UPDATE_FULL_SCREEN_TEXT'
 export const ACTION_UPDATE_UI_MODE = 'ACTION_UPDATE_UI_MODE'
+export const ACTION_UPDATE_USER_MODE = 'ACTION_UPDATE_USER_MODE'
 
 export const updateVideoList = (payload) => ({
   type: ACTION_UPDATE_VIDEO_LIST, payload
@@ -78,5 +79,10 @@ export const updateFullScreenText = (payload) => ({
 
 export const updateUIMode = (payload) => ({
   type: ACTION_UPDATE_UI_MODE,
+  payload
+})
+
+export const updateUserMode = (payload) => ({
+  type: ACTION_UPDATE_USER_MODE,
   payload
 })

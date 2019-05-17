@@ -15,7 +15,7 @@ class Playback extends React.Component {
     if (shouldAutoPlay && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
-      // this.props.onUpdateUIMode(modes.LIST_PREVIEW_MODE)
+      // this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
     }
     this.props.onUpdateIsPlaybackInProgress(false)
   }
@@ -62,7 +62,7 @@ class Playback extends React.Component {
   }
 
   render() {
-    if (this.props.uiMode === modes.LIST_PREVIEW_MODE) {
+    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
       return null
     }
 

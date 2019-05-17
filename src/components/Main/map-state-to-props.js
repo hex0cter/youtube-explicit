@@ -7,7 +7,11 @@ const mapStateToProps = ({ main }) => ({
   minRestTime: main.minRestTime,
   uiMode: main.uiMode,
   isPlaybackInProgress: main.isPlaybackInProgress,
-  player: main.player
+  isUserInteractionAllowed: main.isUserInteractionAllowed,
+  player: main.player,
+  startRestTime: main.startRestTime,
+  startPlayTime: main.startPlayTime,
+  userMode: main.userMode
 })
 
 export default mapStateToProps

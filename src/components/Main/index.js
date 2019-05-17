@@ -9,16 +9,44 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
+import { msToTime } from './utils'
 import * as modes from './modes'
 
 class Main extends React.Component {
+  userActionOccured = () => {
+    console.log('state when userActionOccured', this.props)
+    if (this.props.userMode === modes.USER_RESTING_MODE) {
+      console.log('Set initial start play time')
+      const currentTime = Date.now()
+      const maxPlayTime = this.props.maxPlayTime
+
+      this.props.onUpdateIsUserInteractionAllowed(true)
+      this.props.onUpdateStartPlayTime(currentTime)
+      this.props.onUpdateStartRestTime(null)
+      this.props.onUpdateUserMode(modes.USER_PLAYING_MODE)
+
+      setInterval(this.showPlayingLogs, 1000)
+      setTimeout(this.takeBreak, maxPlayTime)
+    } else {
+      console.log('Debug: this.props.userMode', this.props.userMode)
+    }
+  }
+
   keyPressed = (e) => {
     const key = e.key
     console.log('keyPressed', key)
+
+    if (!this.props.isUserInteractionAllowed) {
+      console.log('resting mode, skipping key press', key)
+      return
+    }
+
+    this.userActionOccured()
+
     let shouldInputHaveFocus = false
-    if (this.props.uiMode === modes.PLAYBACK_MODE) {
+    if (this.props.uiMode === modes.UI_PLAYBACK_MODE) {
       if (key === 'Escape') {
-        this.props.onUpdateUIMode(modes.LIST_PREVIEW_MODE)
+        this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
       } else if (key === 'Enter') {
         if (this.props.isPlaybackInProgress) {
           this.props.player.pauseVideo()
@@ -26,9 +54,9 @@ class Main extends React.Component {
           this.props.player.playVideo()
         }
       } else {
-        console.log('PLAYBACK_MODE: Skipping key', key)
+        console.log('UI_PLAYBACK_MODE: Skipping key', key)
       }
-    } else if (this.props.uiMode === modes.LIST_PREVIEW_MODE) {
+    } else if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
       let { playlistIndex, videoIndex } = this.props.selectedVideo
       const elementInput = document.getElementById('user-identifier-input')
       if (document.activeElement  === elementInput) {
@@ -54,9 +82,9 @@ class Main extends React.Component {
         videoIndex = 0
         playlistIndex += 1
       } else if (key === 'Enter') {
-        this.props.onUpdateUIMode(modes.PLAYBACK_MODE)
+        this.props.onUpdateUIMode(modes.UI_PLAYBACK_MODE)
       } else {
-        console.log('LIST_PREVIEW_MODE: Skipping key', key)
+        console.log('UI_LIST_PREVIEW_MODE: Skipping key', key)
       }
 
       setTimeout((shouldInputHaveFocus) => {
@@ -77,8 +105,80 @@ class Main extends React.Component {
     }
   }
 
+  resumePlaying = () => {
+    console.log('user can play again now')
+    this.props.onUpdateStartRestTime(null)
+    this.props.onUpdateStartPlayTime(null)
+    this.props.onUpdateIsUserInteractionAllowed(true)
+  }
+
+  takeBreak = () => {
+    console.log('user must take a break now')
+    const currentTime = Date.now()
+    this.props.onUpdateStartRestTime(currentTime)
+    this.props.onUpdateStartPlayTime(null)
+
+    if (this.props.player) {
+      this.props.player.pauseVideo()
+      console.log('video paused')
+    }
+    this.props.onUpdateUserMode(modes.USER_RESTING_MODE)
+    this.props.onUpdateIsUserInteractionAllowed(false)
+
+    const restTime = this.props.minRestTime
+    setTimeout(this.resumePlaying, restTime);
+  }
+
+  showPlayingLogs = () => {
+    if (this.props.userMode === modes.USER_PLAYING_MODE) {
+      console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
+    } else if (this.props.userMode === modes.USER_RESTING_MODE) {
+      console.log('user has been resting for', (Date.now() - this.props.startRestTime)/1000, 'seconds')
+    } else {
+      console.log('not sure if the user is playing or resting')
+    }
+    console.log('this.props.isPlaybackInProgress', this.props.isPlaybackInProgress)
+
+    if (this.props.startRestTime) {
+    const restedTime = (Date.now() - this.props.startRestTime)
+      const remainingTime = this.props.minRestTime - restedTime
+      const timeRemaining = msToTime(remainingTime)
+
+      this.props.onUpdateFullScreenText(timeRemaining)
+
+    }
+
+  }
+
+  handleClick = () => {
+    // const currentTime = Date.now()
+    // const restTime = this.props.minRestTime
+
+    if (!this.props.isUserInteractionAllowed) {
+      console.log('resting mode, skipping click')
+      return
+    }
+
+    // if (currentTime - this.props.startRestTime < restTime || !this.props.isUserInteractionAllowed) {
+    //   console.log('User cannot watch yet')
+    //   return
+    // }
+    this.userActionOccured()
+
+    if (!this.props.player) {
+      return
+    }
+
+    if (this.props.isPlaybackInProgress) {
+      this.props.player.pauseVideo()
+    } else {
+      this.props.player.playVideo()
+    }
+  }
+
   componentDidMount = async() => {
     window.addEventListener('keydown',  this.keyPressed);
+    window.addEventListener('click',  this.handleClick);
 
     const userIdentifier = this.props.userIdentifier
     if (!userIdentifier) {

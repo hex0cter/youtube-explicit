@@ -8,7 +8,7 @@ import * as modes from '../Main/modes'
 class ListPreview extends React.Component {
   play = (videoIndex) => {
     this.props.onUpdateSelectedVideo(videoIndex)
-    this.props.onUpdateUIMode(modes.PLAYBACK_MODE)
+    this.props.onUpdateUIMode(modes.UI_PLAYBACK_MODE)
   }
 
   editingUserIdentifier = (e) => {
