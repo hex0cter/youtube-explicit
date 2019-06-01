@@ -6,8 +6,8 @@ import styles from './index.module.css'
 import * as modes from '../Main/modes'
 
 class ListPreview extends React.Component {
-  play = (videoIndex) => {
-    this.props.onUpdateSelectedVideo(videoIndex)
+  play = ({playlistIndex, videoIndex}) => {
+    this.props.onUpdateSelectedVideo({playlistIndex, videoIndex})
     this.props.onUpdateUIMode(modes.UI_PLAYBACK_MODE)
   }
 
@@ -34,6 +34,10 @@ class ListPreview extends React.Component {
     window.location.reload()
   }
 
+  focusUserIdentifier = () => {
+    this.props.onUpdateSelectedVideo({playlistIndex: 0, videoIndex: null})
+  }
+
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
 
@@ -51,6 +55,7 @@ class ListPreview extends React.Component {
                 className={styles.InputText}
                 onChange={this.editingUserIdentifier}
                 onKeyDown={this.keyDownInUserIdentifier}
+                onFocus={this.focusUserIdentifier}
                 value={this.props.userIdentifier || ''}
                 placeholder='Identifier'
                 size={10}

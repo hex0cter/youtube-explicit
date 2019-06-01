@@ -65,6 +65,7 @@ class Main extends React.Component {
           console.log('fetch the list')
         } else if (key === 'ArrowDown') {
           shouldInputHaveFocus = false
+          videoIndex = 0
           elementInput.blur()
         }
       } else if (key === 'ArrowRight' && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
@@ -76,6 +77,7 @@ class Main extends React.Component {
           videoIndex = 0
           playlistIndex -= 1
         } else {
+          videoIndex = null
           shouldInputHaveFocus = true
         }
       } else if (key === 'ArrowDown' && playlistIndex < this.props.videoList.length - 1) {
