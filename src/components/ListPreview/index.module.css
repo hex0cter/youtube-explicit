@@ -227,17 +227,21 @@
     cursor: none;
   }
 
+  .ListCell {
+    border: rgb(255, 255, 255) solid 2px;
+  }
+
   .ActiveListCell {
     cursor: none;
-    -webkit-box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
-    -moz-box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
-    box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
+    -webkit-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    -moz-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
   }
 
   input:focus {
-    -webkit-box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
-    -moz-box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
-    box-shadow: 0px 0px 5px 10px rgb(241, 241, 235);
+    -webkit-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    -moz-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
   }
 
   .Button {
