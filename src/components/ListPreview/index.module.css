@@ -228,20 +228,20 @@
   }
 
   .ListCell {
-    border: rgb(255, 255, 255) solid 2px;
+    border: rgb(145, 145, 145) solid 1px;
   }
 
   .ActiveListCell {
     cursor: none;
-    -webkit-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
-    -moz-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
-    box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    -webkit-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    -moz-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
   }
 
   input:focus {
-    -webkit-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
-    -moz-box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
-    box-shadow: 0px 0px 5px 10px rgb(227, 241, 142);
+    -webkit-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    -moz-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
   }
 
   .Button {
