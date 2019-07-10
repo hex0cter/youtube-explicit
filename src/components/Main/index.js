@@ -147,9 +147,14 @@ class Main extends React.Component {
       const timeRemaining = msToTime(remainingTime)
 
       this.props.onUpdateFullScreenText(timeRemaining)
-
     }
 
+    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
+      const element = document.getElementById('selected-cell')
+      if (element) {
+        element.scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
+      }
+    }
   }
 
   handleClick = () => {
