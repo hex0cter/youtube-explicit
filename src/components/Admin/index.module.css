@@ -1,6 +1,7 @@
 .Admin {
   padding: 1em;
   background-color: #fff;
+  cursor: auto;
 }
 
 .UserIdentifier {

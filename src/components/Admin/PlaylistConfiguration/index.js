@@ -89,6 +89,8 @@ class PlaylistConfiguration extends React.Component {
           <div>
             <button onClick={this.props.onMoveUp}>Up</button>
             <button onClick={this.props.onMoveDown}>Down</button>
+            <button onClick={this.props.onMoveToTop}>Top</button>
+            <button onClick={this.props.onMoveToBottom}>Bottom</button>
             <button onClick={this.props.onDelete}>Delete</button>
           </div>
         </div>
