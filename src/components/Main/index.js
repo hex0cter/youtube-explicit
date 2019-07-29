@@ -11,6 +11,7 @@ import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import { msToTime } from './utils'
 import * as modes from './modes'
+import queryString from 'query-string'
 
 class Main extends React.Component {
   userActionOccured = () => {
@@ -158,18 +159,10 @@ class Main extends React.Component {
   }
 
   handleClick = () => {
-    // const currentTime = Date.now()
-    // const restTime = this.props.minRestTime
-
     if (!this.props.isUserInteractionAllowed) {
       console.log('resting mode, skipping click')
       return
     }
-
-    // if (currentTime - this.props.startRestTime < restTime || !this.props.isUserInteractionAllowed) {
-    //   console.log('User cannot watch yet')
-    //   return
-    // }
     this.userActionOccured()
 
     if (!this.props.player) {
@@ -187,7 +180,13 @@ class Main extends React.Component {
     window.addEventListener('keydown',  this.keyPressed);
     window.addEventListener('click',  this.handleClick);
 
-    const userIdentifier = this.props.userIdentifier
+    const urlParams = this.props.location.search
+    const params = queryString.parse(urlParams)
+    if (params.uid) {
+      this.props.onUpdateUserIdentifier(params.uid)
+    }
+
+    const userIdentifier = params.uid || this.props.userIdentifier
     if (!userIdentifier) {
       return
     }

@@ -14,14 +14,18 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route path="/admin">
-              <Admin />
+            <Route
+              path="/admin"
+              render={(routeProps) => <Admin {...routeProps}/>}
+            >
             </Route>
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/">
-              <Main />
+            <Route
+              path="/"
+              render={(routeProps) => <Main {...routeProps}/>}
+            >
             </Route>
           </Switch>
         </BrowserRouter>

@@ -8,7 +8,8 @@ import {
   updateStartPlayTime,
   updateStartRestTime,
   updateIsUserInteractionAllowed,
-  updateFullScreenText
+  updateFullScreenText,
+  updateUserIdentifier
 } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdateIsUserInteractionAllowed: (isUserInteractionAllowed) => dispatch(updateIsUserInteractionAllowed(isUserInteractionAllowed)),
   onUpdateStartPlayTime: (time) => dispatch(updateStartPlayTime(time)),
   onUpdateStartRestTime: (time) => dispatch(updateStartRestTime(time)),
-  onUpdateFullScreenText: (text) => dispatch(updateFullScreenText(text))
+  onUpdateFullScreenText: (text) => dispatch(updateFullScreenText(text)),
+  onUpdateUserIdentifier: (userIdentifier) => dispatch(updateUserIdentifier(userIdentifier))
 })
 
 export default mapDispatchToProps

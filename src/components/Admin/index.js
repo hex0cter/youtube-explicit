@@ -6,6 +6,7 @@ import mapDispatchToProps from './map-dispatch-to-props'
 import shortid from 'shortid'
 import axios from 'axios'
 import PlaylistConfiguration from './PlaylistConfiguration'
+import queryString from 'query-string'
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 
@@ -55,12 +56,12 @@ class Admin extends React.Component {
     await axios.post(`https://api.solna.xyz/v1/playlists`, params)
   }
 
-  fetchPlaylists = async() => {
-    if (!this.props.userIdentifier) {
+  fetchPlaylists = async(userIdentifier = this.props.userIdentifier) => {
+    if (!userIdentifier) {
       return
     }
 
-    const userIdentifier = this.props.userIdentifier.trim()
+    userIdentifier = userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
     const response = await axios.get(`https://api.solna.xyz/v1/playlists?user=${userIdentifier}`)
@@ -173,7 +174,15 @@ class Admin extends React.Component {
   }
 
   componentDidMount = async() => {
-    await this.fetchPlaylists()
+    const urlParams = this.props.location.search
+    const params = queryString.parse(urlParams)
+    if (params.uid) {
+      this.props.onUpdateUserIdentifier(params.uid)
+    }
+
+    const userIdentifier = params.uid || this.props.userIdentifier
+
+    await this.fetchPlaylists(userIdentifier)
   }
 
   render() {
