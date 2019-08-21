@@ -84,6 +84,10 @@ class Admin extends React.Component {
     }
   }
 
+  onFetch = async() => {
+    await this.fetchPlaylists()
+  }
+
   clonePlaylists = async() => {
     if (this.props.playlists.length === 0) {
       return
@@ -200,7 +204,7 @@ class Admin extends React.Component {
             size={10}
           />
         </div>
-        <div className={this.props.userIdentifier ? styles.smallButton : styles.disabledSmallButton} onClick={this.fetchPlaylists}>
+        <div className={this.props.userIdentifier ? styles.smallButton : styles.disabledSmallButton} onClick={this.onFetch}>
           Fetch lists
         </div>
         <div className={this.props.playlists.length !== 0 ? styles.smallButton : styles.disabledSmallButton} onClick={this.clonePlaylists}>
