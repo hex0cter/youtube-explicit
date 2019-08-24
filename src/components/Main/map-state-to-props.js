@@ -11,7 +11,8 @@ const mapStateToProps = ({ main }) => ({
   player: main.player,
   startRestTime: main.startRestTime,
   startPlayTime: main.startPlayTime,
-  userMode: main.userMode
+  userMode: main.userMode,
+  forceReposition: main.forceReposition
 })
 
 export default mapStateToProps

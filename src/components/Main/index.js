@@ -145,14 +145,19 @@ class Main extends React.Component {
     if (this.props.startRestTime) {
     const restedTime = (Date.now() - this.props.startRestTime)
       const remainingTime = this.props.minRestTime - restedTime
-      const timeRemaining = msToTime(remainingTime)
 
-      this.props.onUpdateFullScreenText(timeRemaining)
+      if (remainingTime >= 0) {
+        const timeRemaining = msToTime(remainingTime)
+        this.props.onUpdateFullScreenText(timeRemaining)
+      } else {
+        this.resumePlaying()
+      }
     }
 
-    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
+    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE && this.props.forceReposition ) {
       const element = document.getElementById('selected-cell')
       if (element) {
+        console.log('Force the element to be displayed.')
         element.scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
       }
     }
@@ -184,6 +189,10 @@ class Main extends React.Component {
     const params = queryString.parse(urlParams)
     if (params.uid) {
       this.props.onUpdateUserIdentifier(params.uid)
+    }
+
+    if (params.reposition) {
+      this.props.onUpdateForceReposition(true)
     }
 
     const userIdentifier = params.uid || this.props.userIdentifier

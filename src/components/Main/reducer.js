@@ -18,7 +18,8 @@ const initialState = {
   minRestTime: 0,
   fullScreenText: '',
   uiMode: modes.UI_LIST_PREVIEW_MODE,
-  userMode: modes.USER_RESTING_MODE
+  userMode: modes.USER_RESTING_MODE,
+  forceReposition: false
 }
 
 function reducer(state = initialState, action) {
@@ -126,6 +127,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         userMode
+      }
+    }
+    case actions.ACTION_UPDATE_FORCE_REPOSITION: {
+      const forceReposition = action.payload
+      return {
+        ...state,
+        forceReposition
       }
     }
     default:
