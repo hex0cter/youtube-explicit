@@ -5,10 +5,14 @@
   bottom: 0;
   height: 222px;
   color: aqua;
-  background: rgba(0,0,0);
-  -moz-transition: height .5s;
-  -ms-transition: height .5s;
-  -o-transition: height .5s;
+  background: rgba(0,0,0,1);
+  background: -moz-linear-gradient(top, rgba(0,0,0,1) 79%, rgba(0,0,0,0.48) 96%, rgba(0,0,0,0.48) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(79%, rgba(0,0,0,1)), color-stop(96%, rgba(0,0,0,0.48)), color-stop(100%, rgba(0,0,0,0.48)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 79%, rgba(0,0,0,0.48) 96%, rgba(0,0,0,0.48) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,1) 79%, rgba(0,0,0,0.48) 96%, rgba(0,0,0,0.48) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,1) 79%, rgba(0,0,0,0.48) 96%, rgba(0,0,0,0.48) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,1) 79%, rgba(0,0,0,0.48) 96%, rgba(0,0,0,0.48) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
   -webkit-transition: height .5s;
   transition: height .5s;
   overflow: hidden;

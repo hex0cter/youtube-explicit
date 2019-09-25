@@ -75,7 +75,7 @@ class Playback extends React.Component {
         <YouTubePlayer
           url={`https://www.youtube.com/watch?v=${video.snippet.resourceId.videoId}`}
           playing={false}
-          controls={false}
+          controls={true}
           ref={this.ref}
           config={{ playerVars: { start: this.props.playbackProgress, modestbranding: 1 } }}
           width='100%'

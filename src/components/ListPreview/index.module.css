@@ -247,4 +247,8 @@
   .Button {
     display: none;
   }
+
+  .VideoTitle {
+    font-size: large;
+  }
 }
