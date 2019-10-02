@@ -2,10 +2,11 @@ import * as actions from './actions'
 import * as modes from './modes'
 
 const userIdentifier = localStorage.getItem('userIdentifier') || ''
+const videoList = localStorage.getItem('videoList') ? JSON.parse(localStorage.getItem('videoList')) : []
 
 const initialState = {
   playlists: [],
-  videoList: [],
+  videoList,
   selectedVideo: {playlistIndex: 0, videoIndex: 0},
   playbackProgress: 0,
   isPlaybackInProgress: false,
@@ -22,10 +23,26 @@ const initialState = {
   forceReposition: false
 }
 
+const updateVideoList = (oldVideoList, newVideoList) => {
+  const videoList = []
+  newVideoList.forEach(video => {
+    if (video.error) {
+      const oldVideoInfo = oldVideoList.find(({id}) => id === video.id)
+      if (oldVideoInfo) {
+        videoList.push({...oldVideoInfo})
+      }
+    } else {
+      videoList.push({...video})
+    }
+  })
+
+  return videoList
+}
 function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.ACTION_UPDATE_VIDEO_LIST: {
-      const videoList = [...action.payload]
+      const videoList = updateVideoList(state.videoList, action.payload)
+      localStorage.setItem('videoList', JSON.stringify(videoList))
       return {
         ...state,
         videoList

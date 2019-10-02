@@ -214,8 +214,9 @@ class Main extends React.Component {
       let response
       try {
         response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
-      } catch {
-        return null
+      } catch(e) {
+        console.log('error', e)
+        return {id, error: e.response.status}
       }
       const items = response.data.items
       return {
