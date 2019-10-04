@@ -22,15 +22,23 @@ self.addEventListener('activate', event => {
   console.log('Service Worker activating.');
 });
 
-// self.addEventListener('fetch', function(event) {
-//   event.respondWith(
-//     caches.match(event.request)
-//       .then(function(res) {
-//         if (res) {
-//           return res;
-//         } else {
-//           return fetch(event.request);
-//         }
-//       })
-//   );
-// });
+self.addEventListener('fetch', function(event) {
+  if (event.request.method !== 'GET') return;
+
+  let url = event.request.url;
+  console.log('url', url)
+  if (!url.startsWith('https://solna.xyz') && !url.startsWith('http://localhost')) {
+    return
+  }
+
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(res) {
+        if (res) {
+          return res;
+        } else {
+          return fetch(event.request);
+        }
+      })
+  );
+});
