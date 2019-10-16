@@ -30,6 +30,12 @@ do
             "exit")
                 xdotool key Escape
                 ;;
+            "F2")
+                sudo shutdown --poweroff now
+                ;;
+            "F1")
+                sudo reboot
+                ;;
             *)
                 echo "Unrecognized Key Pressed: $strkey ; CEC Line: $keyline"
                 ;;
