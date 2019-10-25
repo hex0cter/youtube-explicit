@@ -26,11 +26,12 @@ self.addEventListener('fetch', function(event) {
   if (event.request.method !== 'GET') return;
 
   let url = event.request.url;
-  console.log('url', url)
   if (!url.startsWith('https://solna.xyz') && !url.startsWith('http://localhost')) {
+    console.log('skipping url', url)
     return
   }
 
+  console.log(`fetching url ${url} from cache`)
   event.respondWith(
     caches.match(event.request)
       .then(function(res) {

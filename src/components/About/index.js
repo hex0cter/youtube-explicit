@@ -3,24 +3,31 @@ import styles from './index.module.css'
 
 const About = () => (
   <div className={styles.About}>
-    <div className={styles.Title}>What is this about?</div>
-    <div>
-      <div>
+    <div className={styles.Menu}>
+      <div><a href='/about'> About</a></div>
+      <div><a href='/admin'> Admin Portal </a></div>
+      <div><a href='/'> Play Now </a></div>
+    </div>
+    <hr className={styles.styleFive} />
+    <div className={styles.Content}>
+      <div className={styles.Image}>
         <img src='/images/kids-with-tablet.jpg' alt='kids with tablet'className={styles.ImgKidsWithTablet} />
       </div>
+      <div className={styles.Title}>WHY?</div>
       <div className={styles.Paragraph}>
       <span className={styles.Youtube}><img src='/images/youtube.png' alt='youtube' height='20px' /></span>is a good tool for kids, sometimes, for entertaining, learning.
       But it also causes frustrations. You have no idea what your kids are going to watch. You don't know how much time they will spend on it.
       </div>
     </div>
-    <div>
+    <div className={styles.Content}>
       <div className={styles.Paragraph}>
         <span className={styles.SiteName}>Youtube Explicit</span> returns the control back to you. With it you can define what you want to show, and how they are gonna be shown. All you need to do
         is to create a couple of playlists on Youtube, or just share a playlist from a friend. Then add this web site as a standalone icon onto your device's
         home screen. Now you are confident to give it to the little ones, without worrying about what they are gonna watch.
       </div>
     </div>
-    <div>
+    <div className={styles.Break}></div>
+    <div className={styles.Content}>
       <div className={styles.StepTitle}>
         Step by step guide:
       </div>
@@ -38,8 +45,38 @@ const About = () => (
         3. From the Home Screen you will see the new icon added. Open it up, and fill in the user identifier created in the first step. Done!
       </div>
     </div>
-    <div className={styles.QuickLinks}>
-      Quick links: <a href='/admin'> Admin Portal </a>, <a href='/play'> Play Now </a>
+    <div className={styles.Break}></div>
+    <div className={styles.Content}>
+      <div className={styles.StepTitle}>
+        TV mode shortcuts:
+      </div>
+      <div>
+      When the how page is displayed on a display that is wider than 1280 pixels, it will show in TV mode. In this mode you can use the TV remote to control the videos (configuration needed)
+      </div>
+      <div className={styles.Steps}>
+      &rarr; Select video on the right
+      </div>
+      <div className={styles.Steps}>
+      &larr; Select video on the left
+      </div>
+      <div className={styles.Steps}>
+      &darr; Select next playlist
+      </div>
+      <div className={styles.Steps}>
+      &uarr; Select previous playlist
+      </div>
+      <div className={styles.Steps}>
+      <span className={styles.KeyName}>Enter</span> Play selected video
+      </div>
+      <div className={styles.Steps}>
+      <span className={styles.KeyName}>Space</span> Pause/Play the video
+      </div>
+      <div className={styles.Steps}>
+      <span className={styles.KeyName}>Escape</span> Return to the playlists
+      </div>
+    </div>
+    <div className={styles.Footer}>
+      Daniel Han. 2020.
     </div>
   </div>
 )
