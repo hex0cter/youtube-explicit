@@ -1,12 +1,15 @@
 .Admin {
-  padding: 1em;
   background-color: #fff;
   cursor: auto;
+  font-family: "Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.Content {
+  padding: 1em;
 }
 
 .UserIdentifier {
   font-size: 20px;
-  padding: 1em 0 1em 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +58,7 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	/* font-family:Arial; */
 	font-size:20px;
 	font-weight:bold;
 	padding:13px 32px;
@@ -74,24 +77,17 @@
 }
 
 .smallButton {
-	box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-	background-color:#007dc1;
-	border-radius:3px;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
+  background-color: #4facdb;
+  color: #fff;
+  font-size: initial;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius:3px;
 }
 
 .smallButton:hover {
-	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-	background-color:#0061a7;
+	background:#007dc1;
+	background-color:#007dc1;
 }
 
 .smallButton:active {
@@ -100,19 +96,15 @@
 }
 
 .disabledSmallButton {
-	box-shadow:inset 0px 1px 0px 0px #54a3f7;
-  background:linear-gradient(to bottom, #677075 5%, #898e91 100%);
-	background-color:#007dc1;
+	background-color:#cfd5d8;
 	border-radius:3px;
-	border:1px solid #124d77;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	/* font-family:Arial; */
 	font-size:13px;
 	padding:6px 24px;
 	text-decoration:none;
-  text-shadow:0px 1px 0px #154682;
   cursor: not-allowed;
 }
 

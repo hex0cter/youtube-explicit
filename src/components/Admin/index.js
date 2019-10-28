@@ -1,4 +1,5 @@
 import React from 'react'
+import Menu from '../Menu'
 import styles from './index.module.css'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
@@ -190,7 +191,10 @@ class Admin extends React.Component {
   }
 
   render() {
-    return <div className={styles.Admin}>
+    return (
+    <div className={styles.Admin}>
+      <Menu />
+      <div className={styles.Content}>
       <div className={styles.UserIdentifier}>
         <div className={styles.UserIdentifierInput}>
         <span className={styles.UserIdentifierTitle}>User Identifer:</span>
@@ -245,7 +249,8 @@ class Admin extends React.Component {
       <div className={styles.Submit}>
         <div className={styles.BigButton} onClick={() => {window.location = '/'}}>Watch Now</div>
       </div>
-    </div>
+      </div>
+    </div>)
   }
 }
 
