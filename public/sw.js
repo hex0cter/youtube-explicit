@@ -26,7 +26,7 @@ self.addEventListener('fetch', function(event) {
   if (event.request.method !== 'GET') return;
 
   let url = event.request.url;
-  if (!url.startsWith('https://solna.xyz') && !url.startsWith('http://localhost')) {
+  if (!url.startsWith('https://solna.xyz')) {
     console.log('skipping url', url)
     return
   }
