@@ -12,6 +12,14 @@
   font-size: larger;
 }
 
+a.Current {
+  color: #28b1f9;
+}
+
+a.Current:visited {
+  color: #28b1f9;
+}
+
 a:visited {
   color: #1F3A4C;
 }

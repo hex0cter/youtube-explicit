@@ -51,6 +51,12 @@
   100% { -webkit-transform: translateY(0%); }
 }
 
+.Tiny {
+  font-size: smaller;
+  font-style: italic;
+  color: #599bb3;
+}
+
 .VideoImage {
   padding: 0 0 0 0;
   width: 360px;

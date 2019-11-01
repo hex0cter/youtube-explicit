@@ -193,7 +193,7 @@ class Admin extends React.Component {
   render() {
     return (
     <div className={styles.Admin}>
-      <Menu />
+      <Menu current='admin' />
       <div className={styles.Content}>
       <div className={styles.UserIdentifier}>
         <div className={styles.UserIdentifierInput}>

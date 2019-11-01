@@ -45,7 +45,7 @@ class ListPreview extends React.Component {
       <div>
         <div className={styles.TopBar}>
           <div className={styles.AppTitle}>
-            <a href='/'><img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /></a> YouTube
+            <a href='/'><img src='/logo192.png' alt='youtube' className={styles.YoutubeLogo} /></a> YouTube <span className={styles.Tiny}>Explicit</span>
           </div>
           <div className={styles.UserIdentifier}>
             <div className={styles.UserIdentifierInput}>

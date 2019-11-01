@@ -4,7 +4,7 @@ import Menu from '../Menu'
 
 const About = () => (
   <div className={styles.About}>
-    <Menu />
+    <Menu current='about' />
     <div className={styles.Content}>
       <div className={styles.Image}>
         <img src='/images/kids-with-tablet.jpg' alt='kids with tablet'className={styles.ImgKidsWithTablet} />
