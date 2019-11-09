@@ -63,7 +63,7 @@ const About = () => (
       <span className={styles.KeyName}>Enter</span> Play selected video
       </div>
       <div className={styles.Steps}>
-      <span className={styles.KeyName}>Space</span> Pause/Play the video
+      <span className={styles.KeyName}>Space</span> Pause/Resume the playback
       </div>
       <div className={styles.Steps}>
       <span className={styles.KeyName}>Escape</span> Return to the playlists
