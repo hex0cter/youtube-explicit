@@ -93,13 +93,12 @@ class Main extends React.Component {
       setTimeout((shouldInputHaveFocus) => {
         const elementInput = document.getElementById('user-identifier-input')
         if (shouldInputHaveFocus) {
-          console.log('setting focus to input box')
           elementInput.focus()
           elementInput.scrollIntoView()
         } else {
           const element = document.getElementById('selected-cell')
           if (element) {
-            element.scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
+            element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
           }
         }
       }, 100, shouldInputHaveFocus)
@@ -134,9 +133,9 @@ class Main extends React.Component {
 
   showPlayingLogs = () => {
     if (this.props.userMode === modes.USER_PLAYING_MODE) {
-      console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
+      // console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
     } else if (this.props.userMode === modes.USER_RESTING_MODE) {
-      console.log('user has been resting for', (Date.now() - this.props.startRestTime)/1000, 'seconds')
+      // console.log('user has been resting for', (Date.now() - this.props.startRestTime)/1000, 'seconds')
     } else {
       console.log('not sure if the user is playing or resting')
     }
@@ -158,7 +157,7 @@ class Main extends React.Component {
       const element = document.getElementById('selected-cell')
       if (element) {
         console.log('Force the element to be displayed.')
-        element.scrollIntoView({behavior: "smooth", block: "end", inline: "end"});
+        element.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
       }
     }
   }
@@ -241,8 +240,7 @@ class Main extends React.Component {
         <BackBar />
         <AdMask />
         <FullScreen />
-        <Playback />
-        <ListPreview />
+        {this.props.uiMode === modes.UI_LIST_PREVIEW_MODE ? <ListPreview /> : <Playback />}
       </div>
     )
   }

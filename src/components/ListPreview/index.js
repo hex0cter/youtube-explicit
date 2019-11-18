@@ -38,6 +38,13 @@ class ListPreview extends React.Component {
     this.props.onUpdateSelectedVideo({playlistIndex: 0, videoIndex: null})
   }
 
+  componentDidMount = () => {
+    const element = document.getElementById('selected-cell')
+    if (element) {
+      element.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+    }
+  }
+
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
 
