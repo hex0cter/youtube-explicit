@@ -223,7 +223,7 @@ class Admin extends React.Component {
         <div>Minimal break duration (min): <input type="number" value={this.props.minRestTime} size={5} min={10} max={180} step={5} onChange={this.updateMinRestTime}/></div>
       </div>
       <div className={styles.PlaylistsTitle}>
-        Youtube playlists:
+        Youtube playlists (total: {this.props.playlists.length}):
       </div>
       <div className={styles.Playlists}>
         {
