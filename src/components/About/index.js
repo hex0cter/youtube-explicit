@@ -9,7 +9,7 @@ const About = () => (
       <div className={styles.Image}>
         <img src='/images/kids-with-tablet.jpg' alt='kids with tablet'className={styles.ImgKidsWithTablet} />
       </div>
-      <div className={styles.Title}>WHY?</div>
+      <div className={styles.Title}>Why?</div>
       <div className={styles.Paragraph}>
       <span className={styles.Youtube}><img src='/images/youtube.png' alt='youtube' height='20px' /></span>is a good tool for kids, sometimes, for entertaining, learning.
       But it also causes frustrations. You have no idea what your kids are going to watch. You don't know how much time they will spend on it.
