@@ -206,10 +206,17 @@ class Main extends React.Component {
     }
 
     const playlists = response.data.playlists
+    const currrentTimestamp = Date.now()
     const videoList = await Promise.all(playlists.map(async({id, isEnabled, shouldAutoPlay}) => {
       if (!isEnabled) {
         return null
       }
+
+      const videolistInCache = this.props.videoList.find(video => video.id === id)
+      if (videolistInCache && videolistInCache.timestamp && videolistInCache.timestamp < currrentTimestamp - 30 * 60000) { /* half an hour */
+        return videolistInCache
+      }
+
       let response
       try {
         response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
@@ -221,7 +228,8 @@ class Main extends React.Component {
       return {
         id,
         items,
-        shouldAutoPlay
+        shouldAutoPlay,
+        timestamp: Date.now()
       }
     }))
 
