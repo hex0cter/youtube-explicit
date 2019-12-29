@@ -213,7 +213,7 @@ class Main extends React.Component {
       }
 
       const videolistInCache = this.props.videoList.find(video => video.id === id)
-      if (videolistInCache && videolistInCache.timestamp && videolistInCache.timestamp < currrentTimestamp - 30 * 60000) { /* half an hour */
+      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 30 * 60000) { /* 30 minutes */
         return videolistInCache
       }
 
