@@ -5,8 +5,6 @@ self.addEventListener('install', (event) => {
     caches.open('static')
       .then(function (cache) {
         cache.addAll([
-          '/',
-          '/index.html',
           '/manifest.json',
           '/favicon.ico',
           '/logo192.png',
