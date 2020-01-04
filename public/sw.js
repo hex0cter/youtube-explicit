@@ -25,7 +25,7 @@ self.addEventListener('fetch', function(event) {
 
   let url = event.request.url;
   if (!url.startsWith('https://solna.xyz')) {
-    console.log('skipping url', url)
+    // console.log('skipping url', url)
     return
   }
 

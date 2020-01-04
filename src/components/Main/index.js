@@ -45,6 +45,7 @@ class Main extends React.Component {
     this.userActionOccured()
 
     let shouldInputHaveFocus = false
+    let isVerticalNavigation = false
     if (this.props.uiMode === modes.UI_PLAYBACK_MODE) {
       if (key === 'Escape') {
         this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
@@ -75,6 +76,7 @@ class Main extends React.Component {
         videoIndex -= 1
       } else if (key === 'ArrowUp') {
         if (playlistIndex > 0) {
+          isVerticalNavigation = true
           videoIndex = 0
           playlistIndex -= 1
         } else {
@@ -82,6 +84,7 @@ class Main extends React.Component {
           shouldInputHaveFocus = true
         }
       } else if (key === 'ArrowDown' && playlistIndex < this.props.videoList.length - 1) {
+        isVerticalNavigation = true
         videoIndex = 0
         playlistIndex += 1
       } else if (key === 'Enter') {
@@ -90,18 +93,38 @@ class Main extends React.Component {
         console.log('UI_LIST_PREVIEW_MODE: Skipping key', key)
       }
 
-      setTimeout((shouldInputHaveFocus) => {
+      setTimeout((shouldInputHaveFocus, isVerticalNavigation) => {
         const elementInput = document.getElementById('user-identifier-input')
         if (shouldInputHaveFocus) {
           elementInput.focus()
           elementInput.scrollIntoView()
         } else {
-          const element = document.getElementById('selected-cell')
-          if (element) {
-            element.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+          const selectedRow = document.getElementById('selected-row')
+          if (!selectedRow) {
+            return
+          }
+
+          const selectedCell = document.getElementById('selected-cell')
+          const {left, top, width, height} = selectedCell.getBoundingClientRect()
+
+          const maxWidth = window.innerWidth
+          const maxHeight = window.innerHeight
+
+          if (isVerticalNavigation) {
+            if(top > maxHeight - height) {
+              window.scrollBy({top: top - maxHeight + height + 10, left: 0, behavior: 'smooth'})
+            } else if (top < 0) {
+              window.scrollBy({top: top - height/2, left: 0, behavior: 'smooth'})
+            }
+          }
+
+          if(left > maxWidth - width) {
+            selectedRow.scrollBy({top: 0, left: width, behavior: 'smooth'})
+          } else if (left < 0) {
+            selectedRow.scrollBy({top: 0, left: left - width/2, behavior: 'smooth'})
           }
         }
-      }, 100, shouldInputHaveFocus)
+      }, 100, shouldInputHaveFocus, isVerticalNavigation)
 
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex})
     }
@@ -139,7 +162,7 @@ class Main extends React.Component {
     } else {
       console.log('not sure if the user is playing or resting')
     }
-    console.log('this.props.isPlaybackInProgress', this.props.isPlaybackInProgress)
+    // console.log('this.props.isPlaybackInProgress', this.props.isPlaybackInProgress)
 
     if (this.props.startRestTime) {
     const restedTime = (Date.now() - this.props.startRestTime)
@@ -156,7 +179,7 @@ class Main extends React.Component {
     if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE && this.props.forceReposition ) {
       const element = document.getElementById('selected-cell')
       if (element) {
-        console.log('Force the element to be displayed.')
+        // console.log('Force the element to be displayed.')
         element.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
       }
     }
@@ -214,6 +237,7 @@ class Main extends React.Component {
 
       const videolistInCache = this.props.videoList.find(video => video.id === id)
       if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 30 * 60000) { /* 30 minutes */
+        console.log('found videos in cache for playlist', id)
         return videolistInCache
       }
 
@@ -233,7 +257,9 @@ class Main extends React.Component {
       }
     }))
 
-    this.props.onUpdateVideoList(videoList.filter(e => e !== null))
+    let validVideoList = videoList.filter(e => e !== null && e.items)
+    validVideoList = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails)}))
+    this.props.onUpdateVideoList(validVideoList)
 
     const maxPlayTime = response.data.maxPlayTime
     this.props.onUpdateMaxPlayTime( maxPlayTime * 60000) // convert minutes to milliseconds

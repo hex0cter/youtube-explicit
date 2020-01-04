@@ -77,11 +77,9 @@ class ListPreview extends React.Component {
             <div
               className={styles.Playlist}
               key={currentPlaylistIndex}
+              id={playlistIndex === currentPlaylistIndex ? 'selected-row' : null}
             >
               {playlist.items.map((video, currentVideoIndex) => {
-                if (!video.snippet.thumbnails) {
-                  return null
-                }
                 const isCellSeleted = playlistIndex === currentPlaylistIndex && videoIndex === currentVideoIndex
                 return (
                   <div
