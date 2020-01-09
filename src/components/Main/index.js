@@ -236,7 +236,7 @@ class Main extends React.Component {
       }
 
       const videolistInCache = this.props.videoList.find(video => video.id === id)
-      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 30 * 60000) { /* 30 minutes */
+      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 60 * 60000) { /* one hour */
         console.log('found videos in cache for playlist', id)
         return videolistInCache
       }
