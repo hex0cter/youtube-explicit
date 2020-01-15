@@ -22,7 +22,7 @@
   "start_url": "/",
   "scope": "/",
   "orientation": "any",
-  "display": "standalone",
-  "theme_color": "#f34121",
+  "display": "fullscreen",
+  "theme_color": "#000000",
   "background_color": "#ffffff"
 }
