@@ -12,6 +12,10 @@
   font-size: larger;
 }
 
+a.Default {
+  color: #000;
+}
+
 a.Current {
   color: #28b1f9;
 }

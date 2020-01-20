@@ -52,7 +52,7 @@
 }
 
 .Tiny {
-  font-size: smaller;
+  font-size: x-small;
   font-style: italic;
   color: #599bb3;
 }
@@ -136,6 +136,10 @@
 }
 
 @media screen and (min-width: 700px) {
+  .Playlist {
+    padding-left: 1em;
+  }
+
   .AppTitle {
     font-size: 40px;
   }
@@ -204,13 +208,6 @@
     padding: 0 0 0 0;
     width: 100%;
     align-self: center;
-  }
-
-}
-
-@media screen and (min-width: 700px) {
-  .Playlist {
-    padding-left: 1em;
   }
 }
 

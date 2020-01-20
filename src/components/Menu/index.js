@@ -6,9 +6,9 @@ const Menu = (props) => {
   <div>
     <div className={styles.Menu}>
         <div><a href='/'><img src='/logo192.png' alt='logo' width='24px' /></a></div>
-        <div><a href='/admin' className={props.current === 'admin' ? styles.Current : null}> Admin Portal </a></div>
-        <div><a href='/'> Play Now </a></div>
-        <div><a href='/about' className={props.current === 'about' ? styles.Current : null}> About</a></div>
+        <div><a href='/admin' className={props.current === 'admin' ? styles.Current : styles.Default}> Admin Portal </a></div>
+        <div><a href='/' className={styles.Default}> Play Now </a></div>
+        <div><a href='/about' className={props.current === 'about' ? styles.Current : styles.Default}> About</a></div>
     </div>
     <hr className={styles.styleFive} />
   </div>
