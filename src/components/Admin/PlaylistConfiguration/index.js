@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './index.module.css'
 import axios from 'axios'
+import queryString from 'query-string'
 
 class PlaylistConfiguration extends React.Component {
   state = {
@@ -23,7 +24,16 @@ class PlaylistConfiguration extends React.Component {
 
   onAddNewPlaylist = () => {
     const elmentId = document.getElementById('id-new')
-    const id = elmentId.value.trim()
+    const inputText = elmentId.value.trim()
+
+    let id
+    if (inputText.indexOf('?') === -1) {
+      id = inputText
+    } else {
+      const params = queryString.parse(queryString.extract(inputText))
+      id = params.list
+    }
+
     if (id !== '') {
       this.props.onAdd(id)
       elmentId.value = ''
@@ -68,7 +78,7 @@ class PlaylistConfiguration extends React.Component {
         <div className={styles.PlaylistConfiguration}>
           <div className={styles.PlaylistControls}>
             <div className={styles.PlaylistId}>
-              <input type='text' className={styles.NewIdInput} placeholder='Youtube playlist Id' size={34} id='id-new'/>
+              <input type='text' className={styles.NewIdInput} placeholder='Youtube playlist URL' size={34} id='id-new'/>
             </div>
             <div>
               <button onClick={this.onAddNewPlaylist}>Add</button>

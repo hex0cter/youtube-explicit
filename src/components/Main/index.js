@@ -15,7 +15,6 @@ import queryString from 'query-string'
 
 class Main extends React.Component {
   userActionOccured = () => {
-    console.log('state when userActionOccured', this.props)
     if (this.props.userMode === modes.USER_RESTING_MODE) {
       console.log('Set initial start play time')
       const currentTime = Date.now()

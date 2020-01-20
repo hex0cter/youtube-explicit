@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './index.module.css'
 
 const Menu = (props) => {
-  console.log('menu props', props)
   return(
   <div>
     <div className={styles.Menu}>
