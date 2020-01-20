@@ -22,7 +22,8 @@
     "build": "rm -rf build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:be": "cd aws && serverless deploy --stage dev"
+    "deploy:be": "cd aws && serverless deploy --stage dev",
+    "deploy:fe": "yarn build && aws s3 sync build s3://solna.xyz && aws cloudfront create-invalidation --distribution-id E1GZPLCWGW2L66 --paths /index.html"
   },
   "eslintConfig": {
     "extends": "react-app"

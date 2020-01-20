@@ -12,7 +12,7 @@ exports.handler = async (event) => {
   const item = { user, playlists, maxPlayTime, minRestTime }
 
   await docClient.put({
-    TableName: `${process.env.SERVICE_NAME}-${process.env.STAGE}-Playlists`,
+    TableName: `${process.env.SERVICE_NAME}-${process.env.STAGE}-Users`,
     Item: item
   }).promise()
 

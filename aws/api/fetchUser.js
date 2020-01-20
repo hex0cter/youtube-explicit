@@ -3,10 +3,10 @@ const docClient = new AWS.DynamoDB.DocumentClient()
 
 exports.handler = async (event) => {
   console.log('event', event)
-  const user = (event.queryStringParameters && event.queryStringParameters.user) || event.queryStringParameters.user
+  const user = event.pathParameters.user
 
   const params = {
-    TableName : `${process.env.SERVICE_NAME}-${process.env.STAGE}-Playlists`,
+    TableName : `${process.env.SERVICE_NAME}-${process.env.STAGE}-Users`,
     Key: { user }
   }
 

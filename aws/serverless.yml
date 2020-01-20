@@ -32,20 +32,20 @@ provider:
     DOMAIN_NAME: ${self:custom.domain}
 
 functions:
-  fetchPlaylists:
-    handler: api/fetchPlaylists.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-FetchPlaylists
+  fetchUser:
+    handler: api/fetchUser.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-FetchUser
     events:
       - http:
-          path: /playlists
+          path: /users/{user}
           method: get
           cors: true
-  updatePlaylists:
-    handler: api/updatePlaylists.handler
-    name: ${self:service}-${opt:stage, self:provider.stage}-UpdatePlaylists
+  updateUser:
+    handler: api/updateUser.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-UpdateUser
     events:
       - http:
-          path: /playlists
+          path: /users
           method: post
           cors: true
 resources:
@@ -53,7 +53,7 @@ resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:service}-${opt:stage, self:provider.stage}-Playlists
+        TableName: ${self:service}-${opt:stage, self:provider.stage}-Users
         AttributeDefinitions:
           - AttributeName: user
             AttributeType: S
@@ -63,3 +63,16 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+    # playListTable:
+    #   Type: AWS::DynamoDB::Table
+    #   Properties:
+    #     TableName: ${self:service}-${opt:stage, self:provider.stage}-Playlists
+    #     AttributeDefinitions:
+    #       - AttributeName: playlist
+    #         AttributeType: S
+    #     KeySchema:
+    #       - AttributeName: playlist
+    #         KeyType: HASH
+    #     ProvisionedThroughput:
+    #       ReadCapacityUnits: 1
+    #       WriteCapacityUnits: 1
