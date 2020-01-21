@@ -202,9 +202,14 @@ class Main extends React.Component {
     }
   }
 
+  handleMouseMove = (e) => {
+    e.target.style.cursor = 'default'
+  }
+
   componentDidMount = async() => {
-    window.addEventListener('keydown',  this.keyPressed);
-    window.addEventListener('click',  this.handleClick);
+    window.addEventListener('keydown',  this.keyPressed)
+    window.addEventListener('click',  this.handleClick)
+    window.addEventListener('mousemove',  this.handleMouseMove)
 
     const urlParams = this.props.location.search
     const params = queryString.parse(urlParams)
@@ -228,14 +233,13 @@ class Main extends React.Component {
     }
 
     const playlists = response.data.playlists
-    const currrentTimestamp = Date.now()
     const videoList = await Promise.all(playlists.map(async({id, isEnabled, shouldAutoPlay}) => {
       if (!isEnabled) {
         return null
       }
 
       const videolistInCache = this.props.videoList.find(video => video.id === id)
-      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 5 * 60000) { /* 5 minutes */
+      if (videolistInCache && videolistInCache.timestamp && Date.now() - videolistInCache.timestamp < 5 * 60000) { /* 5 minutes */
         console.log('found videos in cache for playlist', id)
         return videolistInCache
       }

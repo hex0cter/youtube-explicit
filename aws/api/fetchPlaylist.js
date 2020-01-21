@@ -1,6 +1,6 @@
-const _ = require('lodash')
 const axios = require('axios')
 const AWS = require('aws-sdk')
+const credentials = require('./credentials')
 const docClient = new AWS.DynamoDB.DocumentClient()
 
 exports.handler = async (event) => {
@@ -17,8 +17,8 @@ exports.handler = async (event) => {
   let playlistData = data.Item
 
   // Update the list only if it is older than 15 minutes
-  if (_.isEmpty(playlistData) || currrentTimestamp - playlistData.timestamp > 15 * 60000) {
-    const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+  if (!!playlistData.timestamp || currrentTimestamp - playlistData.timestamp > 15 * 60000) {
+    const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist}&key=${credentials.apiKey}&maxResults=50`)
     // console.log('response from google', response)
     const items = response.data ? response.data.items : []
 
@@ -28,9 +28,9 @@ exports.handler = async (event) => {
       TableName: `${process.env.SERVICE_NAME}-${process.env.STAGE}-Playlists`,
       Item: playlistData
     }).promise()
-    // console.log('>>>> found data from google', playlistData)
+    console.log('>>>> fetched data from google')
   } else {
-    // console.log('>>>> use data in DB', playlistData)
+    console.log('>>>> found data in database')
   }
 
   const { items } = playlistData
