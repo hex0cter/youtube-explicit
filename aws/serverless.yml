@@ -48,6 +48,14 @@ functions:
           path: /users
           method: post
           cors: true
+  fetchPlaylist:
+    handler: api/fetchPlaylist.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-FetchPlaylist
+    events:
+      - http:
+          path: /playlists/{playlist}
+          method: get
+          cors: true
 resources:
   Resources:
     usersTable:
@@ -63,16 +71,16 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-    # playListTable:
-    #   Type: AWS::DynamoDB::Table
-    #   Properties:
-    #     TableName: ${self:service}-${opt:stage, self:provider.stage}-Playlists
-    #     AttributeDefinitions:
-    #       - AttributeName: playlist
-    #         AttributeType: S
-    #     KeySchema:
-    #       - AttributeName: playlist
-    #         KeyType: HASH
-    #     ProvisionedThroughput:
-    #       ReadCapacityUnits: 1
-    #       WriteCapacityUnits: 1
+    playListTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-${opt:stage, self:provider.stage}-Playlists
+        AttributeDefinitions:
+          - AttributeName: playlist
+            AttributeType: S
+        KeySchema:
+          - AttributeName: playlist
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

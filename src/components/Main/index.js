@@ -235,14 +235,14 @@ class Main extends React.Component {
       }
 
       const videolistInCache = this.props.videoList.find(video => video.id === id)
-      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 60 * 60000) { /* one hour */
+      if (videolistInCache && videolistInCache.timestamp && currrentTimestamp - videolistInCache.timestamp < 5 * 60000) { /* 5 minutes */
         console.log('found videos in cache for playlist', id)
         return videolistInCache
       }
 
       let response
       try {
-        response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+        response = await axios.get(`https://api.solna.xyz/v1/playlists/${id}`)
       } catch(e) {
         console.log('error', e)
         return {id, error: e.response.status}

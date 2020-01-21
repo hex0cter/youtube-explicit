@@ -12,5 +12,9 @@
   },
   "scripts": {
     "deploy": "serverless deploy --stage dev"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "lodash": "^4.17.15"
   }
 }

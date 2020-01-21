@@ -48,13 +48,12 @@ class PlaylistConfiguration extends React.Component {
 
     let response
     try {
-      response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${id}&key=AIzaSyBVrfMofoyGgP8KcCyHF9PSKQsayy7qNpI&maxResults=50`)
+      response = await axios.get(`https://api.solna.xyz/v1/playlists/${id}`)
     } catch {
       return
     }
     const data = response.data
-    const totalResults = data.pageInfo.totalResults
-    if (totalResults === 0) {
+    if (data.items.length === 0) {
       return
     }
 
