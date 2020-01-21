@@ -221,7 +221,7 @@ class Main extends React.Component {
       return
     }
 
-    const response = await axios.get(`https://api.solna.xyz/v1/users/${userIdentifier}`)
+    const response = await axios.get(`/users/${userIdentifier}`)
     if (response.data === '') {
       console.log('This user does not exist:', userIdentifier)
       return
@@ -242,7 +242,7 @@ class Main extends React.Component {
 
       let response
       try {
-        response = await axios.get(`https://api.solna.xyz/v1/playlists/${id}`)
+        response = await axios.get(`/playlists/${id}`)
       } catch(e) {
         console.log('error', e)
         return {id, error: e.response.status}

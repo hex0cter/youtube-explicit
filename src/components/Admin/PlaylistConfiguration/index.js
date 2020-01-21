@@ -48,7 +48,7 @@ class PlaylistConfiguration extends React.Component {
 
     let response
     try {
-      response = await axios.get(`https://api.solna.xyz/v1/playlists/${id}`)
+      response = await axios.get(`/playlists/${id}`)
     } catch {
       return
     }

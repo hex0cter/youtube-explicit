@@ -54,7 +54,7 @@ class Admin extends React.Component {
       minRestTime
     }
 
-    await axios.post(`https://api.solna.xyz/v1/users`, params)
+    await axios.post('/users', params)
   }
 
   fetchPlaylists = async(userIdentifier = this.props.userIdentifier) => {
@@ -65,7 +65,7 @@ class Admin extends React.Component {
     userIdentifier = userIdentifier.trim()
     localStorage.setItem('userIdentifier', userIdentifier)
 
-    const response = await axios.get(`https://api.solna.xyz/v1/users/${userIdentifier}`)
+    const response = await axios.get(`/users/${userIdentifier}`)
     if (response.data === '') {
       console.log('This user does not exist:', userIdentifier)
       return

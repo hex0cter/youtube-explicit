@@ -4,6 +4,9 @@ import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
 import * as modes from '../Main/modes'
+import WrenchIcon from '../SVG/wrench'
+import QuestionIcon from '../SVG/question'
+import RefreshIcon from '../SVG/refresh'
 
 class ListPreview extends React.Component {
   play = ({playlistIndex, videoIndex}) => {
@@ -68,8 +71,15 @@ class ListPreview extends React.Component {
                 size={10}
               />
             </div>
-            <div className={styles.Button} onClick={this.updateUserIdentifier}>Refresh</div>
-            <div className={styles.Button} onClick={() => {window.location = '/about'}}>?</div>
+            <div className={styles.Button} onClick={this.updateUserIdentifier}>
+              <RefreshIcon />
+            </div>
+            <div className={styles.Button} onClick={() => {window.location = '/admin'}}>
+              <WrenchIcon />
+            </div>
+            <div className={styles.Button} onClick={() => {window.location = '/about'}}>
+              <QuestionIcon />
+            </div>
           </div>
         </div>
         {this.props.videoList.map((playlist, currentPlaylistIndex) => {
