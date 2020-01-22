@@ -55,6 +55,7 @@
   font-size: x-small;
   font-style: italic;
   color: #599bb3;
+  font-weight: bold;
 }
 
 .VideoImage {
@@ -139,6 +140,10 @@
 @media screen and (min-width: 700px) {
   .Playlist {
     padding-left: 1em;
+  }
+
+  .Tiny {
+    font-size: large;
   }
 
   .AppTitle {

@@ -238,12 +238,6 @@ class Main extends React.Component {
         return null
       }
 
-      const videolistInCache = this.props.videoList.find(video => video.id === id)
-      if (videolistInCache && videolistInCache.timestamp && Date.now() - videolistInCache.timestamp < 5 * 60000) { /* 5 minutes */
-        console.log('found videos in cache for playlist', id)
-        return videolistInCache
-      }
-
       let response
       try {
         response = await axios.get(`/playlists/${id}`)
@@ -255,8 +249,7 @@ class Main extends React.Component {
       return {
         id,
         items,
-        shouldAutoPlay,
-        timestamp: Date.now()
+        shouldAutoPlay
       }
     }))
 

@@ -5,10 +5,9 @@ const Menu = (props) => {
   return(
   <div>
     <div className={styles.Menu}>
-        <div><a href='/'><img src='/logo192.png' alt='logo' width='24px' /></a></div>
-        <div><a href='/admin' className={props.current === 'admin' ? styles.Current : styles.Default}> Admin Portal </a></div>
-        <div><a href='/' className={styles.Default}> Play Now </a></div>
-        <div><a href='/about' className={props.current === 'about' ? styles.Current : styles.Default}> About</a></div>
+        <div className={styles.Default} onClick={() => window.location = '/'}><img src='/logo192.png' alt='logo' width='24px' />Play Now</div>
+        <div className={props.current === 'admin' ? styles.Current : styles.Default} onClick={() => window.location = '/admin'}>Admin Portal</div>
+        <div className={props.current === 'about' ? styles.Current : styles.Default} onClick={() => window.location = '/about'}>About</div>
     </div>
     <hr className={styles.styleFive} />
   </div>

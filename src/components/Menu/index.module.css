@@ -12,15 +12,23 @@
   font-size: larger;
 }
 
-a.Default {
+.Default > img {
+  vertical-align: middle;
+  padding-right: .5em;
+}
+
+.Default {
   color: #000;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
-a.Current {
+.Current {
   color: #28b1f9;
+  cursor: pointer;
 }
 
-a.Current:visited {
+.Current:visited {
   color: #28b1f9;
 }
 
