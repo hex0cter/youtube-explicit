@@ -6,13 +6,13 @@
   flex-direction: row;
   overflow-y: scroll;
   display: flex;
-  padding: 20px 0 0 0;
+  /* padding: 20px 0 0 0; */
 }
 
 .ListCell {
-  margin: 0 1em 1em 0;
-  color: #000;
-  background-color: rgb(76, 71, 71);
+  margin: 0 1em 0 0;
+  color: rgb(76, 71, 71);
+  /* background-color: rgb(76, 71, 71); */
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -23,15 +23,15 @@
 }
 
 .ActiveListCell {
-  margin: 0 1em 1em 0;
-  color: #000;
+  margin: 0 1em 0 0;
+  color: rgb(76, 71, 71);
   /* outline-style: solid;
   outline-color: rgb(69, 127, 194);
   outline-width: 4px; */
   /* -webkit-box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596);
   -moz-box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596);
   box-shadow: 0px 0px 5px 10px rgba(75, 121, 219, 0.596); */
-  background-color: rgb(76, 71, 71);
+  /* background-color: rgb(76, 71, 71); */
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -64,7 +64,7 @@
 }
 
 .VideoTitle {
-  color: #fff;
+  background-color: #fff;
   font-weight: normal;
   padding-bottom: 1em;
 }
@@ -173,6 +173,10 @@
   .Tiny {
     display: none;
   }
+
+  .LogoTitle {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 699px) {
@@ -242,15 +246,16 @@
 
   .ListCell {
     cursor: none;
-  }
-
-  .ListCell {
+    background-color: rgb(76, 71, 71);
     border: rgb(111, 111, 111) solid 1px;
+    color: #aaa;
   }
 
   .ActiveListCell {
     cursor: none;
     border: rgb(255, 255, 255) solid 1px;
+    color: #fff;
+    background-color: rgb(76, 71, 71);
     /* -webkit-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
     -moz-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
     box-shadow: 0px 0px 5px 10px rgb(226, 226, 226); */
@@ -264,5 +269,6 @@
 
   .VideoTitle {
     font-size: large;
+    background-color: rgb(76, 71, 71);
   }
 }

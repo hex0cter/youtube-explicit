@@ -14,12 +14,22 @@ exports.handler = async (event) => {
   }
 
   const data = await docClient.get(params).promise()
-  console.log('>>>> params', params, 'playlistData from db', data)
   let playlistData = data.Item
 
   // Update the list only if it is older than 15 minutes
   if (!playlistData || !playlistData.timestamp || currrentTimestamp - playlistData.timestamp > 15 * 60000) {
-    const response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist}&key=${credentials.apiKey}&maxResults=50`)
+    let response
+    try {
+      response = await axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlist}&key=${credentials.apiKey}&maxResults=50`)
+    } catch (e) {
+      return {
+        statusCode: (e.response && e.response.status) || 500,
+        headers: {
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Allow-Credentials" : true
+        }
+      }
+    }
     // console.log('response from google', response)
     const items = response.data ? response.data.items : []
 
