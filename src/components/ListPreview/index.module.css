@@ -253,12 +253,16 @@
     box-shadow: 0px 0px 5px 10px rgb(226, 226, 226); */
   }
   input:focus {
-    -webkit-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    /* -webkit-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
     -moz-box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
-    box-shadow: 0px 0px 5px 10px rgb(226, 226, 226);
+    box-shadow: 0px 0px 5px 10px rgb(226, 226, 226); */
+    border: rgb(255, 255, 255) solid 1px;
   }
   .VideoTitle {
     font-size: large;
     background-color: rgb(76, 71, 71);
+  }
+  .InputText {
+    color: #222222;
   }
 }
