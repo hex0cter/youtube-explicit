@@ -80,15 +80,16 @@
 
 @media screen and (max-width: 699px) {
   .Button {
-    width: 40px;
-    height: 20px;
+    width: 64px;
+    height: 34px;
+    padding-top: 0.5em;
   }
   .Button > span {
     font: bold 12px/22px Sans-Serif;
   }
   .Button:before {
-    border-width: 10px 10px 10px 0;
-    left: -8px;
+    border-width: 21px 16px 21px 0;
+    left: -14px;
   }
   .Title {
     font-size: medium;

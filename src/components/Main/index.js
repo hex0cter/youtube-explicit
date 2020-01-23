@@ -243,7 +243,7 @@ class Main extends React.Component {
         response = await axios.get(`/playlists/${id}`)
       } catch(e) {
         console.log('error', e)
-        return {id, error: e.response.status}
+        return {id, error: e.response ? e.response.status : 'unknown'}
       }
       const items = response.data.items
       return {

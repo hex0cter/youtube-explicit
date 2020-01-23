@@ -1,11 +1,11 @@
 .Icon {
   width: 24px;
   height: 24px;
+  fill: #fff;
 }
 
 @media screen and (max-width: 699px) {
   .Icon {
-    width: 12px;
     height: 12px;
   }
 }

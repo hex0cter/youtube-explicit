@@ -45,13 +45,16 @@ exports.handler = async (event) => {
   }
 
   const { items } = playlistData
+  const body = {playlist, items: JSON.parse(items)}
+  // console.log('>>>>>> playlist id', playlist, 'body', body)
+
   const response = {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin" : "*",
       "Access-Control-Allow-Credentials" : true
     },
-    body: JSON.stringify({playlist, items: JSON.parse(items)})
+    body: JSON.stringify(body)
   }
 
   return response
