@@ -111,6 +111,7 @@
   padding: 12px;
   border: 1px solid rgba(71, 60, 60, 0.514);
   background-color: #8da5e896;
+  color: #525252;
   border: none;
 }
 
@@ -173,7 +174,7 @@
   }
 }
 
-@media screen and (max-width: 319px) {
+@media screen and (max-width: 359px) {
   .Tiny {
     display: none;
   }
@@ -207,7 +208,7 @@
   }
   .InputText {
     border-radius: 2px;
-    padding: 2px;
+    padding: 5px;
   }
   .AppTitle {
     padding: 4px 10px 0 0;
