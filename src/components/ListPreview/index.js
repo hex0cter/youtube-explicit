@@ -102,7 +102,10 @@ class ListPreview extends React.Component {
                     <div className={styles.VideoImage}>
                       <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className={styles.VideoImage}/>
                     </div>
-                    <div className={styles.VideoTitle}>{video.snippet.title}</div>
+                    <div className={styles.VideoTitle}>
+                      <div>{video.snippet.title}</div>
+                      <div className={styles.PublishedAt}>{(new Date(video.snippet.publishedAt)).toLocaleString('en-GB')}</div>
+                    </div>
                   </div>
                 )
               })}

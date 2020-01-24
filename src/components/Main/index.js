@@ -60,7 +60,7 @@ class Main extends React.Component {
     } else if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE) {
       let { playlistIndex, videoIndex } = this.props.selectedVideo
       const elementInput = document.getElementById('user-identifier-input')
-      if (document.activeElement  === elementInput) {
+      if (document.activeElement === elementInput) {
         shouldInputHaveFocus = true
         if (key === 'Enter') {
           console.log('fetch the list')
@@ -104,28 +104,28 @@ class Main extends React.Component {
           }
 
           const selectedCell = document.getElementById('selected-cell')
-          const {left, top, width, height} = selectedCell.getBoundingClientRect()
+          const { left, top, width, height } = selectedCell.getBoundingClientRect()
 
           const maxWidth = window.innerWidth
           const maxHeight = window.innerHeight
 
           if (isVerticalNavigation) {
-            if(top > maxHeight - height) {
-              window.scrollBy({top: top - maxHeight + height + 10, left: 0, behavior: 'smooth'})
+            if (top > maxHeight - height) {
+              window.scrollBy({ top: top - maxHeight + height + 10, left: 0, behavior: 'smooth' })
             } else if (top < 0) {
-              window.scrollBy({top: top - height/2, left: 0, behavior: 'smooth'})
+              window.scrollBy({ top: top - height / 2, left: 0, behavior: 'smooth' })
             }
           }
 
-          if(left > maxWidth - width) {
-            selectedRow.scrollBy({top: 0, left: width, behavior: 'smooth'})
+          if (left > maxWidth - width) {
+            selectedRow.scrollBy({ top: 0, left: width, behavior: 'smooth' })
           } else if (left < 0) {
-            selectedRow.scrollBy({top: 0, left: left - width/2, behavior: 'smooth'})
+            selectedRow.scrollBy({ top: 0, left: left - width / 2, behavior: 'smooth' })
           }
         }
       }, 100, shouldInputHaveFocus, isVerticalNavigation)
 
-      this.props.onUpdateSelectedVideo({playlistIndex, videoIndex})
+      this.props.onUpdateSelectedVideo({ playlistIndex, videoIndex })
     }
   }
 
@@ -164,7 +164,7 @@ class Main extends React.Component {
     // console.log('this.props.isPlaybackInProgress', this.props.isPlaybackInProgress)
 
     if (this.props.startRestTime) {
-    const restedTime = (Date.now() - this.props.startRestTime)
+      const restedTime = (Date.now() - this.props.startRestTime)
       const remainingTime = this.props.minRestTime - restedTime
 
       if (remainingTime >= 0) {
@@ -175,11 +175,11 @@ class Main extends React.Component {
       }
     }
 
-    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE && this.props.forceReposition ) {
+    if (this.props.uiMode === modes.UI_LIST_PREVIEW_MODE && this.props.forceReposition) {
       const element = document.getElementById('selected-cell')
       if (element) {
         // console.log('Force the element to be displayed.')
-        element.scrollIntoView({behavior: "auto", block: "center", inline: "center"});
+        element.scrollIntoView({ behavior: "auto", block: "center", inline: "center" });
       }
     }
   }
@@ -207,9 +207,9 @@ class Main extends React.Component {
   }
 
   componentDidMount = async() => {
-    window.addEventListener('keydown',  this.keyPressed)
-    window.addEventListener('click',  this.handleClick)
-    window.addEventListener('mousemove',  this.handleMouseMove)
+    window.addEventListener('keydown', this.keyPressed)
+    window.addEventListener('click', this.handleClick)
+    window.addEventListener('mousemove', this.handleMouseMove)
 
     const urlParams = this.props.location.search
     const params = queryString.parse(urlParams)
@@ -233,7 +233,7 @@ class Main extends React.Component {
     }
 
     const playlists = response.data.playlists
-    const videoList = await Promise.all(playlists.map(async({id, isEnabled, shouldAutoPlay}) => {
+    const videoList = await Promise.all(playlists.map(async({ id, isEnabled, shouldAutoPlay }) => {
       if (!isEnabled) {
         return null
       }
@@ -241,9 +241,9 @@ class Main extends React.Component {
       let response
       try {
         response = await axios.get(`/playlists/${id}`)
-      } catch(e) {
+      } catch (e) {
         console.log('error', e)
-        return {id, error: e.response ? e.response.status : 'unknown'}
+        return { id, error: e.response ? e.response.status : 'unknown' }
       }
       const items = response.data.items
       return {
@@ -254,11 +254,27 @@ class Main extends React.Component {
     }))
 
     let validVideoList = videoList.filter(e => e !== null && e.items)
-    validVideoList = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails)}))
+    validVideoList = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails) }))
+
+    if (window.innerWidth < 700) {
+      const videos = validVideoList.map(list => list.items).flat()
+      const sortedVideos = videos.sort((v1, v2) => {
+        if (v1.snippet.publishedAt > v2.snippet.publishedAt) {
+          return -1
+        }
+        if (v1.snippet.publishedAt < v2.snippet.publishedAt) {
+          return 1
+        }
+        return 0
+      })
+      const topVideos = sortedVideos.splice(0, 100)
+      validVideoList = [{id : 'everything', items: topVideos, shouldAutoPlay: false}]
+    }
+
     this.props.onUpdateVideoList(validVideoList)
 
     const maxPlayTime = response.data.maxPlayTime
-    this.props.onUpdateMaxPlayTime( maxPlayTime * 60000) // convert minutes to milliseconds
+    this.props.onUpdateMaxPlayTime(maxPlayTime * 60000) // convert minutes to milliseconds
 
     const minRestTime = response.data.minRestTime
     this.props.onUpdateMinRestTime(minRestTime * 60000) // convert minutes to milliseconds

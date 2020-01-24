@@ -74,7 +74,9 @@
 .VideoTitle {
   background-color: #fff;
   font-weight: normal;
-  padding-bottom: 1em;
+  padding: 0 2px 1em 2px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .TopBar {
@@ -145,6 +147,12 @@
   height: 30px;
   vertical-align: bottom;
   padding-bottom: 9px;
+}
+
+.PublishedAt {
+  align-self: flex-start;
+  color: rgb(124, 122, 122);
+  font-size: small;
 }
 
 @media screen and (min-width: 700px) {
