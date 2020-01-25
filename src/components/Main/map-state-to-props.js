@@ -1,6 +1,9 @@
 const mapStateToProps = ({ main }) => ({
   userIdentifier: main.userIdentifier,
   videoList: main.videoList,
+  videosByTimestamp: main.videosByTimestamp,
+  videosByPlaylist: main.videosByPlaylist,
+  videoSortingMode: main.videoSortingMode,
   playlists: main.playlists,
   selectedVideo: main.selectedVideo,
   maxPlayTime: main.maxPlayTime,
@@ -12,7 +15,8 @@ const mapStateToProps = ({ main }) => ({
   startRestTime: main.startRestTime,
   startPlayTime: main.startPlayTime,
   userMode: main.userMode,
-  forceReposition: main.forceReposition
+  forceReposition: main.forceReposition,
+  playbackProgress: main.playbackProgress
 })
 
 export default mapStateToProps

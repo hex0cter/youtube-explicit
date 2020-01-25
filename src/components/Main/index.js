@@ -28,7 +28,7 @@ class Main extends React.Component {
       setInterval(this.showPlayingLogs, 1000)
       setTimeout(this.takeBreak, maxPlayTime)
     } else {
-      console.log('Debug: this.props.userMode', this.props.userMode)
+      // console.log('Debug: this.props.userMode', this.props.userMode)
     }
   }
 
@@ -54,6 +54,10 @@ class Main extends React.Component {
         } else {
           this.props.player.playVideo()
         }
+      } else if (key === 'f') {
+        this.props.player.seekTo(this.props.playbackProgress + 90, 'seconds')
+      } else if (key === 'b') {
+        this.props.player.seekTo(this.props.playbackProgress - 60, 'seconds')
       } else {
         console.log('UI_PLAYBACK_MODE: Skipping key', key)
       }
@@ -104,9 +108,11 @@ class Main extends React.Component {
           }
 
           const selectedCell = document.getElementById('selected-cell')
-          const { left, top, width, height } = selectedCell.getBoundingClientRect()
+          const { top, width, height } = selectedCell.getBoundingClientRect()
 
-          const maxWidth = window.innerWidth
+          var styles = window.getComputedStyle(selectedCell)
+          var widthMargin = parseFloat(styles['marginLeft']) + parseFloat(styles['marginRight'])
+
           const maxHeight = window.innerHeight
 
           if (isVerticalNavigation) {
@@ -117,13 +123,9 @@ class Main extends React.Component {
             }
           }
 
-          if (left > maxWidth - width) {
-            selectedRow.scrollBy({ top: 0, left: width, behavior: 'smooth' })
-          } else if (left < 0) {
-            selectedRow.scrollBy({ top: 0, left: left - width / 2, behavior: 'smooth' })
-          }
+          selectedRow.scrollTo({ top, left: videoIndex * (width + widthMargin) - window.innerWidth / 2 + width/2, behavior: 'smooth' })
         }
-      }, 100, shouldInputHaveFocus, isVerticalNavigation)
+      }, 0, shouldInputHaveFocus, isVerticalNavigation)
 
       this.props.onUpdateSelectedVideo({ playlistIndex, videoIndex })
     }
@@ -206,10 +208,21 @@ class Main extends React.Component {
     e.target.style.cursor = 'default'
   }
 
+  handleResize = () => {
+    if (window.innerWidth < 700 && this.props.videoSortingMode === modes.SORT_BY_PLAYLIST_MODE) {
+      this.props.onUpdateVideoSortingMode(modes.SORT_BY_TIMESTAMP_MODE)
+      return
+    }
+    if (window.innerWidth >= 700 && this.props.videoSortingMode === modes.SORT_BY_TIMESTAMP_MODE) {
+      this.props.onUpdateVideoSortingMode(modes.SORT_BY_PLAYLIST_MODE)
+    }
+  }
+
   componentDidMount = async() => {
     window.addEventListener('keydown', this.keyPressed)
     window.addEventListener('click', this.handleClick)
     window.addEventListener('mousemove', this.handleMouseMove)
+    window.addEventListener('resize', this.handleResize)
 
     const urlParams = this.props.location.search
     const params = queryString.parse(urlParams)
@@ -253,25 +266,29 @@ class Main extends React.Component {
       }
     }))
 
-    let validVideoList = videoList.filter(e => e !== null && e.items)
-    validVideoList = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails) }))
+    const validVideoList = videoList.filter(e => e !== null && e.items)
+    const videosByPlaylist = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails) }))
+    this.props.onUpdateVideosByPlaylist(videosByPlaylist)
+
+    const videos = videosByPlaylist.map(list => list.items).flat()
+    const sortedVideos = videos.sort((v1, v2) => {
+      if (v1.snippet.publishedAt > v2.snippet.publishedAt) {
+        return -1
+      }
+      if (v1.snippet.publishedAt < v2.snippet.publishedAt) {
+        return 1
+      }
+      return 0
+    })
+    const topVideos = sortedVideos.splice(0, 100)
+    const videosByTimestamp = [{id : 'everything', items: topVideos, shouldAutoPlay: false}]
+    this.props.onUpdateVideosByTimestamp(videosByTimestamp)
 
     if (window.innerWidth < 700) {
-      const videos = validVideoList.map(list => list.items).flat()
-      const sortedVideos = videos.sort((v1, v2) => {
-        if (v1.snippet.publishedAt > v2.snippet.publishedAt) {
-          return -1
-        }
-        if (v1.snippet.publishedAt < v2.snippet.publishedAt) {
-          return 1
-        }
-        return 0
-      })
-      const topVideos = sortedVideos.splice(0, 100)
-      validVideoList = [{id : 'everything', items: topVideos, shouldAutoPlay: false}]
+      this.props.onUpdateVideoSortingMode(modes.SORT_BY_TIMESTAMP_MODE)
+    } else {
+      this.props.onUpdateVideoSortingMode(modes.SORT_BY_PLAYLIST_MODE)
     }
-
-    this.props.onUpdateVideoList(validVideoList)
 
     const maxPlayTime = response.data.maxPlayTime
     this.props.onUpdateMaxPlayTime(maxPlayTime * 60000) // convert minutes to milliseconds

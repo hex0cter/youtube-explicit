@@ -2,11 +2,15 @@ import * as actions from './actions'
 import * as modes from './modes'
 
 const userIdentifier = localStorage.getItem('userIdentifier') || ''
-const videoList = localStorage.getItem('videoList') ? JSON.parse(localStorage.getItem('videoList')) : []
+const videosByTimestamp = localStorage.getItem('videosByTimestamp') ? JSON.parse(localStorage.getItem('videosByTimestamp')) : []
+const videosByPlaylist = localStorage.getItem('videosByPlaylist') ? JSON.parse(localStorage.getItem('videosByPlaylist')) : []
 
 const initialState = {
   playlists: [],
-  videoList,
+  videoList: [],
+  videosByTimestamp,
+  videosByPlaylist,
+  videoSortingMode: null,
   selectedVideo: {playlistIndex: 0, videoIndex: 0},
   playbackProgress: 0,
   isPlaybackInProgress: false,
@@ -42,9 +46,33 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.ACTION_UPDATE_VIDEO_LIST: {
       const videoList = updateVideoList(state.videoList, action.payload)
-      localStorage.setItem('videoList', JSON.stringify(videoList))
       return {
         ...state,
+        videoList
+      }
+    }
+    case actions.ACTION_UPDATE_VIDEOS_BY_PLAYLIST: {
+      const videosByPlaylist = updateVideoList(state.videosByPlaylist, action.payload)
+      localStorage.setItem('videosByPlaylist', JSON.stringify(videosByPlaylist))
+      return {
+        ...state,
+        videosByPlaylist
+      }
+    }
+    case actions.ACTION_UPDATE_VIDEOS_BY_TIMESTAMP: {
+      const videosByTimestamp = updateVideoList(state.videosByTimestamp, action.payload)
+      localStorage.setItem('videosByTimestamp', JSON.stringify(videosByTimestamp))
+      return {
+        ...state,
+        videosByTimestamp
+      }
+    }
+    case actions.ACTION_UPDATE_VIDEO_SORTING_MODE: {
+      const videoSortingMode = action.payload
+      const videoList = (videoSortingMode === modes.SORT_BY_TIMESTAMP_MODE) ? state.videosByTimestamp : state.videosByPlaylist
+      return {
+        ...state,
+        videoSortingMode,
         videoList
       }
     }

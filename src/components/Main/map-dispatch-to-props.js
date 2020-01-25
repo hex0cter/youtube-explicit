@@ -10,7 +10,10 @@ import {
   updateIsUserInteractionAllowed,
   updateFullScreenText,
   updateUserIdentifier,
-  updateForceReposition
+  updateForceReposition,
+  updateVideosByPlaylist,
+  updateVideosByTimestamp,
+  updateVideoSortingMode
 } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
@@ -25,7 +28,10 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdateStartRestTime: (time) => dispatch(updateStartRestTime(time)),
   onUpdateFullScreenText: (text) => dispatch(updateFullScreenText(text)),
   onUpdateUserIdentifier: (userIdentifier) => dispatch(updateUserIdentifier(userIdentifier)),
-  onUpdateForceReposition: (shouldReposition) => dispatch(updateForceReposition(shouldReposition))
+  onUpdateForceReposition: (shouldReposition) => dispatch(updateForceReposition(shouldReposition)),
+  onUpdateVideosByPlaylist: (videoList) => dispatch(updateVideosByPlaylist(videoList)),
+  onUpdateVideosByTimestamp: (videoList) => dispatch(updateVideosByTimestamp(videoList)),
+  onUpdateVideoSortingMode: (mode) => dispatch(updateVideoSortingMode(mode))
 })
 
 export default mapDispatchToProps
