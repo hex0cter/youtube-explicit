@@ -55,9 +55,11 @@ class Main extends React.Component {
           this.props.player.playVideo()
         }
       } else if (key === 'f') {
-        this.props.player.seekTo(this.props.playbackProgress + 90, 'seconds')
+        this.props.player.seekTo(this.props.playbackProgress + 120, 'seconds')
       } else if (key === 'b') {
         this.props.player.seekTo(this.props.playbackProgress - 60, 'seconds')
+      } else if (key === 's') {
+        this.props.player.seekTo(0, 'seconds')
       } else {
         console.log('UI_PLAYBACK_MODE: Skipping key', key)
       }
