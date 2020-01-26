@@ -15,7 +15,7 @@ class Playback extends React.Component {
     if (shouldAutoPlay && videoIndex < this.props.videoList[playlistIndex].items.length - 1) {
       this.props.onUpdateSelectedVideo({playlistIndex, videoIndex: videoIndex + 1})
     } else {
-      // this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
+      this.props.onUpdateUIMode(modes.UI_LIST_PREVIEW_MODE)
     }
     this.props.onUpdateIsPlaybackInProgress(false)
   }
