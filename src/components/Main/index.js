@@ -211,13 +211,13 @@ class Main extends React.Component {
   }
 
   handleResize = () => {
-    if (window.innerWidth < 700 && this.props.videoSortingMode === modes.SORT_BY_PLAYLIST_MODE) {
-      this.props.onUpdateVideoSortingMode(modes.SORT_BY_TIMESTAMP_MODE)
-      return
-    }
-    if (window.innerWidth >= 700 && this.props.videoSortingMode === modes.SORT_BY_TIMESTAMP_MODE) {
-      this.props.onUpdateVideoSortingMode(modes.SORT_BY_PLAYLIST_MODE)
-    }
+    // if (window.innerWidth < 700 && this.props.videoSortingMode === modes.SORT_BY_PLAYLIST_MODE) {
+    //   this.props.onUpdateVideoSortingMode(modes.SORT_BY_TIMESTAMP_MODE)
+    //   return
+    // }
+    // if (window.innerWidth >= 700 && this.props.videoSortingMode === modes.SORT_BY_TIMESTAMP_MODE) {
+    //   this.props.onUpdateVideoSortingMode(modes.SORT_BY_PLAYLIST_MODE)
+    // }
   }
 
   componentDidMount = async() => {
