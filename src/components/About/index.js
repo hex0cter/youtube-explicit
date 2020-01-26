@@ -45,7 +45,7 @@ const About = () => (
         TV mode shortcuts:
       </div>
       <div>
-      When the how page is displayed on a display that is wider than 1280 pixels, it will show in TV mode. In this mode you can use the TV remote to control the videos (configuration needed)
+      When the main page is displayed on a display that is wider than 1280 pixels, it will show in TV mode. In this mode you can use the TV remote to control the videos (configuration needed)
       </div>
       <div className={styles.Steps}>
       &rarr; Select video on the right
