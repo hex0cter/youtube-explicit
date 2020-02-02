@@ -9,9 +9,10 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
-import { msToTime } from './utils'
+import { msToSeconds, msToMinutes } from './utils'
 import * as modes from './modes'
 import queryString from 'query-string'
+import DisplayMessage from '../DisplayMessage'
 
 class Main extends React.Component {
   userActionOccured = () => {
@@ -25,7 +26,7 @@ class Main extends React.Component {
       this.props.onUpdateStartRestTime(null)
       this.props.onUpdateUserMode(modes.USER_PLAYING_MODE)
 
-      setInterval(this.showPlayingLogs, 1000)
+      setInterval(this.showPlayingLogs, 60000)
       setTimeout(this.takeBreak, maxPlayTime)
     } else {
       // console.log('Debug: this.props.userMode', this.props.userMode)
@@ -159,6 +160,7 @@ class Main extends React.Component {
 
   showPlayingLogs = () => {
     if (this.props.userMode === modes.USER_PLAYING_MODE) {
+      this.props.onUpdateDisplayMessage(`${msToMinutes(Date.now() - this.props.startPlayTime)}`)
       // console.log('user has been playing for', (Date.now() - this.props.startPlayTime)/1000, 'seconds')
     } else if (this.props.userMode === modes.USER_RESTING_MODE) {
       // console.log('user has been resting for', (Date.now() - this.props.startRestTime)/1000, 'seconds')
@@ -172,7 +174,7 @@ class Main extends React.Component {
       const remainingTime = this.props.minRestTime - restedTime
 
       if (remainingTime >= 0) {
-        const timeRemaining = msToTime(remainingTime)
+        const timeRemaining = msToSeconds(remainingTime)
         this.props.onUpdateFullScreenText(timeRemaining)
       } else {
         this.resumePlaying()
@@ -305,6 +307,7 @@ class Main extends React.Component {
         <BackBar />
         <AdMask />
         <FullScreen />
+        <DisplayMessage />
         {this.props.uiMode === modes.UI_LIST_PREVIEW_MODE ? <ListPreview /> : <Playback />}
       </div>
     )

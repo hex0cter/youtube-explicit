@@ -1,0 +1,9 @@
+.DisplayMessage {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  color: #f7f7f796;
+  z-index: 600;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}

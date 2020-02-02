@@ -17,6 +17,7 @@ export const ACTION_UPDATE_FORCE_REPOSITION = 'ACTION_UPDATE_FORCE_REPOSITION'
 export const ACTION_UPDATE_VIDEOS_BY_PLAYLIST = 'ACTION_UPDATE_VIDEOS_BY_PLAYLIST'
 export const ACTION_UPDATE_VIDEOS_BY_TIMESTAMP = 'ACTION_UPDATE_VIDEOS_BY_TIMESTAMP'
 export const ACTION_UPDATE_VIDEO_SORTING_MODE = 'ACTION_UPDATE_VIDEO_SORTING_MODE'
+export const ACTION_UPDATE_DISPLAY_MESSAGE = 'ACTION_UPDATE_DISPLAY_MESSAGE'
 
 export const updateVideoList = (payload) => ({
   type: ACTION_UPDATE_VIDEO_LIST, payload
@@ -108,5 +109,10 @@ export const updateVideosByTimestamp = (payload) => ({
 
 export const updateVideoSortingMode = (payload) => ({
   type: ACTION_UPDATE_VIDEO_SORTING_MODE,
+  payload
+})
+
+export const updateDisplayMessage = (payload) => ({
+  type: ACTION_UPDATE_DISPLAY_MESSAGE,
   payload
 })

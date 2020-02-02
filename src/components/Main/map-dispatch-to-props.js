@@ -13,7 +13,8 @@ import {
   updateForceReposition,
   updateVideosByPlaylist,
   updateVideosByTimestamp,
-  updateVideoSortingMode
+  updateVideoSortingMode,
+  updateDisplayMessage
 } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
@@ -31,7 +32,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdateForceReposition: (shouldReposition) => dispatch(updateForceReposition(shouldReposition)),
   onUpdateVideosByPlaylist: (videoList) => dispatch(updateVideosByPlaylist(videoList)),
   onUpdateVideosByTimestamp: (videoList) => dispatch(updateVideosByTimestamp(videoList)),
-  onUpdateVideoSortingMode: (mode) => dispatch(updateVideoSortingMode(mode))
+  onUpdateVideoSortingMode: (mode) => dispatch(updateVideoSortingMode(mode)),
+  onUpdateDisplayMessage: (message) => dispatch(updateDisplayMessage(message))
 })
 
 export default mapDispatchToProps

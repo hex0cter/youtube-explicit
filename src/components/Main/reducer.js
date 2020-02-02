@@ -24,7 +24,8 @@ const initialState = {
   fullScreenText: '',
   uiMode: modes.UI_LIST_PREVIEW_MODE,
   userMode: modes.USER_RESTING_MODE,
-  forceReposition: false
+  forceReposition: false,
+  displayMessage: ''
 }
 
 const updateVideoList = (oldVideoList, newVideoList) => {
@@ -179,6 +180,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         forceReposition
+      }
+    }
+    case actions.ACTION_UPDATE_DISPLAY_MESSAGE: {
+      const displayMessage = action.payload
+      return {
+        ...state,
+        displayMessage
       }
     }
     default:
