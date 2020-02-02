@@ -43,15 +43,9 @@ const updateVideoList = (oldVideoList, newVideoList) => {
 
   return videoList
 }
+
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actions.ACTION_UPDATE_VIDEO_LIST: {
-      const videoList = updateVideoList(state.videoList, action.payload)
-      return {
-        ...state,
-        videoList
-      }
-    }
     case actions.ACTION_UPDATE_VIDEOS_BY_PLAYLIST: {
       const videosByPlaylist = updateVideoList(state.videosByPlaylist, action.payload)
       localStorage.setItem('videosByPlaylist', JSON.stringify(videosByPlaylist))

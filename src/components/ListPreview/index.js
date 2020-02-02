@@ -51,6 +51,39 @@ class ListPreview extends React.Component {
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
 
+    const listOfvideos = (this.props.videoList.length === 0) ?
+      <img src='/images/loading.gif' alt='Loading...' style={{maxWidth: 300}}/> :
+      this.props.videoList.map((playlist, currentPlaylistIndex) => {
+        return (
+          <div
+            className={styles.Playlist}
+            key={currentPlaylistIndex}
+            id={playlistIndex === currentPlaylistIndex ? 'selected-row' : null}
+          >
+            {playlist.items.map((video, currentVideoIndex) => {
+              const isCellSeleted = playlistIndex === currentPlaylistIndex && videoIndex === currentVideoIndex
+              return (
+                <div
+                  className={isCellSeleted ? styles.ActiveListCell : styles.ListCell}
+                  id={isCellSeleted ? 'selected-cell' : null}
+                  ref={ (ref) => {if(isCellSeleted) {this.myRef=ref}} }
+                  key={currentVideoIndex}
+                  onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
+                >
+                  <div className={styles.VideoImage}>
+                    <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className={styles.VideoImage}/>
+                  </div>
+                  <div className={styles.VideoTitle}>
+                    <div>{video.snippet.title}</div>
+                    <div className={styles.PublishedAt}>{(new Date(video.snippet.publishedAt)).toLocaleString('en-GB')}</div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
+      })
+
     return (
       <div>
         <div className={styles.TopBar}>
@@ -82,36 +115,7 @@ class ListPreview extends React.Component {
             </div>
           </div>
         </div>
-        {this.props.videoList.map((playlist, currentPlaylistIndex) => {
-          return (
-            <div
-              className={styles.Playlist}
-              key={currentPlaylistIndex}
-              id={playlistIndex === currentPlaylistIndex ? 'selected-row' : null}
-            >
-              {playlist.items.map((video, currentVideoIndex) => {
-                const isCellSeleted = playlistIndex === currentPlaylistIndex && videoIndex === currentVideoIndex
-                return (
-                  <div
-                    className={isCellSeleted ? styles.ActiveListCell : styles.ListCell}
-                    id={isCellSeleted ? 'selected-cell' : null}
-                    ref={ (ref) => {if(isCellSeleted) {this.myRef=ref}} }
-                    key={currentVideoIndex}
-                    onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
-                  >
-                    <div className={styles.VideoImage}>
-                      <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className={styles.VideoImage}/>
-                    </div>
-                    <div className={styles.VideoTitle}>
-                      <div>{video.snippet.title}</div>
-                      <div className={styles.PublishedAt}>{(new Date(video.snippet.publishedAt)).toLocaleString('en-GB')}</div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
+        {listOfvideos}
       </div>
     )
   }

@@ -109,24 +109,17 @@ class Main extends React.Component {
           if (!selectedRow) {
             return
           }
-
           const selectedCell = document.getElementById('selected-cell')
-          const { top, width, height } = selectedCell.getBoundingClientRect()
+          const { width, height } = selectedCell.getBoundingClientRect()
 
-          var styles = window.getComputedStyle(selectedCell)
-          var widthMargin = parseFloat(styles['marginLeft']) + parseFloat(styles['marginRight'])
-
-          const maxHeight = window.innerHeight
+          const videoStyle = window.getComputedStyle(selectedCell)
+          const widthMargin = parseFloat(videoStyle['marginLeft']) + parseFloat(videoStyle['marginRight'])
 
           if (isVerticalNavigation) {
-            if (top > maxHeight - height) {
-              window.scrollBy({ top: top - maxHeight + height + 10, left: 0, behavior: 'smooth' })
-            } else if (top < 0) {
-              window.scrollBy({ top: top - height / 2, left: 0, behavior: 'smooth' })
-            }
+            window.scrollTo({left: 0, top: selectedRow.offsetTop - window.innerHeight / 2 + height / 2, behavior: 'smooth'})
           }
 
-          selectedRow.scrollTo({ top, left: videoIndex * (width + widthMargin) - window.innerWidth / 2 + width/2, behavior: 'smooth' })
+          selectedRow.scrollTo({ left: videoIndex * (width + widthMargin) - window.innerWidth / 2 + width / 2, behavior: 'smooth' })
         }
       }, 0, shouldInputHaveFocus, isVerticalNavigation)
 
