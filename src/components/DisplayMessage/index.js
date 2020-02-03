@@ -11,7 +11,6 @@ class DisplayMessage extends React.Component {
   }
 
   componentDidUpdate = () => {
-    console.log('>>>>', this.props)
     if(this.timer) {
       clearTimeout(this.timer)
       this.timer = null
@@ -20,7 +19,7 @@ class DisplayMessage extends React.Component {
     this.timer = setTimeout(() => {
       this.props.onUpdateDisplayMessage('')
       // this.setState({timer: null})
-    }, 10000)
+    }, 3000)
   }
 
   render() {

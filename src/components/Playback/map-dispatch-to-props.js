@@ -4,7 +4,8 @@ import {
   updatePlaybackProgress,
   updatePlayer,
   updateStartPlayTime,
-  updateUIMode
+  updateUIMode,
+  updateDisplayMessage
 } from '../Main/actions'
 
 const mapDispatchToProps = (dispatch) => ({
@@ -13,7 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdatePlayer: (player) => dispatch(updatePlayer(player)),
   onUpdateIsPlaybackInProgress: (isPlaybackInProgress) => dispatch(updateIsPlaybackInProgress(isPlaybackInProgress)),
   onUpdateStartPlayTime: (time) => dispatch(updateStartPlayTime(time)),
-  onUpdateUIMode: (mode) => dispatch(updateUIMode(mode))
+  onUpdateUIMode: (mode) => dispatch(updateUIMode(mode)),
+  onUpdateDisplayMessage: (message) => dispatch(updateDisplayMessage(message))
 })
 
 export default mapDispatchToProps

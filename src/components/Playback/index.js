@@ -5,6 +5,7 @@ import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
 import * as modes from '../Main/modes'
+import { msToSeconds } from '../Main/utils'
 
 class Playback extends React.Component {
   justToNextClip = () => {
@@ -38,6 +39,7 @@ class Playback extends React.Component {
   }
 
   videoStarted = () => {
+    this.props.onUpdateDisplayMessage(msToSeconds(this.props.playbackProgress * 1000))
     this.props.onUpdateIsPlaybackInProgress(true)
 
     if(!this.props.startPlayTime) {

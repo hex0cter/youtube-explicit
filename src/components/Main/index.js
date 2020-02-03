@@ -33,6 +33,16 @@ class Main extends React.Component {
     }
   }
 
+  fastForward = () => {
+    this.props.onUpdateDisplayMessage('>>')
+    this.props.player.seekTo(this.props.playbackProgress + 60, 'seconds')
+  }
+
+  fastBackward = () => {
+    this.props.onUpdateDisplayMessage('<<')
+    this.props.player.seekTo(this.props.playbackProgress - 50, 'seconds')
+  }
+
   keyPressed = (e) => {
     const key = e.key
     console.log('keyPressed', key)
@@ -56,10 +66,11 @@ class Main extends React.Component {
           this.props.player.playVideo()
         }
       } else if (key === 'f') {
-        this.props.player.seekTo(this.props.playbackProgress + 120, 'seconds')
+        this.fastForward()
       } else if (key === 'b') {
-        this.props.player.seekTo(this.props.playbackProgress - 60, 'seconds')
+        this.fastBackward()
       } else if (key === 's') {
+        this.props.onUpdateDisplayMessage('|<')
         this.props.player.seekTo(0, 'seconds')
       } else {
         console.log('UI_PLAYBACK_MODE: Skipping key', key)
@@ -183,22 +194,27 @@ class Main extends React.Component {
     }
   }
 
-  handleClick = () => {
-    if (!this.props.isUserInteractionAllowed) {
-      console.log('resting mode, skipping click')
-      return
-    }
-    this.userActionOccured()
+  handleClick = (e) => {
+    e.preventDefault()
 
-    if (!this.props.player) {
-      return
-    }
+    clearTimeout(this.clickTimeout);
+    this.clickTimeout = setTimeout(() => {
+      if (!this.props.isUserInteractionAllowed) {
+        console.log('resting mode, skipping click')
+        return
+      }
+      this.userActionOccured()
 
-    if (this.props.isPlaybackInProgress) {
-      this.props.player.pauseVideo()
-    } else {
-      this.props.player.playVideo()
-    }
+      if (!this.props.player) {
+        return
+      }
+
+      if (this.props.isPlaybackInProgress) {
+        this.props.player.pauseVideo()
+      } else {
+        this.props.player.playVideo()
+      }
+    }, 300)
   }
 
   handleMouseMove = (e) => {
@@ -215,11 +231,29 @@ class Main extends React.Component {
     // }
   }
 
+  handleDoubleClick = (e) => {
+    e.preventDefault()
+    clearTimeout(this.clickTimeout);
+    console.log('>>>>> double clicked', e)
+    if (this.props.userMode !== modes.USER_PLAYING_MODE) {
+      return
+    }
+
+    if (e.clientX < window.innerWidth / 3) {
+      // seek backward
+      this.fastBackward()
+    } else if (e.clientX > 2 * window.innerWidth / 3) {
+      // fast forward
+      this.fastForward()
+    }
+  }
+
   componentDidMount = async() => {
     window.addEventListener('keydown', this.keyPressed)
     window.addEventListener('click', this.handleClick)
     window.addEventListener('mousemove', this.handleMouseMove)
     window.addEventListener('resize', this.handleResize)
+    window.addEventListener('dblclick', this.handleDoubleClick)
 
     const urlParams = this.props.location.search
     const params = queryString.parse(urlParams)
