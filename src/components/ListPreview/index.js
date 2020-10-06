@@ -62,6 +62,21 @@ class ListPreview extends React.Component {
           >
             {playlist.items.map((video, currentVideoIndex) => {
               const isCellSeleted = playlistIndex === currentPlaylistIndex && videoIndex === currentVideoIndex
+              const thumbnails = video.snippet.thumbnails
+              let thumbnailsData
+              if (thumbnails.hasOwnProperty("standard")) {
+                thumbnailsData = thumbnails.standard
+              } else if (thumbnails.hasOwnProperty("high")) {
+                thumbnailsData = thumbnails.high
+              } else if (thumbnails.hasOwnProperty("medium")) {
+                thumbnailsData = thumbnails.medium
+              } else if (thumbnails.hasOwnProperty("default")) {
+                thumbnailsData = thumbnails.default
+              } else {
+                console.log("video.snippet", video.snippet)
+                return null
+              }
+
               return (
                 <div
                   className={isCellSeleted ? styles.ActiveListCell : styles.ListCell}
@@ -71,7 +86,7 @@ class ListPreview extends React.Component {
                   onClick={() => this.play({playlistIndex: currentPlaylistIndex, videoIndex: currentVideoIndex})}
                 >
                   <div className={styles.VideoImage}>
-                    <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} className={styles.VideoImage}/>
+                    <img src={thumbnailsData.url} alt={video.snippet.title} className={styles.VideoImage}/>
                   </div>
                   <div className={styles.VideoTitle}>
                     <div>{video.snippet.title}</div>

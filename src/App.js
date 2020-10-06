@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
 function App() {
-  axios.defaults.baseURL = 'https://api.solna.xyz/v1'
+  axios.defaults.baseURL = 'https://api.youtubo.xyz/v1'
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   axios.defaults.headers.get['Content-Type'] = 'application/json'
 

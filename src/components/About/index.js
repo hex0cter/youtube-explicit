@@ -30,10 +30,10 @@ const About = () => (
         some playlists Ids from youtube, and add them into your list. Please save the user identifier.
       </div>
       <div className={styles.Steps}>
-        2a. If you are using an Android device, open up <strong>Google Chrome</strong>, visit <a href='https://solna.xyz'>https://solna.xyz</a>, and click on the <strong>settings</strong> icon, then choose <strong>Add to Home Screen</strong>.
+        2a. If you are using an Android device, open up <strong>Google Chrome</strong>, visit <a href='https://youtubo.xyz'>https://youtubo.xyz</a>, and click on the <strong>settings</strong> icon, then choose <strong>Add to Home Screen</strong>.
       </div>
       <div className={styles.Steps}>
-        2b. If you are using an iOS device, open up <strong>Safari</strong>, visit <a href='https://solna.xyz'>https://solna.xyz</a>, and click on the <strong>sharing</strong> icon, then choose <strong>Add to Home Screen</strong>.
+        2b. If you are using an iOS device, open up <strong>Safari</strong>, visit <a href='https://youtubo.xyz'>https://youtubo.xyz</a>, and click on the <strong>sharing</strong> icon, then choose <strong>Add to Home Screen</strong>.
       </div>
       <div className={styles.Steps}>
         3. From the Home Screen you will see the new icon added. Open it up, and fill in the user identifier created in the first step. Done!

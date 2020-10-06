@@ -9,8 +9,8 @@ YouTube is a good tool for kids, sometimes, for entertaining, learning. But it a
 ## Step by step guide:
 
 1. Visit the Admin Portal, where you can generate a new user identifier for yourself. Then you can add get some playlists Ids from youtube, and add them into your list. Please save the user identifier.
-2. a) If you are using an Android device, open up Google Chrome, visit [https://solna.xyz](https://solna.xyz), and click on the settings icon, then choose Add to Home Screen.
-b) If you are using an iOS device, open up Safari, visit [https://solna.xyz](https://solna.xyz), and click on the sharing icon, then choose Add to Home Screen.
+2. a) If you are using an Android device, open up Google Chrome, visit [https://youtubo.xyz](https://youtubo.xyz), and click on the settings icon, then choose Add to Home Screen.
+b) If you are using an iOS device, open up Safari, visit [https://youtubo.xyz](https://youtubo.xyz), and click on the sharing icon, then choose Add to Home Screen.
 3. From the Home Screen you will see the new icon added. Open it up, and fill in the user identifier created in the first step. Done!
 
-## Quick links: [Play Now](https://solna.xyz/), [Admin Portal](https://solna.xyz/admin)
+## Quick links: [Play Now](https://youtubo.xyz/), [Admin Portal](https://youtubo.xyz/admin)

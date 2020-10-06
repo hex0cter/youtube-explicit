@@ -1,7 +1,7 @@
 #!/bin/bash
 # Inspired by https://ubuntu-mate.community/t/controlling-raspberry-pi-with-tv-remote-using-hdmi-cec/4250
 # Tested on Philips TV connected to Raspaberry Pi.
-# Running `cec-client | ./cec-remote.sh` with the chromium browser visiting https://solna.xyz
+# Running `cec-client | ./cec-remote.sh` with the chromium browser visiting https://youtubo.xyz
 # in full screen mode, you will get full STB experience.
 
 while read oneline

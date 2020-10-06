@@ -1,5 +1,5 @@
 {
-  "name": "youtube-explicit",
+  "name": "youtubo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,8 +22,9 @@
     "build": "rm -rf build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "preinstall": "cd aws && yarn install",
     "deploy:be": "cd aws && serverless deploy --stage dev",
-    "deploy:fe": "yarn build && aws s3 sync build s3://solna.xyz && aws cloudfront create-invalidation --distribution-id E1GZPLCWGW2L66 --paths /index.html",
+    "deploy:fe": "yarn build && aws s3 sync build s3://youtubo.xyz && aws cloudfront create-invalidation --distribution-id EXJUTXL8W9QSA --paths /index.html",
     "deploy": "yarn deploy:be && yarn deploy:fe"
   },
   "eslintConfig": {

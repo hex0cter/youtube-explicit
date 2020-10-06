@@ -1,12 +1,9 @@
-service: youtube-explicit
+service: youtubo
 
 plugins:
   - serverless-offline
-  # - serverless-domain-manager
-  # - serverless-dynamodb-local
-
 custom:
-  domain: solna.xyz
+  domain: youtubo.xyz
   # customDomain:
   #   domainName: api.${self:custom.domain}
   #   basePath: ${file(./serverless-config.yml):api.${opt:stage, self:provider.stage}}
@@ -32,6 +29,14 @@ provider:
     DOMAIN_NAME: ${self:custom.domain}
 
 functions:
+  ping:
+    handler: api/ping.handler
+    name: ${self:service}-${opt:stage, self:provider.stage}-Ping
+    events:
+      - http:
+          path: /ping
+          method: get
+          cors: true
   fetchUser:
     handler: api/fetchUser.handler
     name: ${self:service}-${opt:stage, self:provider.stage}-FetchUser

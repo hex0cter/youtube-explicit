@@ -298,7 +298,7 @@ class Main extends React.Component {
     }))
 
     const validVideoList = videoList.filter(e => e !== null && e.items)
-    const videosByPlaylist = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails) }))
+    const videosByPlaylist = validVideoList.map(playlist => ({...playlist, items: playlist.items.filter(video => !!video.snippet.thumbnails && video.snippet.thumbnails.hasOwnProperty("default")) }))
     this.props.onUpdateVideosByPlaylist(videosByPlaylist)
 
     const videos = videosByPlaylist.map(list => list.items).flat()
