@@ -77,7 +77,7 @@
   padding: 0 2px 1em 2px;
   display: flex;
   justify-content: space-between;
-  width: calc(500px - 1em);
+  width: calc(360px - 1em);
 }
 
 .TopBar {
@@ -271,6 +271,7 @@
   .VideoTitle {
     font-size: large;
     background-color: rgb(76, 71, 71);
+    width: calc(500px - 1em);
   }
   .InputText {
     color: #222222;
