@@ -37,6 +37,10 @@ functions:
           path: /ping
           method: get
           cors: true
+      - http:
+          path: /ping
+          method: post
+          cors: true
   fetchUser:
     handler: api/fetchUser.handler
     name: ${self:service}-${opt:stage, self:provider.stage}-FetchUser
