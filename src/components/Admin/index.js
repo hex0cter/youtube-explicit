@@ -213,7 +213,7 @@ class Admin extends React.Component {
           <Button variant="contained" color="default" disabled={this.props.userIdentifier === ""}>Fetch lists</Button>
         </div>
         <div onClick={this.clonePlaylists}>
-          <Button variant="contained" color="default">Clone</Button>
+          <Button variant="contained" color="default" disabled={this.props.userIdentifier === ""}>Clone</Button>
         </div>
         <div onClick={this.generateNewUserIdentifier}>
           <Button variant="contained" color="primary">Create new</Button>
