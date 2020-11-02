@@ -8,6 +8,7 @@ import shortid from 'shortid'
 import axios from 'axios'
 import PlaylistConfiguration from './PlaylistConfiguration'
 import queryString from 'query-string'
+import { Button } from '@material-ui/core';
 
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$@')
 
@@ -197,7 +198,7 @@ class Admin extends React.Component {
       <div className={styles.Content}>
       <div className={styles.UserIdentifier}>
         <div className={styles.UserIdentifierInput}>
-        <span className={styles.UserIdentifierTitle}>User Identifer:</span>
+        <span className={styles.UserIdentifierTitle}>User Identifer: </span>
         <input
             type="text"
             className={styles.InputText}
@@ -208,14 +209,14 @@ class Admin extends React.Component {
             size={10}
           />
         </div>
-        <div className={this.props.userIdentifier ? styles.smallButton : styles.disabledSmallButton} onClick={this.onFetch}>
-          Fetch lists
+        <div onClick={this.onFetch}>
+          <Button variant="contained" color="default" disabled={this.props.userIdentifier === ""}>Fetch lists</Button>
         </div>
-        <div className={this.props.playlists.length !== 0 ? styles.smallButton : styles.disabledSmallButton} onClick={this.clonePlaylists}>
-          Clone
+        <div onClick={this.clonePlaylists}>
+          <Button variant="contained" color="default">Clone</Button>
         </div>
-        <div className={styles.smallButton} onClick={this.generateNewUserIdentifier}>
-          Create new
+        <div onClick={this.generateNewUserIdentifier}>
+          <Button variant="contained" color="primary">Create new</Button>
         </div>
       </div>
       <div className={styles.TimeConfiguration}>

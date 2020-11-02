@@ -45,10 +45,17 @@ class Main extends React.Component {
 
   keyPressed = (e) => {
     const key = e.key
-    console.log('keyPressed', key)
 
     if (!this.props.isUserInteractionAllowed) {
       console.log('resting mode, skipping key press', key)
+      return
+    }
+    if (this.props.videoList === null) {
+      console.log('video list unintialized, skipping', key)
+      return
+    }
+    if (!this.props.player) {
+      console.log('no media player, skipping', key)
       return
     }
 

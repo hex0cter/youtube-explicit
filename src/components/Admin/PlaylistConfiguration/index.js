@@ -2,6 +2,14 @@ import React from 'react'
 import styles from './index.module.css'
 import axios from 'axios'
 import queryString from 'query-string'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop';
+import VerticalAlignBottomIcon from '@material-ui/icons/VerticalAlignBottom';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 
 class PlaylistConfiguration extends React.Component {
   state = {
@@ -91,18 +99,20 @@ class PlaylistConfiguration extends React.Component {
       <div className={styles.PlaylistConfiguration}>
         <div className={styles.PlaylistControls}>
           <div className={styles.PlaylistId}>
-            <input type="checkbox" name="disabled" checked={this.props.isEnabled} onChange={this.changeEnabled} />
-            {id}
+            <FormControlLabel label={id} control={<Checkbox/>} checked={this.props.isEnabled} onChange={this.changeEnabled}/>
+            {/* <input type="checkbox" name="disabled" checked={this.props.isEnabled} onChange={this.changeEnabled} /> */}
+            {/* {id} */}
           </div>
           <div>
-            <input type="checkbox" name="autoPlay" checked={this.props.shouldAutoPlay} onChange={this.changeAutoPlay} id={`auto-play-${id}`}/>Auto play
+            <FormControlLabel label="Auto play" control={<Checkbox/>} checked={this.props.shouldAutoPlay} onChange={this.changeAutoPlay}/>
+            {/* <input type="checkbox" name="autoPlay" checked={this.props.shouldAutoPlay} onChange={this.changeAutoPlay} id={`auto-play-${id}`}/>Auto play */}
           </div>
-          <div>
-            <button onClick={this.props.onMoveUp}>Up</button>
-            <button onClick={this.props.onMoveDown}>Down</button>
-            <button onClick={this.props.onMoveToTop}>Top</button>
-            <button onClick={this.props.onMoveToBottom}>Bottom</button>
-            <button onClick={this.props.onDelete}>Delete</button>
+          <div style={{cursor: "pointer"}}>
+            <ArrowUpwardIcon color="action" onClick={this.props.onMoveUp}/>
+            <ArrowDownwardIcon color="action"onClick={this.props.onMoveDown}/>
+            <VerticalAlignTopIcon color="action" onClick={this.props.onMoveToTop}/>
+            <VerticalAlignBottomIcon color="action" onClick={this.props.onMoveToBottom}/>
+            <DeleteOutlineIcon color="error" onClick={this.props.onDelete}/>
           </div>
         </div>
         <div className={styles.PlaylistPreview}>

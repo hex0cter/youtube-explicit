@@ -4,9 +4,11 @@ import mapStateToProps from './map-state-to-props'
 import mapDispatchToProps from './map-dispatch-to-props'
 import styles from './index.module.css'
 import * as modes from '../Main/modes'
-import WrenchIcon from '../SVG/wrench'
-import QuestionIcon from '../SVG/question'
-import RefreshIcon from '../SVG/refresh'
+import { Button } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
+import SettingsIcon from '@material-ui/icons/Settings'
+import RefreshIcon from '@material-ui/icons/Refresh'
+import InfoIcon from '@material-ui/icons/Info'
 
 class ListPreview extends React.Component {
   play = ({playlistIndex, videoIndex}) => {
@@ -50,10 +52,13 @@ class ListPreview extends React.Component {
 
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
-
-    const listOfvideos = (this.props.videoList.length === 0) ?
-      <img src='/images/loading.gif' alt='Loading...' style={{maxWidth: 300}}/> :
-      this.props.videoList.map((playlist, currentPlaylistIndex) => {
+    let listOfvideos
+    if (this.props.videoList === null) {
+      listOfvideos = <Box color="rgb(58, 64, 66)">Please fill in a valid identifier on the top right corner <span role="img" aria-label="">👉</span></Box>
+    } else if (this.props.videoList.length === 0) {
+      listOfvideos = <img src='/images/loading.gif' alt='Loading...' style={{maxWidth: 300}}/>
+    } else {
+      listOfvideos = this.props.videoList.map((playlist, currentPlaylistIndex) => {
         return (
           <div
             className={styles.Playlist}
@@ -98,6 +103,7 @@ class ListPreview extends React.Component {
           </div>
         )
       })
+    }
 
     return (
       <div>
@@ -119,14 +125,14 @@ class ListPreview extends React.Component {
                 size={10}
               />
             </div>
-            <div className={styles.Button} onClick={this.updateUserIdentifier}>
-              <RefreshIcon />
+            <div onClick={this.updateUserIdentifier}>
+              <Button variant="contained" color="primary"><RefreshIcon/></Button>
             </div>
-            <div className={styles.Button} onClick={() => {window.location = '/admin'}}>
-              <WrenchIcon />
+            <div onClick={() => {window.location = '/admin'}}>
+              <Button variant="contained" color="primary"><SettingsIcon/></Button>
             </div>
-            <div className={styles.Button} onClick={() => {window.location = '/about'}}>
-              <QuestionIcon />
+            <div onClick={() => {window.location = '/about'}}>
+              <Button variant="contained" color="primary"><InfoIcon/></Button>
             </div>
           </div>
         </div>
