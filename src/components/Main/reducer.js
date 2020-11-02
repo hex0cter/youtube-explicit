@@ -7,7 +7,7 @@ const videosByPlaylist = localStorage.getItem('videosByPlaylist') ? JSON.parse(l
 
 const initialState = {
   playlists: [],
-  videoList: null,
+  videoList: [],
   videosByTimestamp,
   videosByPlaylist,
   videoSortingMode: null,

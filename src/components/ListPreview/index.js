@@ -53,7 +53,7 @@ class ListPreview extends React.Component {
   render() {
     const { playlistIndex, videoIndex } = this.props.selectedVideo
     let listOfvideos
-    if (this.props.videoList === null) {
+    if (this.props.userIdentifier === "") {
       listOfvideos = <Box color="rgb(58, 64, 66)">Please fill in a valid identifier on the top right corner <span role="img" aria-label="">👉</span></Box>
     } else if (this.props.videoList.length === 0) {
       listOfvideos = <img src='/images/loading.gif' alt='Loading...' style={{maxWidth: 300}}/>
