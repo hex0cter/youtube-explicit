@@ -54,10 +54,10 @@ class Main extends React.Component {
       console.log('video list unintialized, skipping', key)
       return
     }
-    if (!this.props.player) {
-      console.log('no media player, skipping', key)
-      return
-    }
+    // if (!this.props.player) {
+    //   console.log('no media player, skipping', key)
+    //   return
+    // }
 
     this.userActionOccured()
 
